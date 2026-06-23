@@ -1,0 +1,377 @@
+<!--
+  ╔════════════════════════════════════════════════════════════════╗
+  ║  GUIA RÁPIDO  (podes apagar este bloco quando quiseres)          ║
+  ║                                                                  ║
+  ║  1. Onde encontrares  EDITA:  troca pelo teu conteúdo.           ║
+  ║  2. Põe os teus PDFs, vídeos e imagens numa pasta chamada        ║
+  ║     "assets" dentro do repositório, e aponta os links para lá.   ║
+  ║     Exemplo:  href="assets/relatorio-jogo.pdf"                   ║
+  ║  3. Para uma demo jogável no browser, aponta o link para a       ║
+  ║     pasta do build (ex.: href="assets/jogo-tiro/index.html").    ║
+  ║  4. Cada projeto é um bloco <article class="card"> — copia um    ║
+  ║     e cola para criares mais.                                    ║
+  ╚════════════════════════════════════════════════════════════════╝
+-->
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joana Carvalho — Portfólio</title>
+<meta name="description" content="Portfólio de Joana Carvalho — Engenharia Eletrónica Industrial e Computadores, Universidade do Minho.">
+<!-- Esconde o site dos motores de busca (só vê quem tem o link). Apaga esta linha se um dia o quiseres público. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7F4;
+    --ink:#15202A;
+    --slate:#586068;
+    --line:rgba(21,32,42,.12);
+    --accent:#1C6E5A;
+    --accent-soft:rgba(28,110,90,.10);
+    --radius:10px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1020px;margin:0 auto;padding:0 28px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--accent);
+    letter-spacing:.02em;margin:0 0 10px;
+  }
+
+  /* ---------- Cabeçalho / nav ---------- */
+  header.top{
+    position:sticky;top:0;z-index:10;background:rgba(246,247,244,.88);
+    backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line);
+  }
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  header.top .name{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:17px}
+  header.top nav{display:flex;gap:22px;font-family:"IBM Plex Mono",monospace;font-size:13px}
+  header.top nav a{color:var(--slate)}
+  header.top nav a:hover{color:var(--ink);text-decoration:none}
+  @media(max-width:680px){header.top nav{display:none}}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:84px 0 64px;border-bottom:1px solid var(--line);overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:32px 32px;
+    -webkit-mask-image:linear-gradient(180deg,#000,transparent 78%);
+    mask-image:linear-gradient(180deg,#000,transparent 78%);
+  }
+  .hero .wrap{position:relative}
+  .hero h1{
+    font-family:"Space Grotesk",sans-serif;font-weight:600;
+    font-size:clamp(38px,7vw,68px);line-height:1.05;margin:0 0 18px;letter-spacing:-.02em;
+  }
+  .hero p.lead{font-size:clamp(18px,2.4vw,21px);color:var(--slate);max-width:60ch;margin:0 0 26px}
+  .hero .links{display:flex;flex-wrap:wrap;gap:10px;font-family:"IBM Plex Mono",monospace;font-size:14px}
+  .hero .links a{
+    border:1px solid var(--line);border-radius:99px;padding:7px 15px;color:var(--ink);
+  }
+  .hero .links a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+
+  /* ---------- Secções ---------- */
+  section.block{padding:64px 0;border-bottom:1px solid var(--line)}
+  section.block > .wrap > h2{
+    font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:28px;margin:0 0 6px;letter-spacing:-.01em;
+  }
+  .section-note{color:var(--slate);margin:0 0 32px;max-width:62ch}
+  .block.feature{background:linear-gradient(180deg,var(--accent-soft),transparent 60%)}
+
+  /* ---------- Cartões de projeto ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(21,32,42,.08);border-color:rgba(28,110,90,.4)}
+  .card h3{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:19px;margin:0 0 8px}
+  .card .desc{color:var(--slate);font-size:15px;line-height:1.55;margin:0 0 16px}
+  .media{
+    height:140px;border:1px dashed var(--line);border-radius:8px;background:#FAFBF9;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    color:var(--slate);font-family:"IBM Plex Mono",monospace;font-size:13px;padding:12px;margin:0 0 16px;
+  }
+  .card .links{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+  .card .links a{
+    font-family:"IBM Plex Mono",monospace;font-size:13px;border:1px solid var(--line);
+    border-radius:7px;padding:5px 11px;color:var(--ink);
+  }
+  .card .links a.locked{color:var(--slate);border-style:dashed}
+  .card .links a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+  .tags{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px}
+  .tag{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 9px}
+
+  footer{padding:48px 0;color:var(--slate);font-family:"IBM Plex Mono",monospace;font-size:13px}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <span class="name">Joana Carvalho</span>
+    <nav>
+      <a href="#destaque">destaque</a>
+      <a href="#software">software</a>
+      <a href="#electronics">eletrónica</a>
+      <a href="#power">potência</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">// Engenharia Eletrónica Industrial e Computadores</p>
+    <h1>Joana Carvalho</h1>
+    <p class="lead">Estudante de Engenharia Eletrónica Industrial e Computadores na Universidade do Minho. Interessa-me sobretudo a área de energia e eletrónica de potência, mas gosto de projetos que cruzam o hardware com o software — dos sistemas embebidos à automação. Procuro um mestrado onde possa aprofundar essa área, levando comigo a base prática dos projetos do curso.</p>
+    <div class="links">
+      <a href="mailto:joanamlmc17@gmail.com">email pessoal</a>
+      <a href="mailto:a104865@alunos.uminho.pt">email uminho</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DESTAQUE: PROJETOS INTEGRADORES ============ -->
+<section class="block feature" id="destaque">
+  <div class="wrap">
+    <p class="eyebrow">// destaque</p>
+    <h2>Projetos integradores</h2>
+    <p class="section-note">Os projetos maiores do curso, levados do conceito ao protótipo funcional.</p>
+    <div class="grid">
+
+      <article class="card">
+        <h3>PI1 — projeto final</h3>
+        <p class="desc">EDITA: o que era o projeto, o teu papel e o resultado, em 1–2 frases.</p>
+        <div class="media">Adiciona aqui um vídeo, fotos ou GIF</div>
+        <div class="links">
+          <a href="assets/pi1-relatorio.pdf">relatório (pdf)</a>
+          <a href="assets/pi1-slides.pdf">slides</a>
+        </div>
+        <div class="tags"><span class="tag">EDITA: tecnologia</span><span class="tag">EDITA: área</span></div>
+      </article>
+
+      <article class="card">
+        <h3>PI2 — projeto final</h3>
+        <p class="desc">EDITA: o que era o projeto, o teu papel e o resultado, em 1–2 frases.</p>
+        <div class="media">Adiciona aqui um vídeo, fotos ou GIF</div>
+        <div class="links">
+          <a href="assets/pi2-relatorio.pdf">relatório (pdf)</a>
+          <a href="assets/pi2-slides.pdf">slides</a>
+        </div>
+        <div class="tags"><span class="tag">EDITA: tecnologia</span><span class="tag">EDITA: área</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOFTWARE (exemplo preenchido) ============ -->
+<section class="block" id="software">
+  <div class="wrap">
+    <p class="eyebrow">// software</p>
+    <h2>Programação</h2>
+    <p class="section-note">Projetos em C++ e fundamentos de programação.</p>
+    <div class="grid">
+
+      <!-- EXEMPLO PREENCHIDO — usa-o como molde -->
+      <article class="card">
+        <h3>Jogo de tiro</h3>
+        <p class="desc">Jogo 2D em C++ com movimento do jogador, inimigos e sistema de pontuação. Projeto da cadeira de Complementos de Programação.</p>
+        <div class="media">▶ Jogar a demo no browser (liga aqui o build)</div>
+        <div class="links">
+          <a href="assets/jogo-tiro-relatorio.pdf">relatório (pdf)</a>
+          <a class="locked" href="https://github.com/EDITA/jogo-tiro">código</a>
+        </div>
+        <div class="tags"><span class="tag">C++</span><span class="tag">SDL</span><span class="tag">lógica de jogo</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Jogo da bolinha</h3>
+        <p class="desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="media">Adiciona aqui um vídeo ou demo</div>
+        <div class="links">
+          <a href="assets/bolinha-relatorio.pdf">relatório (pdf)</a>
+          <a class="locked" href="#">código</a>
+        </div>
+        <div class="tags"><span class="tag">C++</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Guias de C++ (ATC1 / ATC2)</h3>
+        <p class="desc">EDITA: o que cobrem estes guias.</p>
+        <div class="links">
+          <a class="locked" href="#">código</a>
+        </div>
+        <div class="tags"><span class="tag">C++</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SISTEMAS EMBEBIDOS ============ -->
+<section class="block" id="embedded">
+  <div class="wrap">
+    <p class="eyebrow">// embedded</p>
+    <h2>Sistemas embebidos &amp; microcontroladores</h2>
+    <p class="section-note">Programação de microcontroladores e sistemas com restrições de tempo real.</p>
+    <div class="grid">
+
+      <article class="card">
+        <h3>Vending machine</h3>
+        <p class="desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="media">Adiciona aqui um vídeo ou demo</div>
+        <div class="links">
+          <a href="assets/vending-relatorio.pdf">relatório (pdf)</a>
+          <a class="locked" href="#">código</a>
+        </div>
+        <div class="tags"><span class="tag">C++</span><span class="tag">embebidos</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Guias em Assembly</h3>
+        <p class="desc">EDITA: o que cobrem.</p>
+        <div class="links"><a class="locked" href="#">código</a></div>
+        <div class="tags"><span class="tag">Assembly</span><span class="tag">microcontroladores</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ELETRÓNICA & PCB ============ -->
+<section class="block" id="electronics">
+  <div class="wrap">
+    <p class="eyebrow">// electronics</p>
+    <h2>Eletrónica &amp; PCB</h2>
+    <p class="section-note">Conceção e análise de circuitos, do esquemático à placa.</p>
+    <div class="grid">
+
+      <article class="card">
+        <h3>Projeto 555</h3>
+        <p class="desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="media">Adiciona aqui o vídeo</div>
+        <div class="links"><a href="assets/555-relatorio.pdf">relatório (pdf)</a></div>
+        <div class="tags"><span class="tag">eletrónica analógica</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Projeto em KiCad</h3>
+        <p class="desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="media">Adiciona aqui imagens do esquema/PCB</div>
+        <div class="links"><a href="#">ficheiros</a></div>
+        <div class="tags"><span class="tag">KiCad</span><span class="tag">PCB</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Motor</h3>
+        <p class="desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="media">Adiciona aqui vídeo e fotos</div>
+        <div class="tags"><span class="tag">eletrotecnia</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ POTÊNCIA & ENERGIA ============ -->
+<section class="block" id="power">
+  <div class="wrap">
+    <p class="eyebrow">// power</p>
+    <h2>Eletrónica de potência &amp; energia</h2>
+    <p class="section-note">Conversão de energia e eletrónica de potência, com aplicação a fontes renováveis.</p>
+    <div class="grid">
+
+      <article class="card">
+        <h3>Conversor BOOST</h3>
+        <p class="desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="media">Adiciona aqui fotos da placa</div>
+        <div class="links">
+          <a href="assets/boost-relatorio.pdf">relatório (pdf)</a>
+          <a href="#">simulação (PSIM)</a>
+        </div>
+        <div class="tags"><span class="tag">conversor DC-DC</span><span class="tag">PSIM</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Painel solar com Boost</h3>
+        <p class="desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="media">Adiciona aqui vídeos e fotos</div>
+        <div class="links">
+          <a href="assets/painel-relatorio.pdf">relatório (pdf)</a>
+          <a href="assets/painel-slides.pdf">slides</a>
+        </div>
+        <div class="tags"><span class="tag">energias renováveis</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUTOMAÇÃO ============ -->
+<section class="block" id="automation">
+  <div class="wrap">
+    <p class="eyebrow">// automation</p>
+    <h2>Automação</h2>
+    <p class="section-note">Controlo e automação de sistemas.</p>
+    <div class="grid">
+
+      <article class="card">
+        <h3>Trabalho de automação</h3>
+        <p class="desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="media">Adiciona aqui o vídeo</div>
+        <div class="links"><a href="assets/automacao-relatorio.pdf">relatório (pdf)</a></div>
+        <div class="tags"><span class="tag">automação</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ REDES ============ -->
+<section class="block" id="networking">
+  <div class="wrap">
+    <p class="eyebrow">// networking</p>
+    <h2>Redes</h2>
+    <p class="section-note">Conceção e configuração de redes de comunicação.</p>
+    <div class="grid">
+
+      <article class="card">
+        <h3>Projeto de redes</h3>
+        <p class="desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="media">Adiciona aqui o diagrama da rede</div>
+        <div class="links"><a href="assets/redes-relatorio.pdf">relatório (pdf)</a></div>
+        <div class="tags"><span class="tag">redes</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Joana Carvalho · <span class="mono">construído com GitHub Pages</span>
+  </div>
+</footer>
+
+</body>
+</html>
