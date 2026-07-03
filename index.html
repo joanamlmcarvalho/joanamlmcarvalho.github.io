@@ -1,16 +1,9 @@
 <!--
-  ╔════════════════════════════════════════════════════════════════╗
-  ║  GUIA RÁPIDO  (podes apagar este bloco quando quiseres)          ║
-  ║                                                                  ║
-  ║  1. Onde encontrares  EDITA:  troca pelo teu conteúdo.           ║
-  ║  2. Põe os teus PDFs, vídeos e imagens numa pasta chamada        ║
-  ║     "assets" dentro do repositório, e aponta os links para lá.   ║
-  ║     Exemplo:  href="assets/relatorio-jogo.pdf"                   ║
-  ║  3. Para uma demo jogável no browser, aponta o link para a       ║
-  ║     pasta do build (ex.: href="assets/jogo-tiro/index.html").    ║
-  ║  4. Cada projeto é um bloco <article class="card"> — copia um    ║
-  ║     e cola para criares mais.                                    ║
-  ╚════════════════════════════════════════════════════════════════╝
+  GUIA RÁPIDO (apaga quando quiseres)
+  - Onde vês EDITA, troca pelo teu texto.
+  - Imagens/PDFs vão para a pasta "assets" e os links apontam para lá.
+  - Cada projeto é um bloco <article class="work"> — copia para criar mais.
+  - O TEMA (cores e fontes) está no bloco :root, no topo do <style>.
 -->
 <!doctype html>
 <html lang="pt">
@@ -19,359 +12,342 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Joana Carvalho — Portfólio</title>
 <meta name="description" content="Portfólio de Joana Carvalho — Engenharia Eletrónica Industrial e Computadores, Universidade do Minho.">
-<!-- Esconde o site dos motores de busca (só vê quem tem o link). Apaga esta linha se um dia o quiseres público. -->
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F6F7F4;
-    --ink:#15202A;
-    --slate:#586068;
-    --line:rgba(21,32,42,.12);
-    --accent:#1C6E5A;
-    --accent-soft:rgba(28,110,90,.10);
-    --radius:10px;
+    --paper:#F4F6FA;
+    --ink:#16233A;
+    --slate:#5A6478;
+    --line:rgba(22,35,58,.14);
+    --accent:#2E52A8;
+    --accent-soft:rgba(46,82,168,.10);
+    --serif:"Playfair Display",Georgia,serif;
+    --sans:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    margin:0;background:var(--paper);color:var(--ink);
-    font-family:"Lato",system-ui,sans-serif;font-size:17px;line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:1020px;margin:0 auto;padding:0 28px}
+  body{margin:0;color:var(--ink);background:var(--paper) linear-gradient(180deg,#E4ECF8,rgba(228,236,248,0) 560px) no-repeat;font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px}
   a{color:var(--accent);text-decoration:none}
-  a:hover{text-decoration:underline}
-  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
-  .eyebrow{
-    font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--accent);
-    letter-spacing:.02em;margin:0 0 10px;
+  .mono{font-family:var(--mono)}
+  .arrow{font-family:var(--mono);font-size:.85em}
+
+  header.bar{position:sticky;top:0;z-index:20;background:rgba(244,246,250,.82);backdrop-filter:saturate(140%) blur(9px);border-bottom:1px solid var(--line)}
+  header.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  header.bar .who{font-family:var(--serif);font-weight:600;font-size:18px;letter-spacing:.01em}
+  header.bar nav{display:flex;gap:24px;font-family:var(--mono);font-size:12.5px;text-transform:lowercase}
+  header.bar nav a{color:var(--slate)}
+  header.bar nav a:hover{color:var(--accent)}
+  @media(max-width:640px){header.bar nav{display:none}}
+
+  .hero{padding:96px 0 40px}
+  .kicker{font-family:var(--mono);font-size:13px;color:var(--slate);letter-spacing:.04em;margin:0 0 22px}
+  .kicker b{color:var(--accent);font-weight:500}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(52px,11vw,108px);line-height:.98;letter-spacing:-.025em;margin:0 0 22px}
+  .tagline{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(21px,3.2vw,30px);color:var(--accent);line-height:1.25;margin:0 0 26px;max-width:20ch}
+  .hero .lead{font-size:clamp(17px,2vw,19px);color:var(--slate);max-width:56ch;margin:0 0 30px;line-height:1.7}
+  .hero .contacts{display:flex;flex-wrap:wrap;gap:20px;font-family:var(--mono);font-size:14px}
+  .hero .contacts a{border-bottom:1px solid var(--line);padding-bottom:2px}
+  .hero .contacts a:hover{border-color:var(--accent)}
+
+  .index{margin:64px 0 8px;border-top:1px solid var(--line);padding-top:20px}
+  .index .lbl{font-family:var(--mono);font-size:12px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px}
+  .index ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:2px 28px}
+  .index li{border-top:1px solid var(--line)}
+  .index li a{display:flex;align-items:baseline;gap:12px;padding:11px 2px;color:var(--ink)}
+  .index li a:hover{color:var(--accent)}
+  .index .n{font-family:var(--mono);font-size:12px;color:var(--accent);width:24px}
+  .index .t{font-family:var(--serif);font-size:19px}
+
+  section.field{padding:76px 0 12px;scroll-margin-top:72px}
+  .field-head{display:flex;gap:24px;align-items:flex-start;border-top:2px solid var(--ink);padding-top:22px;margin-bottom:40px}
+  .field-num{font-family:var(--serif);font-weight:600;font-size:clamp(56px,9vw,96px);line-height:.8;color:transparent;-webkit-text-stroke:1.4px rgba(46,82,168,.5);flex:0 0 auto}
+  @supports not((-webkit-text-stroke:1px #000)){.field-num{color:rgba(46,82,168,.28);-webkit-text-stroke:0}}
+  .field-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(28px,4vw,38px);line-height:1.05;margin:0 0 6px;letter-spacing:-.01em}
+  .field-head p{color:var(--slate);margin:0;max-width:54ch;font-size:15.5px}
+
+  .work{display:grid;grid-template-columns:150px 1fr;gap:26px;padding:28px 0;border-top:1px solid var(--line)}
+  .work:first-of-type{border-top:0}
+  .field.feature .work{grid-template-columns:230px 1fr;gap:34px;padding:38px 0}
+  .thumb{aspect-ratio:4/3;border:1px dashed var(--line);border-radius:4px;background:rgba(46,82,168,.035);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:11px;padding:10px}
+  .w-body{min-width:0}
+  .w-title{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.15;margin:0 0 8px}
+  .field.feature .w-title{font-size:27px}
+  .w-title a{color:var(--ink);transition:color .15s}
+  .work:hover .w-title a{color:var(--accent)}
+  .w-desc{color:var(--slate);font-size:15px;line-height:1.6;margin:0 0 14px;max-width:60ch}
+  .w-meta{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
+  .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:2px 9px}
+  .w-links{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:13px}
+  .w-links a{color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:1px}
+  .w-links a:hover{color:var(--accent);border-color:var(--accent)}
+  .w-links a.muted{color:var(--slate);border-style:dashed}
+
+  @media(max-width:600px){
+    .field-head{flex-direction:column;gap:6px}
+    .work,.field.feature .work{grid-template-columns:1fr;gap:14px}
+    .thumb{aspect-ratio:16/9;max-width:100%}
   }
 
-  /* ---------- Cabeçalho / nav ---------- */
-  header.top{
-    position:sticky;top:0;z-index:10;background:rgba(246,247,244,.88);
-    backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line);
-  }
-  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-  header.top .name{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:17px}
-  header.top nav{display:flex;gap:22px;font-family:"IBM Plex Mono",monospace;font-size:13px}
-  header.top nav a{color:var(--slate)}
-  header.top nav a:hover{color:var(--ink);text-decoration:none}
-  @media(max-width:680px){header.top nav{display:none}}
+  footer{margin-top:90px;border-top:2px solid var(--ink);padding:44px 0 64px}
+  footer .bye{font-family:var(--serif);font-style:italic;font-size:24px;margin:0 0 18px}
+  footer .contacts{display:flex;flex-wrap:wrap;gap:20px;font-family:var(--mono);font-size:13px;margin:0 0 26px}
+  footer .contacts a{color:var(--ink);border-bottom:1px solid var(--line)}
+  footer .colophon{font-family:var(--mono);font-size:12px;color:var(--slate)}
 
-  /* ---------- Hero ---------- */
-  .hero{position:relative;padding:84px 0 64px;border-bottom:1px solid var(--line);overflow:hidden}
-  .hero::before{
-    content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
-    background-image:
-      linear-gradient(var(--line) 1px,transparent 1px),
-      linear-gradient(90deg,var(--line) 1px,transparent 1px);
-    background-size:32px 32px;
-    -webkit-mask-image:linear-gradient(180deg,#000,transparent 78%);
-    mask-image:linear-gradient(180deg,#000,transparent 78%);
-  }
-  .hero .wrap{position:relative}
-  .hero h1{
-    font-family:"Lato",sans-serif;font-weight:600;
-    font-size:clamp(38px,7vw,68px);line-height:1.05;margin:0 0 18px;letter-spacing:-.02em;
-  }
-  .hero p.lead{font-size:clamp(18px,2.4vw,21px);color:var(--slate);max-width:60ch;margin:0 0 26px}
-  .hero .links{display:flex;flex-wrap:wrap;gap:10px;font-family:"IBM Plex Mono",monospace;font-size:14px}
-  .hero .links a{
-    border:1px solid var(--line);border-radius:99px;padding:7px 15px;color:var(--ink);
-  }
-  .hero .links a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
-
-  /* ---------- Secções ---------- */
-  section.block{padding:64px 0;border-bottom:1px solid var(--line)}
-  section.block > .wrap > h2{
-    font-family:"Lato",sans-serif;font-weight:600;font-size:28px;margin:0 0 6px;letter-spacing:-.01em;
-  }
-  .section-note{color:var(--slate);margin:0 0 32px;max-width:62ch}
-  .block.feature{background:linear-gradient(180deg,var(--accent-soft),transparent 60%)}
-
-  /* ---------- Cartões de projeto ---------- */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
-  .card{
-    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-    padding:20px;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
-  }
-  .card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(21,32,42,.08);border-color:rgba(28,110,90,.4)}
-  .card h3{font-family:"Lato",sans-serif;font-weight:500;font-size:19px;margin:0 0 8px}
-  .card .desc{color:var(--slate);font-size:15px;line-height:1.55;margin:0 0 16px}
-  .media{
-    height:140px;border:1px dashed var(--line);border-radius:8px;background:#FAFBF9;
-    display:flex;align-items:center;justify-content:center;text-align:center;
-    color:var(--slate);font-family:"IBM Plex Mono",monospace;font-size:13px;padding:12px;margin:0 0 16px;
-  }
-  .card .links{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
-  .card .links a{
-    font-family:"IBM Plex Mono",monospace;font-size:13px;border:1px solid var(--line);
-    border-radius:7px;padding:5px 11px;color:var(--ink);
-  }
-  .card .links a.locked{color:var(--slate);border-style:dashed}
-  .card .links a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
-  .tags{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px}
-  .tag{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 9px}
-
-  footer{padding:48px 0;color:var(--slate);font-family:"IBM Plex Mono",monospace;font-size:13px}
-
-  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+  .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
-<header class="top">
+<header class="bar">
   <div class="wrap">
-    <span class="name">Joana Carvalho</span>
+    <span class="who">Joana Carvalho</span>
     <nav>
-      <a href="#destaque">destaque</a>
-      <a href="#software">software</a>
-      <a href="#electronics">eletrónica</a>
-      <a href="#power">potência</a>
+      <a href="#indice">índice</a>
+      <a href="#f01">projetos</a>
+      <a href="#contactos">contactos</a>
     </nav>
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
 <div class="hero">
   <div class="wrap">
-    <p class="eyebrow">// Engenharia Eletrónica Industrial e Computadores</p>
+    <p class="kicker">portfólio &nbsp;·&nbsp; <b>engenharia eletrónica industrial e computadores</b> &nbsp;·&nbsp; universidade do minho</p>
     <h1>Joana Carvalho</h1>
-    <p class="lead">Estudante de Engenharia Eletrónica Industrial e Computadores na Universidade do Minho. </p>
-    <div class="links">
-      <a href="mailto:joanamlmc17@gmail.com">email pessoal</a>
-      <a href="mailto:a104865@alunos.uminho.pt">email uminho</a>
+    <p class="tagline">Da eletrónica de potência ao código que a controla.</p>
+    <p class="lead">Estudante na Universidade do Minho, com interesse na área de energia e eletrónica de potência — e gosto por projetos que cruzam o hardware com o software, dos sistemas embebidos à automação. À procura de um mestrado onde aprofundar essa área, levando comigo a base prática dos projetos do curso.</p>
+    <div class="contacts" id="contactos">
+      <a href="mailto:joanamlmc17@gmail.com">email pessoal <span class="arrow">↗</span></a>
+      <a href="mailto:a104865@alunos.uminho.pt">email uminho <span class="arrow">↗</span></a>
     </div>
+
+    <nav class="index" id="indice" aria-label="Índice de áreas">
+      <p class="lbl">Índice</p>
+      <ol>
+        <li><a href="#f01"><span class="n">01</span><span class="t">Projetos integradores</span></a></li>
+        <li><a href="#f02"><span class="n">02</span><span class="t">Programação</span></a></li>
+        <li><a href="#f03"><span class="n">03</span><span class="t">Sistemas embebidos</span></a></li>
+        <li><a href="#f04"><span class="n">04</span><span class="t">Eletrónica &amp; PCB</span></a></li>
+        <li><a href="#f05"><span class="n">05</span><span class="t">Potência &amp; energia</span></a></li>
+        <li><a href="#f06"><span class="n">06</span><span class="t">Automação</span></a></li>
+        <li><a href="#f07"><span class="n">07</span><span class="t">Redes</span></a></li>
+      </ol>
+    </nav>
   </div>
 </div>
 
-<!-- ============ DESTAQUE: PROJETOS INTEGRADORES ============ -->
-<section class="block feature" id="destaque">
+<!-- 01 — DESTAQUE -->
+<section class="field feature" id="f01">
   <div class="wrap">
-    <p class="eyebrow">// destaque</p>
-    <h2>Projetos integradores</h2>
-    <p class="section-note">Os projetos maiores do curso, levados do conceito ao protótipo funcional.</p>
-    <div class="grid">
+    <div class="field-head reveal"><span class="field-num">01</span><div><h2>Projetos integradores</h2><p>Os projetos maiores do curso, levados do conceito ao protótipo funcional.</p></div></div>
 
-      <article class="card">
-        <h3>PI1 — projeto final</h3>
-        <p class="desc">EDITA: o que era o projeto, o teu papel e o resultado, em 1–2 frases.</p>
-        <div class="media">Adiciona aqui um vídeo, fotos ou GIF</div>
-        <div class="links">
-          <a href="assets/pi1-relatorio.pdf">relatório (pdf)</a>
-          <a href="assets/pi1-slides.pdf">slides</a>
-        </div>
-        <div class="tags"><span class="tag">EDITA: tecnologia</span><span class="tag">EDITA: área</span></div>
-      </article>
+    <article class="work reveal">
+      <div class="thumb">adicionar vídeo ou fotos</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="assets/pi1-relatorio.pdf">PI1 — projeto final</a></h3>
+        <p class="w-desc">EDITA: o que era o projeto, o teu papel e o resultado, em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">EDITA: tecnologia</span><span class="tag">EDITA: área</span></div>
+        <div class="w-links"><a href="assets/pi1-relatorio.pdf">relatório <span class="arrow">↗</span></a><a href="assets/pi1-slides.pdf">slides <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
 
-      <article class="card">
-        <h3>PI2 — projeto final</h3>
-        <p class="desc">EDITA: o que era o projeto, o teu papel e o resultado, em 1–2 frases.</p>
-        <div class="media">Adiciona aqui um vídeo, fotos ou GIF</div>
-        <div class="links">
-          <a href="assets/pi2-relatorio.pdf">relatório (pdf)</a>
-          <a href="assets/pi2-slides.pdf">slides</a>
-        </div>
-        <div class="tags"><span class="tag">EDITA: tecnologia</span><span class="tag">EDITA: área</span></div>
-      </article>
-
-    </div>
+    <article class="work reveal">
+      <div class="thumb">adicionar vídeo ou fotos</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="assets/pi2-relatorio.pdf">PI2 — projeto final</a></h3>
+        <p class="w-desc">EDITA: o que era o projeto, o teu papel e o resultado, em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">EDITA: tecnologia</span><span class="tag">EDITA: área</span></div>
+        <div class="w-links"><a href="assets/pi2-relatorio.pdf">relatório <span class="arrow">↗</span></a><a href="assets/pi2-slides.pdf">slides <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- ============ SOFTWARE (exemplo preenchido) ============ -->
-<section class="block" id="software">
+<!-- 02 — PROGRAMAÇÃO -->
+<section class="field" id="f02">
   <div class="wrap">
-    <p class="eyebrow">// software</p>
-    <h2>Programação</h2>
-    <p class="section-note">Projetos em C++ e fundamentos de programação.</p>
-    <div class="grid">
+    <div class="field-head reveal"><span class="field-num">02</span><div><h2>Programação</h2><p>Projetos em C++ e fundamentos de programação.</p></div></div>
 
-      <!-- EXEMPLO PREENCHIDO — usa-o como molde -->
-      <article class="card">
-        <h3>Jogo de tiro</h3>
-        <p class="desc">Jogo 2D em C++ com movimento do jogador, inimigos e sistema de pontuação. Projeto da cadeira de Complementos de Programação.</p>
-        <div class="media">▶ Jogar a demo no browser (liga aqui o build)</div>
-        <div class="links">
-          <a href="assets/jogo-tiro-relatorio.pdf">relatório (pdf)</a>
-          <a class="locked" href="https://github.com/EDITA/jogo-tiro">código</a>
-        </div>
-        <div class="tags"><span class="tag">C++</span><span class="tag">SDL</span><span class="tag">lógica de jogo</span></div>
-      </article>
+    <article class="work reveal">
+      <div class="thumb">▶ demo / vídeo</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="assets/jogo-tiro-relatorio.pdf">Jogo de tiro</a></h3>
+        <p class="w-desc">Jogo 2D em C++ com movimento do jogador, inimigos e sistema de pontuação. Projeto da cadeira de Complementos de Programação.</p>
+        <div class="w-meta"><span class="tag">C++</span><span class="tag">SDL</span><span class="tag">lógica de jogo</span></div>
+        <div class="w-links"><a href="assets/jogo-tiro-relatorio.pdf">relatório <span class="arrow">↗</span></a><a class="muted" href="#">código privado</a></div>
+      </div>
+    </article>
 
-      <article class="card">
-        <h3>Jogo da bolinha</h3>
-        <p class="desc">EDITA: descrição em 1–2 frases.</p>
-        <div class="media">Adiciona aqui um vídeo ou demo</div>
-        <div class="links">
-          <a href="assets/bolinha-relatorio.pdf">relatório (pdf)</a>
-          <a class="locked" href="#">código</a>
-        </div>
-        <div class="tags"><span class="tag">C++</span></div>
-      </article>
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="assets/bolinha-relatorio.pdf">Jogo da bolinha</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">C++</span></div>
+        <div class="w-links"><a href="assets/bolinha-relatorio.pdf">relatório <span class="arrow">↗</span></a><a class="muted" href="#">código privado</a></div>
+      </div>
+    </article>
 
-      <article class="card">
-        <h3>Guias de C++ (ATC1 / ATC2)</h3>
-        <p class="desc">EDITA: o que cobrem estes guias.</p>
-        <div class="links">
-          <a class="locked" href="#">código</a>
-        </div>
-        <div class="tags"><span class="tag">C++</span></div>
-      </article>
-
-    </div>
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="#">Guias de C++ (ATC1 / ATC2)</a></h3>
+        <p class="w-desc">EDITA: o que cobrem estes guias.</p>
+        <div class="w-meta"><span class="tag">C++</span></div>
+        <div class="w-links"><a class="muted" href="#">código privado</a></div>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- ============ SISTEMAS EMBEBIDOS ============ -->
-<section class="block" id="embedded">
+<!-- 03 — SISTEMAS EMBEBIDOS -->
+<section class="field" id="f03">
   <div class="wrap">
-    <p class="eyebrow">// embedded</p>
-    <h2>Sistemas embebidos &amp; microcontroladores</h2>
-    <p class="section-note">Programação de microcontroladores e sistemas com restrições de tempo real.</p>
-    <div class="grid">
+    <div class="field-head reveal"><span class="field-num">03</span><div><h2>Sistemas embebidos &amp; microcontroladores</h2><p>Programação de microcontroladores e sistemas com restrições de tempo real.</p></div></div>
 
-      <article class="card">
-        <h3>Vending machine</h3>
-        <p class="desc">EDITA: descrição em 1–2 frases.</p>
-        <div class="media">Adiciona aqui um vídeo ou demo</div>
-        <div class="links">
-          <a href="assets/vending-relatorio.pdf">relatório (pdf)</a>
-          <a class="locked" href="#">código</a>
-        </div>
-        <div class="tags"><span class="tag">C++</span><span class="tag">embebidos</span></div>
-      </article>
+    <article class="work reveal">
+      <div class="thumb">adicionar vídeo</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="assets/vending-relatorio.pdf">Vending machine</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">C++</span><span class="tag">embebidos</span></div>
+        <div class="w-links"><a href="assets/vending-relatorio.pdf">relatório <span class="arrow">↗</span></a><a class="muted" href="#">código privado</a></div>
+      </div>
+    </article>
 
-      <article class="card">
-        <h3>Guias em Assembly</h3>
-        <p class="desc">EDITA: o que cobrem.</p>
-        <div class="links"><a class="locked" href="#">código</a></div>
-        <div class="tags"><span class="tag">Assembly</span><span class="tag">microcontroladores</span></div>
-      </article>
-
-    </div>
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="#">Guias em Assembly</a></h3>
+        <p class="w-desc">EDITA: o que cobrem.</p>
+        <div class="w-meta"><span class="tag">Assembly</span><span class="tag">microcontroladores</span></div>
+        <div class="w-links"><a class="muted" href="#">código privado</a></div>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- ============ ELETRÓNICA & PCB ============ -->
-<section class="block" id="electronics">
+<!-- 04 — ELETRÓNICA & PCB -->
+<section class="field" id="f04">
   <div class="wrap">
-    <p class="eyebrow">// electronics</p>
-    <h2>Eletrónica &amp; PCB</h2>
-    <p class="section-note">Conceção e análise de circuitos, do esquemático à placa.</p>
-    <div class="grid">
+    <div class="field-head reveal"><span class="field-num">04</span><div><h2>Eletrónica &amp; PCB</h2><p>Conceção e análise de circuitos, do esquemático à placa.</p></div></div>
 
-      <article class="card">
-        <h3>Projeto 555</h3>
-        <p class="desc">EDITA: descrição em 1–2 frases.</p>
-        <div class="media">Adiciona aqui o vídeo</div>
-        <div class="links"><a href="assets/555-relatorio.pdf">relatório (pdf)</a></div>
-        <div class="tags"><span class="tag">eletrónica analógica</span></div>
-      </article>
+    <article class="work reveal">
+      <div class="thumb">adicionar vídeo</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="assets/555-relatorio.pdf">Projeto 555</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">eletrónica analógica</span></div>
+        <div class="w-links"><a href="assets/555-relatorio.pdf">relatório <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
 
-      <article class="card">
-        <h3>Projeto em KiCad</h3>
-        <p class="desc">EDITA: descrição em 1–2 frases.</p>
-        <div class="media">Adiciona aqui imagens do esquema/PCB</div>
-        <div class="links"><a href="#">ficheiros</a></div>
-        <div class="tags"><span class="tag">KiCad</span><span class="tag">PCB</span></div>
-      </article>
+    <article class="work reveal">
+      <div class="thumb">esquema / PCB</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="#">Projeto em KiCad</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">KiCad</span><span class="tag">PCB</span></div>
+        <div class="w-links"><a href="#">ficheiros <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
 
-      <article class="card">
-        <h3>Motor</h3>
-        <p class="desc">EDITA: descrição em 1–2 frases.</p>
-        <div class="media">Adiciona aqui vídeo e fotos</div>
-        <div class="tags"><span class="tag">eletrotecnia</span></div>
-      </article>
-
-    </div>
+    <article class="work reveal">
+      <div class="thumb">vídeo / fotos</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="#">Motor</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">eletrotecnia</span></div>
+        <div class="w-links"><a class="muted" href="#">disponível a pedido</a></div>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- ============ POTÊNCIA & ENERGIA ============ -->
-<section class="block" id="power">
+<!-- 05 — POTÊNCIA & ENERGIA -->
+<section class="field" id="f05">
   <div class="wrap">
-    <p class="eyebrow">// power</p>
-    <h2>Eletrónica de potência &amp; energia</h2>
-    <p class="section-note">Conversão de energia e eletrónica de potência, com aplicação a fontes renováveis.</p>
-    <div class="grid">
+    <div class="field-head reveal"><span class="field-num">05</span><div><h2>Eletrónica de potência &amp; energia</h2><p>Conversão de energia e eletrónica de potência, com aplicação a fontes renováveis.</p></div></div>
 
-      <article class="card">
-        <h3>Conversor BOOST</h3>
-        <p class="desc">EDITA: descrição em 1–2 frases.</p>
-        <div class="media">Adiciona aqui fotos da placa</div>
-        <div class="links">
-          <a href="assets/boost-relatorio.pdf">relatório (pdf)</a>
-          <a href="#">simulação (PSIM)</a>
-        </div>
-        <div class="tags"><span class="tag">conversor DC-DC</span><span class="tag">PSIM</span></div>
-      </article>
+    <article class="work reveal">
+      <div class="thumb">fotos da placa</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="assets/boost-relatorio.pdf">Conversor BOOST</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">conversor DC-DC</span><span class="tag">PSIM</span></div>
+        <div class="w-links"><a href="assets/boost-relatorio.pdf">relatório <span class="arrow">↗</span></a><a href="#">simulação PSIM <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
 
-      <article class="card">
-        <h3>Painel solar com Boost</h3>
-        <p class="desc">EDITA: descrição em 1–2 frases.</p>
-        <div class="media">Adiciona aqui vídeos e fotos</div>
-        <div class="links">
-          <a href="assets/painel-relatorio.pdf">relatório (pdf)</a>
-          <a href="assets/painel-slides.pdf">slides</a>
-        </div>
-        <div class="tags"><span class="tag">energias renováveis</span></div>
-      </article>
-
-    </div>
+    <article class="work reveal">
+      <div class="thumb">vídeos / fotos</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="assets/painel-relatorio.pdf">Painel solar com Boost</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">energias renováveis</span></div>
+        <div class="w-links"><a href="assets/painel-relatorio.pdf">relatório <span class="arrow">↗</span></a><a href="assets/painel-slides.pdf">slides <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- ============ AUTOMAÇÃO ============ -->
-<section class="block" id="automation">
+<!-- 06 — AUTOMAÇÃO -->
+<section class="field" id="f06">
   <div class="wrap">
-    <p class="eyebrow">// automation</p>
-    <h2>Automação</h2>
-    <p class="section-note">Controlo e automação de sistemas.</p>
-    <div class="grid">
+    <div class="field-head reveal"><span class="field-num">06</span><div><h2>Automação</h2><p>Controlo e automação de sistemas.</p></div></div>
 
-      <article class="card">
-        <h3>Trabalho de automação</h3>
-        <p class="desc">EDITA: descrição em 1–2 frases.</p>
-        <div class="media">Adiciona aqui o vídeo</div>
-        <div class="links"><a href="assets/automacao-relatorio.pdf">relatório (pdf)</a></div>
-        <div class="tags"><span class="tag">automação</span></div>
-      </article>
-
-    </div>
+    <article class="work reveal">
+      <div class="thumb">adicionar vídeo</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="assets/automacao-relatorio.pdf">Trabalho de automação</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">automação</span></div>
+        <div class="w-links"><a href="assets/automacao-relatorio.pdf">relatório <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- ============ REDES ============ -->
-<section class="block" id="networking">
+<!-- 07 — REDES -->
+<section class="field" id="f07">
   <div class="wrap">
-    <p class="eyebrow">// networking</p>
-    <h2>Redes</h2>
-    <p class="section-note">Conceção e configuração de redes de comunicação.</p>
-    <div class="grid">
+    <div class="field-head reveal"><span class="field-num">07</span><div><h2>Redes</h2><p>Conceção e configuração de redes de comunicação.</p></div></div>
 
-      <article class="card">
-        <h3>Projeto de redes</h3>
-        <p class="desc">EDITA: descrição em 1–2 frases.</p>
-        <div class="media">Adiciona aqui o diagrama da rede</div>
-        <div class="links"><a href="assets/redes-relatorio.pdf">relatório (pdf)</a></div>
-        <div class="tags"><span class="tag">redes</span></div>
-      </article>
-
-    </div>
+    <article class="work reveal">
+      <div class="thumb">diagrama da rede</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="assets/redes-relatorio.pdf">Projeto de redes</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">redes</span></div>
+        <div class="w-links"><a href="assets/redes-relatorio.pdf">relatório <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    Joana Carvalho · <span class="mono">construído com GitHub Pages</span>
+    <p class="bye">Obrigada por veres.</p>
+    <div class="contacts">
+      <a href="mailto:joanamlmc17@gmail.com">joanamlmc17@gmail.com</a>
+      <a href="mailto:a104865@alunos.uminho.pt">a104865@alunos.uminho.pt</a>
+    </div>
+    <p class="colophon">Joana Carvalho · 2026 · construído com GitHub Pages</p>
   </div>
 </footer>
+
+<script>
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
 
 </body>
 </html>
