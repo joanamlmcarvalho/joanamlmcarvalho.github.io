@@ -1,24 +1,9 @@
-<!--
-  ╔══════════════════════════════════════════════════════════════════╗
-  ║  MODELO DE PÁGINA DE PROJETO                                       ║
-  ║                                                                    ║
-  ║  Copia este ficheiro para cada projeto, dentro da pasta projetos/  ║
-  ║  Ex.: projetos/boost.html, projetos/pi1.html, ...                  ║
-  ║                                                                    ║
-  ║  O nome do ficheiro tem de ser IGUAL ao link no index.html.        ║
-  ║                                                                    ║
-  ║  BLOCOS QUE PODES APAGAR se não tiveres esse conteúdo:             ║
-  ║    - o bloco do VÍDEO                                              ║
-  ║    - o bloco da GALERIA de imagens                                 ║
-  ║    - o bloco do PDF                                                ║
-  ╚══════════════════════════════════════════════════════════════════╝
--->
 <!doctype html>
 <html lang="pt">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Detetor de escuridão com 555 — Joana Carvalho</title>
+<title>Vending Machine — Joana Carvalho</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,21 +80,22 @@
 
 <div class="head">
   <div class="wrap">
-    <p class="kicker">Eletrónica &amp; PCB</p>
-    <h1>Detetor de escuridão com 555</h1>
-    <p class="sub">Um LED que se acende quando a luz desaparece.</p>
+    <p class="kicker">Sistemas Embebidos</p>
+    <h1>Vending Machine</h1>
+    <p class="sub">Uma máquina de venda automática, simulada do zero num STM32.</p>
 
     <div class="meta">
-      <span class="tag">eletrónica analógica</span>
-      <span class="tag">555</span>
-      <span class="tag">LDR</span>
-      <span class="tag">breadboard</span>
+      <span class="tag">STM32H755ZI-Q</span>
+      <span class="tag">C</span>
+      <span class="tag">simulação</span>
+      <span class="tag">Bluetooth</span>
+      <span class="tag">RTC</span>
     </div>
 
     <div class="facts">
-      <div class="fact"><p class="k">Unidade curricular</p><p class="v">Práticas Laboratoriais 2</p></div>
-      <div class="fact"><p class="k">Ano</p><p class="v">1.º ano, 2.º semestre</p></div>
-      <div class="fact"><p class="k">Equipa</p><p class="v">Em par com Isabel Gomes</p></div>
+      <div class="fact"><p class="k">Unidade curricular</p><p class="v">Sistemas Embebidos</p></div>
+      <div class="fact"><p class="k">Grupo</p><p class="v">Grupo 8</p></div>
+      <div class="fact"><p class="k">Equipa</p><p class="v">Em par com Francisca Domingues</p></div>
     </div>
   </div>
 </div>
@@ -117,8 +103,8 @@
 <!-- ============ IMAGEM PRINCIPAL ============ -->
 <section class="part">
   <div class="wrap">
-    <div class="media"><img src="../assets/circuito-555/breadboard.jpg" alt="Circuito montado em breadboard, com o LED aceso"></div>
-    <p class="caption">O circuito montado em breadboard, com o LED aceso na ausência de luz.</p>
+    <div class="media"><img src="../assets/vending-machine/prototipo.png" alt="Protótipo do sistema montado com a placa STM32, teclado, matriz de LEDs/botões e LCD"></div>
+    <p class="caption">O protótipo montado: STM32H755ZI-Q, teclado de seleção, matriz de botões (simula os sensores de posição das espirais) e LCD.</p>
   </div>
 </section>
 
@@ -126,72 +112,56 @@
 <section class="part">
   <div class="wrap">
     <h2>O que é</h2>
-    <p>Um circuito que reconhece a ausência de luz: quando a luz incide no LDR, o LED apaga; na escuridão, o LED acende. A aplicação natural é acender luzes automaticamente ao anoitecer, ou em caso de emergência.</p>
+    <p>Uma máquina de venda automática controlada por um microcontrolador STM32, desenvolvida para a UC de Sistemas Embebidos. O trabalho não passou pela construção física da máquina — o foco foi a lógica de controlo e a simulação fiel do funcionamento real: seleção de produto, pagamento por moedas, dispensação, gestão de stock, refrigeração e monitorização remota.</p>
 
     <h2>Como funciona</h2>
-    <p>O LDR (fotorresistência) funciona por fotocondutividade — quando a luz lhe incide, a resistência diminui. Essa variação altera a divisão de tensão entre o LDR e a resistência R3, o que faz baixar o potencial no pino <em>trigger</em> do 555 e subir no <em>reset</em>. Ao sair do modo de reinicialização e com o trigger em baixo, o flip-flop interno comuta e a saída do temporizador gera a onda que acende o LED.</p>
-    <p>Em resumo: o LDR deteta escuridão → a sua resistência aumenta → a tensão no trigger diminui e no reset aumenta → o temporizador gera a onda quadrada → o LED acende.</p>
+    <p>O sistema está organizado à volta de uma unidade de controlo central que comunica com sete subsistemas: iluminação, refrigeração, pagamento, seleção, dispensação, stock e comunicação. O fluxo principal é sequencial — validar seleção e pagamento, controlar a dispensação, confirmar a queda do produto, entregar o troco e atualizar o stock — mas vários processos correm em paralelo por interrupção: a leitura periódica de temperatura (a cada 2 segundos, via timer), a receção de moedas por UART e os comandos Bluetooth chegam sem bloquear o ciclo principal.</p>
+    <p>Como não havia hardware real de uma vending machine, cada componente foi simulado com um periférico equivalente: um teclado matricial faz a seleção do produto, uma matriz de botões 4x4 simula os sensores de posição de cada espiral, um sensor ótico infravermelho deteta a queda do produto, um DHT11 mede a temperatura para a refrigeração, e dois LEDs simulam as luzes e o motor de refrigeração. Um módulo HC-05 dá acesso por Bluetooth a comandos de consulta e gestão de stock, temperaturas e vendas.</p>
 
     <h2>O que fiz</h2>
     <ul>
-      <li>Estudo do funcionamento interno do 555 (divisor de tensão, comparadores e flip-flop) e dos seus modos monoestável e astável.</li>
-      <li>Dimensionamento e montagem do circuito em breadboard.</li>
-      <li>Ensaio e verificação do comportamento com e sem luz.</li>
-      <li>Proposta de melhoria: substituir uma resistência por um potenciómetro, para ajustar a sensibilidade à luz.</li>
+      <li>Desenho da arquitetura do sistema — divisão em sete subsistemas geridos por uma unidade de controlo central — e do diagrama de blocos correspondente.</li>
+      <li>Implementação em C de cada módulo (pagamento, seleção, dispensação, stock, refrigeração, iluminação e comunicação), cada um com o seu <code>.c</code>/<code>.h</code> próprio.</li>
+      <li>Lógica de dispensação com deteção de falhas: se a espiral completar o ciclo sem o produto cair, o sistema tenta uma segunda rotação antes de assinalar erro.</li>
+      <li>Controlo de refrigeração com histerese (liga aos 7 °C, desliga aos 3 °C) e alerta crítico acima de um limite de segurança.</li>
+      <li>Gestão de stock com controlo de validade e preço por produto, e alertas automáticos por Bluetooth quando o stock fica baixo ou expira.</li>
+      <li>Definição e execução de cenários de teste para cada subsistema — casos normais, de erro e extremos (ex.: moeda não reconhecida, produto esgotado, timeout no motor).</li>
     </ul>
 
     <h2>Contexto</h2>
-    <p>Primeiro projeto de eletrónica analógica do curso. Trabalho realizado em par.</p>
+    <p>Projeto da UC de Sistemas Embebidos, realizado em par. Consolidou a programação de periféricos (GPIO, timers, UART, RTC), a gestão de interrupções e a estruturação de software modular em C.</p>
   </div>
 </section>
 
-<!-- ============ VÍDEO  (apaga este bloco se não tiveres vídeo) ============ -->
+<!-- ============ GALERIA ============ -->
 <section class="part">
   <div class="wrap">
-    <h2>Demonstração</h2>
-
-    <!-- Opção A — vídeo na pasta assets (ficheiro leve, até ~25 MB) -->
-    <div class="media"><video controls muted playsinline src="../assets/circuito-555/demo.mp4"></video></div>
-
-    <!-- Opção B — vídeo do YouTube "não listado" (para vídeos grandes).
-         Apaga a Opção A e usa esta, trocando ID_DO_VIDEO:
-    <div class="media"><iframe src="https://www.youtube.com/embed/ID_DO_VIDEO" allowfullscreen title="Demonstração"></iframe></div>
-    -->
-
-    <p class="caption">O LED a acender quando o LDR é tapado.</p>
-  </div>
-</section>
-
-<!-- ============ GALERIA  (apaga se não tiveres imagens) ============ -->
-<section class="part">
-  <div class="wrap">
-    <h2>Imagens</h2>
+    <h2>Arquitetura</h2>
     <div class="gallery">
       <figure>
-        <img src="../assets/circuito-555/esquema.png" alt="Esquema elétrico do circuito">
-        <figcaption>Esquema do circuito</figcaption>
+        <img src="../assets/vending-machine/diagrama-blocos.png" alt="Diagrama de blocos: unidade de controlo central ligada aos sete subsistemas">
+        <figcaption>Diagrama de blocos do sistema</figcaption>
       </figure>
       <figure>
-        <img src="../assets/circuito-555/diagrama-555.png" alt="Diagrama de blocos interno do 555">
-        <figcaption>Diagrama de blocos do 555</figcaption>
+        <img src="../assets/vending-machine/esboco.png" alt="Esboço conceptual de uma vending machine">
+        <figcaption>Esboço conceptual do projeto</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ============ FICHEIROS + PDF  (apaga o que não tiveres) ============ -->
+<!-- ============ FICHEIROS + PDF ============ -->
 <section class="part">
   <div class="wrap">
     <h2>Documentação</h2>
 
     <div class="files">
-      <a href="../assets/circuito-555/relatorio.pdf">relatório (pdf) <span class="arrow">↗</span></a>
+      <a href="../assets/vending-machine/apresentacao.pdf">apresentação (pdf) <span class="arrow">↗</span></a>
       <a class="muted" href="#">código privado</a>
     </div>
 
-    <!-- Mostrar o PDF na própria página (opcional — apaga se não quiseres) -->
     <p style="margin-top:26px"></p>
-    <iframe class="pdf-embed" src="../assets/circuito-555/relatorio.pdf" title="Relatório em PDF"></iframe>
+    <iframe class="pdf-embed" src="../assets/vending-machine/apresentacao.pdf" title="Apresentação em PDF"></iframe>
   </div>
 </section>
 
