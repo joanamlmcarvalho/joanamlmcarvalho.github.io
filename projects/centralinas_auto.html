@@ -1,1 +1,184 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automação de Linha de Montagem — Joana Carvalho</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F6FA;
+    --ink:#16233A;
+    --slate:#5A6478;
+    --line:rgba(22,35,58,.14);
+    --accent:#2E52A8;
+    --accent-soft:rgba(46,82,168,.10);
+    --serif:"Playfair Display",Georgia,serif;
+    --sans:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;color:var(--ink);background:var(--paper) linear-gradient(180deg,#E4ECF8,rgba(228,236,248,0) 480px) no-repeat;font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 32px}
+  a{color:var(--accent);text-decoration:none}
+  .arrow{font-family:var(--mono);font-size:.85em}
 
+  header.bar{position:sticky;top:0;z-index:20;background:rgba(244,246,250,.82);backdrop-filter:saturate(140%) blur(9px);border-bottom:1px solid var(--line)}
+  header.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:1080px}
+  header.bar .back{font-family:var(--mono);font-size:12.5px;color:var(--slate)}
+  header.bar .back:hover{color:var(--accent)}
+  header.bar .who{font-family:var(--serif);font-weight:600;font-size:16px}
+
+  .hero{padding:64px 0 36px}
+  .kicker{font-family:var(--mono);font-size:13px;color:var(--slate);letter-spacing:.04em;margin:0 0 18px}
+  .kicker b{color:var(--accent);font-weight:500}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.6vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 18px}
+  .hero .lead{font-size:clamp(17px,2vw,19px);color:var(--slate);max-width:60ch;margin:0 0 26px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
+  .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:3px 10px}
+
+  .cover{aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.035);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:12.5px;margin:36px 0}
+
+  section.block{padding:36px 0;border-top:1px solid var(--line)}
+  section.block h2{font-family:var(--serif);font-weight:600;font-size:24px;margin:0 0 14px;letter-spacing:-.01em}
+  section.block h3{font-family:var(--sans);font-weight:500;font-size:15.5px;color:var(--ink);margin:22px 0 10px}
+  section.block p{color:var(--slate);max-width:66ch;margin:0 0 14px}
+  section.block ul{margin:0;padding:0 0 0 20px;color:var(--slate)}
+  section.block li{margin:0 0 8px;max-width:64ch}
+  section.block li b{color:var(--ink);font-weight:500}
+  code{font-family:var(--mono);font-size:.92em;background:var(--accent-soft);color:var(--accent);border-radius:3px;padding:1px 5px}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  @media(max-width:600px){.grid2{grid-template-columns:1fr}}
+
+  .postos{list-style:none;margin:0;padding:0;counter-reset:posto}
+  .postos li{counter-increment:posto;position:relative;padding:0 0 18px 40px;margin:0 0 4px;max-width:64ch;color:var(--slate)}
+  .postos li::before{content:counter(posto);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center}
+  .postos li b{color:var(--ink);font-weight:500}
+
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 6px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:var(--mono);font-size:11px;color:var(--slate);text-transform:uppercase;letter-spacing:.04em;font-weight:500}
+  td.n{font-family:var(--mono);font-size:12.5px;color:var(--accent)}
+
+  .toolgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:0 0 14px}
+  .toolgrid div{background:var(--accent-soft);border-radius:6px;padding:12px 14px;font-family:var(--mono);font-size:12px;color:var(--accent);text-align:center}
+
+  footer{margin-top:24px;border-top:2px solid var(--ink);padding:36px 0 60px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+  footer a{font-family:var(--mono);font-size:13px;color:var(--ink);border-bottom:1px solid var(--line)}
+  footer a:hover{color:var(--accent);border-color:var(--accent)}
+</style>
+<style>
+/* ===== Harmonização visual entre páginas ===== */
+.wrap{max-width:860px}
+header.bar .wrap{max-width:1080px;display:flex;align-items:center;justify-content:space-between}
+header.bar .who{order:2;font-size:17px}
+header.bar .back{order:1}
+.head,.hero{padding:72px 0 32px}
+.head h1,.hero h1{font-size:clamp(38px,6.5vw,58px);line-height:1.02;letter-spacing:-.02em}
+.sub,.tagline{font-family:var(--serif);font-style:italic}
+.meta,.meta-row{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px}
+section.part,section.block{border-top:1px solid var(--line);padding:44px 0}
+section.part:first-of-type,section.block:first-of-type{border-top:0}
+footer{border-top:2px solid var(--ink);padding:38px 0 60px;margin-top:56px}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="back" href="../index.html#f06">&larr; voltar ao portfólio</a>
+    <span class="who">Joana Carvalho</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="kicker">projeto &nbsp;·&nbsp; <b>sistemas de automação</b> &nbsp;·&nbsp; Universidade do Minho</p>
+    <h1>Automação de uma linha de montagem de centralinas</h1>
+    <p class="lead">Comando e controlo de uma linha de montagem robotizada — com cobots, um AGV e sensores — desde a definição do GRAFCET até à programação de um PLC OMRON e da respetiva consola HMI.</p>
+    <div class="meta-row">
+      <span class="tag">GRAFCET</span>
+      <span class="tag">PLC OMRON CP1-L</span>
+      <span class="tag">HMI</span>
+      <span class="tag">Variador de velocidade</span>
+    </div>
+
+    <div class="cover">vídeo de demonstração do automatismo aqui</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="block">
+    <h2>O problema</h2>
+    <p>O objetivo era projetar o comando/controlo de uma linha de montagem de "centralinas" (caixas com base e tampa), combinando dois robôs colaborativos (cobots), um tapete rolante e um AGV (veículo guiado automaticamente) que recolhe o produto final.</p>
+    <ol class="postos">
+      <li><b>Colocação manual.</b> O operador coloca a base e a tampa da centralina sobre o tapete rolante.</li>
+      <li><b>Posto 1 — montagem.</b> Um cobot agarra a tampa e coloca-a sobre a base.</li>
+      <li><b>Posto 2 — aparafusamento.</b> Um segundo cobot aparafusa a tampa à base, com a peça fixa por um cilindro pneumático.</li>
+      <li><b>Posto 3 — armazenamento.</b> A centralina segue pelo tapete e cai, por gravidade, no recipiente do AGV.</li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2>Especificação do automatismo</h2>
+    <p>O processo arranca com um botão de <code>START</code> de impulso; a partir daí é contínuo, coordenado por sensores em cada posto:</p>
+    <table>
+      <tr><th>Sinal</th><th>Função</th></tr>
+      <tr><td class="n">S_T / S_B</td><td>Deteção da tampa e da base colocadas no tapete pelo operador</td></tr>
+      <tr><td class="n">Sensor_POS1</td><td>Deteção da peça no posto 1, dispara a colocação da tampa pelo cobot</td></tr>
+      <tr><td class="n">End_POS1</td><td>Sinal do cobot ao controlador a indicar tarefa terminada no posto 1</td></tr>
+      <tr><td class="n">Sensor_POS2 / Cil_Pos2</td><td>Deteção no posto 2 e acionamento do cilindro pneumático de fixação</td></tr>
+      <tr><td class="n">End_POS2</td><td>Sinal do cobot a indicar aparafusamento concluído</td></tr>
+      <tr><td class="n">Sensor_Armazém</td><td>Contagem de centralinas depositadas no AGV</td></tr>
+    </table>
+    <p>O AGV só parte com o lote completo de <b>10 centralinas</b>, e após esvaziar o recipiente aguarda 15 segundos antes de aceitar novas peças. Em caso de emergência, o botão de <code>STOP</code> (de encravamento) repõe o sistema às condições iniciais e ativa um alarme intermitente (luz vermelha e buzina a cada 3 segundos) enquanto estiver pressionado. O sistema foi concebido para operar 24 horas por dia.</p>
+  </section>
+
+  <section class="block">
+    <h2>GRAFCET</h2>
+    <p>Antes de qualquer implementação, o automatismo foi modelado como um diagrama GRAFCET — a linguagem gráfica standard para descrever a sequência de etapas e transições de um processo industrial. O diagrama traduz cada posto (colocação, montagem no posto 1, aparafusamento no posto 2, contagem e envio do AGV) numa sequência de etapas ativadas por condições dos sensores, com ramos paralelos para os dois cobots operarem em simultâneo, e uma etapa dedicada ao ciclo de alarme em caso de paragem de emergência.</p>
+  </section>
+
+  <section class="block">
+    <h2>Implementação: PLC e HMI</h2>
+    <p>Com o GRAFCET validado, o automatismo foi codificado num autómato programável (PLC) real, e complementado com uma interface para o operador:</p>
+    <div class="toolgrid">
+      <div>PLC OMRON CP1-L</div>
+      <div>Cx-Programmer</div>
+      <div>NB-Designer (HMI)</div>
+      <div>Variador OMRON SYSDRIVE</div>
+    </div>
+    <p>O <b>Cx-Programmer</b> foi usado para programar a lógica do autómato a partir do GRAFCET definido, e o <b>NB-Designer</b> para desenhar a consola de operador (HMI), incluindo a mensagem de estado dos cobots e o indicador de luz verde/alarme.</p>
+  </section>
+
+  <section class="block">
+    <h2>Variador de velocidade</h2>
+    <p>Para simular o acionamento do tapete rolante, foi também explorado um variador de velocidade OMRON SYSDRIVE (3G3MV/3G3M1), a controlar um motor de indução Siemens. O trabalho incluiu:</p>
+    <div class="grid2">
+      <ul>
+        <li><b>Modo local</b> — configuração de parâmetros, tempos de aceleração/desaceleração (5s), arranque/paragem pela consola do variador, inversão de sentido de rotação.</li>
+        <li>Variação da frequência entre 10Hz e 50Hz, com leitura de corrente, frequência e tensão no display.</li>
+      </ul>
+      <ul>
+        <li><b>Modo remoto</b> — arranque por terminal (2 fios) e configuração da entrada analógica (0–10V) para controlar a velocidade a partir de um sinal externo da fonte de alimentação.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;width:100%">
+    <a href="../index.html#f06">&larr; voltar ao portfólio</a>
+    <a href="mailto:joanamlmc17@gmail.com">joanamlmc17@gmail.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
