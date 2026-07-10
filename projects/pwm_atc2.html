@@ -1,1 +1,207 @@
+<!--
+  GUIA RÁPIDO
+  - Onde vês "adicionar imagem", troca pelo <img src="../assets/pwm-atc2/....jpg">.
+  - O relatório em PDF vai em: assets/pwm-atc2/relatorio.pdf
+-->
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PWM remoto por UART — Joana Carvalho</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F6FA;
+    --ink:#16233A;
+    --slate:#5A6478;
+    --line:rgba(22,35,58,.14);
+    --accent:#2E52A8;
+    --accent-soft:rgba(46,82,168,.10);
+    --serif:"Playfair Display",Georgia,serif;
+    --sans:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;color:var(--ink);background:var(--paper) linear-gradient(180deg,#E4ECF8,rgba(228,236,248,0) 420px) no-repeat;font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:800px;margin:0 auto;padding:0 32px}
+  a{color:var(--accent);text-decoration:none}
+  .mono{font-family:var(--mono)}
+  .arrow{font-family:var(--mono);font-size:.85em}
 
+  header.bar{position:sticky;top:0;z-index:20;background:rgba(244,246,250,.85);backdrop-filter:saturate(140%) blur(9px);border-bottom:1px solid var(--line)}
+  header.bar .wrap{max-width:800px;display:flex;align-items:center;justify-content:space-between;height:58px}
+  header.bar .who a{font-family:var(--mono);font-size:13px;color:var(--slate)}
+  header.bar .who a:hover{color:var(--accent)}
+
+  .head{padding:56px 0 34px}
+  .kicker{font-family:var(--mono);font-size:12.5px;color:var(--accent);letter-spacing:.06em;text-transform:lowercase;margin:0 0 16px}
+  .head h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,44px);line-height:1.08;letter-spacing:-.02em;margin:0 0 14px}
+  .head .sub{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--slate);margin:0 0 24px;max-width:50ch}
+
+  .meta{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 30px}
+  .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:2px 9px}
+
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px 24px;margin:0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .facts div{margin:0}
+  .facts .k{font-family:var(--mono);font-size:11px;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin:0 0 4px}
+  .facts .v{font-family:var(--sans);font-size:14.5px;margin:0}
+
+  section.part{padding:38px 0 0}
+  section.part:first-of-type{padding-top:44px}
+  section.part h2{font-family:var(--serif);font-weight:600;font-size:24px;margin:0 0 14px;letter-spacing:-.01em}
+  section.part h3{font-family:var(--sans);font-weight:500;font-size:15.5px;color:var(--ink);margin:22px 0 8px}
+  section.part p{color:var(--slate);margin:0 0 16px}
+  section.part ul{color:var(--slate);padding-left:20px;margin:0 0 16px}
+  section.part li{margin:0 0 6px}
+  code{font-family:var(--mono);font-size:.92em;background:rgba(46,82,168,.07);border-radius:3px;padding:1px 5px;color:var(--ink)}
+
+  .thumb-main{aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.035);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:12px;margin:0 0 30px}
+
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:0 0 12px}
+  .thumb{aspect-ratio:4/3;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.035);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:11px;padding:10px}
+
+  table.res{width:100%;border-collapse:collapse;margin:0 0 24px;font-size:13.5px}
+  table.res th,table.res td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  table.res th{font-family:var(--mono);font-size:11px;color:var(--slate);text-transform:uppercase;letter-spacing:.04em;background:rgba(46,82,168,.04)}
+  table.res td{color:var(--ink)}
+  table.res td code{white-space:nowrap}
+
+  .files{display:flex;flex-wrap:wrap;gap:12px 24px;font-family:var(--mono);font-size:14px;padding:24px 0;margin-top:20px;border-top:1px solid var(--line)}
+  .files a{color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px}
+  .files a:hover{color:var(--accent);border-color:var(--accent)}
+  .files a.muted{color:var(--slate);border-style:dashed}
+
+  .pdf-embed{width:100%;height:560px;border:1px solid var(--line);border-radius:6px;margin-top:6px}
+  @media(max-width:640px){.pdf-embed{height:400px}}
+
+  footer{margin-top:20px;border-top:2px solid var(--ink);padding:34px 0 64px}
+  footer .back{font-family:var(--mono);font-size:13px}
+  footer .colophon{font-family:var(--mono);font-size:12px;color:var(--slate);margin-top:16px}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <span class="who"><a href="../index.html">← Joana Carvalho / portfólio</a></span>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="head">
+    <p class="kicker">sistemas embebidos &amp; microcontroladores</p>
+    <h1>PWM remoto por UART — EFM8BB3</h1>
+    <p class="sub">LED e motor controlados à distância, byte a byte, com verificação de checksum.</p>
+
+    <div class="meta">
+      <span class="tag">EFM8BB3</span>
+      <span class="tag">UART</span>
+      <span class="tag">PCA0 / PWM</span>
+      <span class="tag">máquina de estados</span>
+      <span class="tag">FIFO</span>
+    </div>
+
+    <div class="facts">
+      <div><p class="k">Unidade curricular</p><p class="v">Arquitetura de Computadores II</p></div>
+      <div><p class="k">Ano</p><p class="v">2025/2026 · 2.º semestre</p></div>
+      <div><p class="k">Turma</p><p class="v">PL8</p></div>
+      <div><p class="k">Equipa</p><p class="v">Em par com Isabel Gomes</p></div>
+    </div>
+  </div>
+
+  <!-- ============ IMAGEM PRINCIPAL ============ -->
+  <section class="part">
+    <div class="thumb-main">adicionar imagem principal — montagem com LED/motor no EFM8BB3</div>
+  </section>
+
+  <!-- ============ TEXTO ============ -->
+  <section class="part">
+    <h2>O que é</h2>
+    <p>Um controlador de PWM (Pulse Width Modulation) num microcontrolador EFM8BB3, comandado remotamente por um protocolo próprio sobre UART. Serve para regular à distância o brilho de um LED ou a velocidade de um motor, e também para reproduzir automaticamente uma sequência de valores — por exemplo, uma rampa de luminosidade.</p>
+
+    <h2>Como funciona</h2>
+    <p>Ao ligar, o sistema corre a 49 MHz (oscilador interno HFOSC1), desativa o Watchdog Timer e configura o <em>crossbar</em> — o mecanismo do EFM8 que decide a que pino físico cada periférico interno é ligado: UART0 vai para P0.4/P0.5, e a saída PWM (CEX0 do PCA0) para P2.0.</p>
+    <p>O sinal PWM é gerado pelo <strong>PCA0</strong> (Programmable Counter Array), usado em dois módulos ao mesmo tempo: o Módulo 0 gera a onda PWM em si (8 bits de resolução, duty-cycle 0–100%); o Módulo 1 funciona como temporizador de software, usado só para cadenciar a reprodução automática de sequências.</p>
+    <p>Toda a comunicação série corre por <strong>interrupção</strong>, com dois buffers circulares (FIFO) de 32 bytes — um de receção, outro de transmissão — para que o programa principal nunca fique bloqueado à espera de um byte.</p>
+
+    <h2>O protocolo de comunicação</h2>
+    <p>Os comandos chegam por UART a 115200 bps num formato próprio, pensado para detetar erros de transmissão:</p>
+    <table class="res">
+      <tr><th>Campo</th><th>Exemplo</th><th>Significado</th></tr>
+      <tr><td><code>T</code></td><td><code>T</code></td><td>início de trama</td></tr>
+      <tr><td><code>cc</code></td><td><code>03</code></td><td>comprimento dos dados, 2 dígitos</td></tr>
+      <tr><td><code>&lt;dados&gt;</code></td><td><code>D75</code></td><td>o comando em si</td></tr>
+      <tr><td><code>*hh</code></td><td><code>*B0</code></td><td>checksum em hexadecimal</td></tr>
+      <tr><td><code>\n</code></td><td><code>\n</code></td><td>fim de trama</td></tr>
+    </table>
+    <p>Exemplo completo: <code>T03D75*B0\n</code> — define o duty-cycle a 75%. O checksum é a soma dos valores ASCII de cada byte dos dados (<code>'D'+'7'+'5' = 0xB0</code>); se não bater certo com o que vem na trama, o comando é rejeitado e o sistema responde <code>ERR</code>.</p>
+
+    <table class="res">
+      <tr><th>Comando</th><th>Ação</th></tr>
+      <tr><td><code>Dxx</code></td><td>define o duty-cycle (0–100%)</td></tr>
+      <tr><td><code>D+</code> / <code>D-</code></td><td>incrementa/decrementa 1%</td></tr>
+      <tr><td><code>D?</code></td><td>consulta o estado atual</td></tr>
+      <tr><td><code>START</code> / <code>STOP</code></td><td>liga/desliga a saída PWM</td></tr>
+      <tr><td><code>Fxxxx</code></td><td>define a frequência (1–10000 Hz)</td></tr>
+      <tr><td><code>S:xx</code></td><td>inicia carregamento de uma sequência de xx pontos</td></tr>
+      <tr><td><code>SON</code> / <code>SOFF</code></td><td>liga/desliga a reprodução da sequência</td></tr>
+    </table>
+
+    <h2>As máquinas de estado</h2>
+    <p>O sistema tem duas máquinas de estado distintas, que trabalham em conjunto:</p>
+    <h3>Parser de tramas (commands.c)</h3>
+    <p>Processa cada byte recebido, um a um, através de 10 estados (<code>S_WAIT_T</code> → <code>S_READ_LEN1/2</code> → <code>S_READ_DATA</code> → <code>S_WAIT_SEPARATOR</code> → <code>S_READ_CHECKSUM1/2</code> → <code>S_WAIT_TERMINATOR</code>), com um estado alternativo (<code>S_READ_NUM</code>) para quando se está a carregar pontos de uma sequência, e um estado de erro (<code>S_DISCARD</code>) que descarta a trama e avisa <code>ERR</code> uma única vez.</p>
+    <h3>Estado global do sistema (system_state.c)</h3>
+    <p>Guarda em que "modo" o sistema está — <code>IDLE</code>, <code>PWM_MANUAL</code>, <code>SEQ_LOADING</code> ou <code>SEQ_PLAYING</code> — e decide que comandos fazem sentido em cada um. Por exemplo, não é possível pedir <code>SON</code> (reproduzir sequência) sem que uma sequência esteja completamente carregada, nem enviar pontos de sequência fora do modo de carregamento.</p>
+
+    <h2>Sequências automáticas</h2>
+    <p>Além do controlo manual, é possível carregar até 30 pontos de duty-cycle (com <code>S:xx</code>, seguido dos valores um a um) e depois reproduzi-los automaticamente com <code>SON</code> — a interrupção do PCA0 (Módulo 1) vai aplicando cada ponto sozinha, em ciclo, até se mandar parar com <code>SOFF</code>.</p>
+
+    <h2>O que fizemos</h2>
+    <ul>
+      <li>Configuração de baixo nível do EFM8BB3: relógio do sistema, crossbar e pinos de I/O.</li>
+      <li>Driver de UART0 orientado a interrupção, com FIFOs circulares próprias para TX e RX.</li>
+      <li>Geração de PWM com o PCA0, incluindo duty-cycle e frequência variáveis.</li>
+      <li>Desenho e implementação do protocolo de comunicação, incluindo a extensão com checksum (Fase 2) para deteção de erros de transmissão.</li>
+      <li>Duas máquinas de estado completas — o parser de tramas e o controlo global do sistema — para garantir que só se executam comandos válidos no momento certo.</li>
+      <li>Módulo de sequências automáticas, com reprodução cadenciada por temporizador de software.</li>
+    </ul>
+  </section>
+
+  <!-- ============ GALERIA  (apaga se não tiveres imagens) ============ -->
+  <section class="part">
+    <h2>Imagens</h2>
+    <div class="gallery">
+      <div class="thumb">adicionar imagem — máquina de estados do parser</div>
+      <div class="thumb">adicionar imagem — máquina de estados do sistema</div>
+      <div class="thumb">adicionar imagem — montagem/hardware</div>
+    </div>
+  </section>
+
+  <!-- ============ FICHEIROS + PDF ============ -->
+  <section class="part">
+    <h2>Documentação</h2>
+    <div class="files">
+      <a href="../assets/pwm-atc2/relatorio.pdf">relatório completo (PDF) <span class="arrow">↗</span></a>
+      <a class="muted" href="#">código privado</a>
+    </div>
+    <iframe class="pdf-embed" src="../assets/pwm-atc2/relatorio.pdf" title="Relatório em PDF"></iframe>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p class="back"><a href="../index.html">← voltar ao portfólio</a></p>
+    <p class="colophon">Joana Carvalho · 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
