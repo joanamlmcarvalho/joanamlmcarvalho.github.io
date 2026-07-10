@@ -1,1 +1,192 @@
+<!--
+  GUIA RÁPIDO
+  - Onde vês "adicionar imagem", troca pelo <img src="../assets/maquinas-eletricas/....jpg">.
+  - O relatório em PDF vai em: assets/maquinas-eletricas/relatorio.pdf
+  - Cada bloco de imagem está comentado — se não quiseres a galeria, apaga esse <section> todo.
+-->
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Máquinas Elétricas — laboratório · Joana Carvalho</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F6FA;
+    --ink:#16233A;
+    --slate:#5A6478;
+    --line:rgba(22,35,58,.14);
+    --accent:#2E52A8;
+    --accent-soft:rgba(46,82,168,.10);
+    --serif:"Playfair Display",Georgia,serif;
+    --sans:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;color:var(--ink);background:var(--paper) linear-gradient(180deg,#E4ECF8,rgba(228,236,248,0) 420px) no-repeat;font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:800px;margin:0 auto;padding:0 32px}
+  a{color:var(--accent);text-decoration:none}
+  .mono{font-family:var(--mono)}
+  .arrow{font-family:var(--mono);font-size:.85em}
 
+  header.bar{position:sticky;top:0;z-index:20;background:rgba(244,246,250,.85);backdrop-filter:saturate(140%) blur(9px);border-bottom:1px solid var(--line)}
+  header.bar .wrap{max-width:800px;display:flex;align-items:center;justify-content:space-between;height:58px}
+  header.bar .who a{font-family:var(--mono);font-size:13px;color:var(--slate)}
+  header.bar .who a:hover{color:var(--accent)}
+
+  .head{padding:56px 0 34px}
+  .kicker{font-family:var(--mono);font-size:12.5px;color:var(--accent);letter-spacing:.06em;text-transform:lowercase;margin:0 0 16px}
+  .head h1{font-family:var(--serif);font-weight:600;font-size:clamp(32px,5.5vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 14px}
+  .head .sub{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--slate);margin:0 0 24px;max-width:48ch}
+
+  .meta{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 30px}
+  .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:2px 9px}
+
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px 24px;margin:0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .facts div{margin:0}
+  .facts .k{font-family:var(--mono);font-size:11px;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin:0 0 4px}
+  .facts .v{font-family:var(--sans);font-size:14.5px;margin:0}
+
+  section.part{padding:38px 0 0}
+  section.part:first-of-type{padding-top:44px}
+  section.part h2{font-family:var(--serif);font-weight:600;font-size:24px;margin:0 0 14px;letter-spacing:-.01em}
+  section.part h3{font-family:var(--sans);font-weight:500;font-size:15.5px;color:var(--ink);margin:22px 0 8px}
+  section.part p{color:var(--slate);margin:0 0 16px}
+  section.part ul{color:var(--slate);padding-left:20px;margin:0 0 16px}
+  section.part li{margin:0 0 6px}
+
+  .thumb-main{aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.035);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:12px;margin:0 0 30px}
+  .caption{font-family:var(--mono);font-size:12px;color:var(--slate);margin:-22px 0 30px;text-align:center}
+
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:0 0 12px}
+  .thumb{aspect-ratio:4/3;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.035);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:11px;padding:10px}
+
+  table.res{width:100%;border-collapse:collapse;margin:0 0 24px;font-size:14px}
+  table.res th,table.res td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  table.res th{font-family:var(--mono);font-size:11.5px;color:var(--slate);text-transform:uppercase;letter-spacing:.04em;background:rgba(46,82,168,.04)}
+  table.res td{color:var(--ink)}
+
+  .files{display:flex;flex-wrap:wrap;gap:12px 24px;font-family:var(--mono);font-size:14px;padding:24px 0;margin-top:20px;border-top:1px solid var(--line)}
+  .files a{color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px}
+  .files a:hover{color:var(--accent);border-color:var(--accent)}
+
+  .pdf-embed{width:100%;height:560px;border:1px solid var(--line);border-radius:6px;margin-top:6px}
+  @media(max-width:640px){.pdf-embed{height:400px}}
+
+  footer{margin-top:20px;border-top:2px solid var(--ink);padding:34px 0 64px}
+  footer .back{font-family:var(--mono);font-size:13px}
+  footer .colophon{font-family:var(--mono);font-size:12px;color:var(--slate);margin-top:16px}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+</style>
+<style>
+/* ===== Harmonização visual entre páginas ===== */
+.wrap{max-width:860px}
+header.bar .wrap{max-width:1080px;display:flex;align-items:center;justify-content:space-between}
+header.bar .who{order:2;font-size:17px}
+header.bar .back{order:1}
+.head,.hero{padding:72px 0 32px}
+.head h1,.hero h1{font-size:clamp(38px,6.5vw,58px);line-height:1.02;letter-spacing:-.02em}
+.sub,.tagline{font-family:var(--serif);font-style:italic}
+.meta,.meta-row{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px}
+section.part,section.block{border-top:1px solid var(--line);padding:44px 0}
+section.part:first-of-type,section.block:first-of-type{border-top:0}
+footer{border-top:2px solid var(--ink);padding:38px 0 60px;margin-top:56px}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <span class="who"><a href="../index.html">← Joana Carvalho / portfólio</a></span>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="head">
+    <p class="kicker">eletrónica &amp; PCB · máquinas elétricas</p>
+    <h1>Máquinas Elétricas — laboratório</h1>
+    <p class="sub">Duas aulas práticas, da bicicleta que gera eletricidade ao arranque estrela-triângulo de um motor de indução.</p>
+
+    <div class="meta">
+      <span class="tag">transformadores</span>
+      <span class="tag">máquina cc</span>
+      <span class="tag">motor síncrono</span>
+      <span class="tag">motor de indução</span>
+      <span class="tag">estrela-triângulo</span>
+    </div>
+
+    <div class="facts">
+      <div><p class="k">Unidade curricular</p><p class="v">Máquinas Elétricas</p></div>
+      <div><p class="k">Ano</p><p class="v">2024/2025 · 3.º ano · 1.º semestre</p></div>
+      <div><p class="k">Docentes</p><p class="v">João Afonso &amp; Vítor Monteiro</p></div>
+      <div><p class="k">Equipa</p><p class="v">Em par com Francisca Domingues</p></div>
+    </div>
+  </div>
+
+  <!-- ============ IMAGEM PRINCIPAL ============ -->
+  <section class="part">
+    <div class="thumb-main">adicionar imagem principal — bancada de ensaio (motor + alternador)</div>
+  </section>
+
+  <!-- ============ TEXTO ============ -->
+  <section class="part">
+    <h2>O que é</h2>
+    <p>Relatório de duas aulas práticas da cadeira de Máquinas Elétricas, feito em par. O objetivo foi consolidar a matéria dada nas aulas teóricas através de ensaios reais em laboratório: transformadores, máquina de corrente contínua, motor síncrono trifásico e motor de indução — terminando com o método de arranque estrela-triângulo, usado para controlar o pico de corrente de arranque de motores trifásicos.</p>
+
+    <h2>O que fizemos</h2>
+
+    <h3>Alternador de automóvel</h3>
+    <p>Como introdução, usámos a bicicleta estática do laboratório — ligada a um alternador de automóvel — para perceber, na prática, a conversão de energia mecânica em elétrica: o rotor gira, cria um campo magnético variável, e esse campo induz tensão no estator, que depois é retificada para corrente contínua.</p>
+
+    <h3>Transformadores</h3>
+    <p>Fizemos o ensaio de indutâncias (com núcleo de ferro, núcleo parcial, núcleo de ar e associações em série), seguido dos ensaios clássicos de um transformador: em vazio, em curto-circuito e de polaridade. Cada ensaio isola um comportamento diferente — o de vazio mostra as perdas no núcleo, o de curto-circuito as perdas nos enrolamentos, e o de polaridade confirma o sentido dos enrolamentos primário e secundário.</p>
+
+    <h3>Máquina de corrente contínua</h3>
+    <p>Testámos a máquina CC a funcionar como gerador, com excitação independente: ao girar a manivela manualmente, gerámos tensão suficiente para acender um conjunto de lâmpadas, confirmando a relação entre velocidade de rotação e tensão induzida.</p>
+
+    <h3>Motor síncrono trifásico</h3>
+    <p>Como o motor síncrono não tem binário de arranque próprio, usámos um motor universal auxiliar para o levar até perto da velocidade síncrona antes de o ligar à rede trifásica — método clássico para sincronizar este tipo de máquina.</p>
+
+    <h3>Motor de indução — trifásico e monofásico</h3>
+    <p>No motor de indução trifásico, comparámos o comportamento em vazio e com carga, e vimos o efeito do condensador de arranque na versão monofásica (reduz a corrente de arranque e o binário de trepidação).</p>
+
+    <h3>Arranque estrela-triângulo</h3>
+    <p>Por fim, montámos o circuito clássico de arranque estrela-triângulo com contactores e temporizador — a solução mais comum para limitar o pico de corrente no arranque de motores trifásicos de maior potência.</p>
+  </section>
+
+  <!-- ============ GALERIA  (apaga se não tiveres imagens) ============ -->
+  <section class="part">
+    <h2>Imagens</h2>
+    <div class="gallery">
+      <div class="thumb">adicionar imagem — ensaio de transformadores</div>
+      <div class="thumb">adicionar imagem — gerador de corrente contínua</div>
+      <div class="thumb">adicionar imagem — motor síncrono acoplado ao motor auxiliar</div>
+      <div class="thumb">adicionar imagem — montagem do arranque estrela-triângulo</div>
+    </div>
+  </section>
+
+  <!-- ============ FICHEIROS + PDF ============ -->
+  <section class="part">
+    <h2>Documentação</h2>
+    <div class="files">
+      <a href="../assets/maquinas-eletricas/relatorio.pdf">relatório completo (PDF) <span class="arrow">↗</span></a>
+    </div>
+    <iframe class="pdf-embed" src="../assets/maquinas-eletricas/relatorio.pdf" title="Relatório em PDF"></iframe>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p class="back"><a href="../index.html">← voltar ao portfólio</a></p>
+    <p class="colophon">Joana Carvalho · 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
