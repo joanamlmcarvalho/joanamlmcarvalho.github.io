@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AGROBOT (PI1) — Joana Carvalho</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F4F6FA;--ink:#16233A;--slate:#5A6478;--line:rgba(22,35,58,.14);--accent:#2E52A8;--accent-soft:rgba(46,82,168,.10);
+    --serif:"Playfair Display",Georgia,serif;--sans:"Inter",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;color:var(--ink);background:var(--paper) linear-gradient(180deg,#E4ECF8,rgba(228,236,248,0) 420px) no-repeat;font-family:var(--sans);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:840px;margin:0 auto;padding:0 32px}
+  a{color:var(--accent);text-decoration:none}
+  .arrow{font-family:var(--mono);font-size:.85em}
+  header.bar{position:sticky;top:0;z-index:20;background:rgba(244,246,250,.82);backdrop-filter:saturate(140%) blur(9px);border-bottom:1px solid var(--line)}
+  header.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:1080px}
+  header.bar .who{font-family:var(--serif);font-weight:600;font-size:18px}
+  header.bar .back{font-family:var(--mono);font-size:12.5px;color:var(--slate)}
+  header.bar .back:hover{color:var(--accent)}
+  .head{padding:72px 0 34px}
+  .kicker{font-family:var(--mono);font-size:12px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin:0 0 18px}
+  .head h1{font-family:var(--serif);font-weight:600;font-size:clamp(36px,6vw,60px);line-height:1.02;letter-spacing:-.02em;margin:0 0 18px}
+  .head .sub{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.4vw,24px);color:var(--accent);margin:0 0 24px;max-width:34ch;line-height:1.3}
+  .meta{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px}
+  .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:3px 10px}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0}
+  .fact .k{font-family:var(--mono);font-size:11px;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin:0 0 3px}
+  .fact .v{font-size:15px;margin:0}
+  section.part{padding:44px 0 0}
+  section.part > h2{font-family:var(--serif);font-weight:600;font-size:26px;margin:0 0 14px;letter-spacing:-.01em}
+  section.part h3{font-family:var(--serif);font-weight:500;font-size:20px;margin:26px 0 8px}
+  section.part p{color:var(--slate);margin:0 0 16px}
+  section.part ul{color:var(--slate);padding-left:20px;margin:0 0 16px}
+  section.part li{margin:0 0 7px}
+  section.part strong{color:var(--ink);font-weight:500}
+  .media{border-radius:6px;overflow:hidden;border:1px solid var(--line);background:#fff;margin:0 0 12px}
+  .media img,.media video,.media iframe{display:block;width:100%;height:auto;border:0}
+  .media iframe{aspect-ratio:16/9}
+  .caption{font-family:var(--mono);font-size:12px;color:var(--slate);margin:0 0 26px}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:0 0 12px}
+  .gallery figure{margin:0}
+  .gallery img{width:100%;border-radius:6px;border:1px solid var(--line);display:block}
+  .gallery figcaption{font-family:var(--mono);font-size:11.5px;color:var(--slate);margin-top:6px}
+  .files{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 0}
+  .files a{font-family:var(--mono);font-size:13px;border:1px solid var(--line);border-radius:6px;padding:9px 15px;color:var(--ink);transition:border-color .2s,color .2s}
+  .files a:hover{border-color:var(--accent);color:var(--accent)}
+  .files a.muted{color:var(--slate);border-style:dashed}
+  .pdf-embed{width:100%;height:640px;border:1px solid var(--line);border-radius:6px;margin-top:24px}
+  @media(max-width:640px){.pdf-embed{height:420px}}
+  .next{margin-top:44px;border:1px solid var(--line);border-radius:8px;padding:20px 22px;background:rgba(46,82,168,.04)}
+  .next .k{font-family:var(--mono);font-size:11px;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
+  .next .t{font-family:var(--serif);font-size:20px;margin:0 0 6px}
+  .next p{font-size:15px;color:var(--slate);margin:0}
+  footer{margin-top:80px;border-top:2px solid var(--ink);padding:36px 0 60px}
+  footer a{font-family:var(--mono);font-size:13px}
+  footer .colophon{font-family:var(--mono);font-size:12px;color:var(--slate);margin-top:20px}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <span class="who">Joana Carvalho</span>
+    <a class="back" href="../index.html">← voltar ao portfólio</a>
+  </div>
+</header>
+
+<div class="head">
+  <div class="wrap">
+    <p class="kicker">Projeto integrador I</p>
+    <h1>AGROBOT — controlo analógico</h1>
+    <p class="sub">Um robô que fura, semeia e tapa. Sem uma única linha de código.</p>
+
+    <div class="meta">
+      <span class="tag">eletrónica analógica</span>
+      <span class="tag">NE555</span>
+      <span class="tag">TL494</span>
+      <span class="tag">ponte H L298N</span>
+      <span class="tag">portas lógicas</span>
+      <span class="tag">impressão 3D</span>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><p class="k">Unidade curricular</p><p class="v">Projeto Integrador em EEIC 1</p></div>
+      <div class="fact"><p class="k">Ano</p><p class="v">3.º ano, 1.º semestre · 2024/25</p></div>
+      <div class="fact"><p class="k">Equipa</p><p class="v">4 elementos</p></div>
+      <div class="fact"><p class="k">Orientação</p><p class="v">Prof. Inês Garcia</p></div>
+    </div>
+  </div>
+</div>
+
+<section class="part">
+  <div class="wrap">
+    <div class="media"><img src="../assets/pi1/agrobot.jpg" alt="O robô AGROBOT montado"></div>
+    <p class="caption">O AGROBOT: plataforma sobre lagartas, com broca e dispensador de sementes.</p>
+  </div>
+</section>
+
+<section class="part">
+  <div class="wrap">
+    <h2>O que é</h2>
+    <p>O AGROBOT é um robô agrícola de pequena escala que automatiza a sementeira. Desloca-se em linha reta, para, perfura o solo com uma broca, deixa cair uma semente, e um ancinho traseiro tapa o buraco. Depois recomeça o ciclo.</p>
+    <p>A ideia partiu de um problema real: a agricultura de pequena escala continua dependente de mão de obra para tarefas repetitivas como plantar sementes uma a uma. O objetivo era construir algo funcional, modular e de <strong>baixo custo</strong> — acessível a quem tem um jardim, não só a grandes explorações.</p>
+
+    <h2>O desafio</h2>
+    <p>A restrição que define este projeto: <strong>todo o controlo tinha de ser analógico</strong>. Sem microcontrolador, sem software. A sequência de estados do robô — andar, descer a broca, subir a broca, semear, repetir — teve de ser construída inteiramente com temporizadores, portas lógicas e interruptores de fim de curso.</p>
+
+    <h2>Como funciona</h2>
+    <p>O robô move-se sobre duas lagartas acionadas por motores DC de 12&nbsp;V e 300&nbsp;rpm. O sistema divide-se em três blocos:</p>
+
+    <h3>Módulo de potência e acionamento</h3>
+    <p>Um <strong>TL494</strong> gera um sinal PWM de ciclo de trabalho ajustável, que passa por um optoacoplador <strong>HCPL-3120</strong>. Este converte o sinal elétrico em ótico e volta a convertê-lo, garantindo isolamento galvânico entre o controlo de baixa tensão e a potência — o que protege os circuitos de controlo. A saída aciona uma <strong>ponte H L298N</strong>, que permite inverter o sentido de rotação dos motores sem trocar fios: é assim que a broca desce a rodar num sentido e sobe no sentido inverso.</p>
+
+    <h3>Temporização</h3>
+    <p>Cinco temporizadores <strong>NE555</strong> em modo monoestável marcam a duração de cada etapa. Cada um foi dimensionado com a sua resistência e condensador para o tempo pretendido — as rodas andam 6,27&nbsp;s, a broca sobe e desce em 1&nbsp;s, e a escotilha e o bloqueio de ciclo duram 10&nbsp;s.</p>
+
+    <h3>Lógica sequencial</h3>
+    <p>É aqui que está o coração do projeto. Sem software, a máquina de estados foi montada com portas <strong>NOT, AND e OR</strong> (74LS04, 74LS08, 74LS32) e quatro interruptores de fim de curso. Um botão inicia o ciclo através de uma porta OR; a saída do timer das rodas passa por uma NOT, o que garante que os restantes circuitos só arrancam <em>depois</em> de as rodas pararem. Os fins de curso A e B assinalam as posições extremas da broca, e um timer adicional (E) memoriza que a plataforma já desceu neste ciclo — evitando que o robô entre num <em>loop</em> de subir e descer.</p>
+
+    <h2>Componente mecânica</h2>
+    <p>As rodas, lagartas e a broca foram modeladas em <strong>Rhinoceros 3D</strong> e impressas no laboratório de robótica da Universidade do Minho. A plataforma (50×50&nbsp;cm) foi cortada à mão em madeira leve, para evitar sobrepeso. O dispensador de sementes é uma placa rotativa com um orifício que, ao alinhar-se com o reservatório, deixa cair uma semente por um funil e uma rampa até ao buraco acabado de perfurar.</p>
+
+    <h2>Testes e dificuldades</h2>
+    <p>Cada circuito foi primeiro validado em breadboard e só depois soldado em protoboard. As ondas nos pinos do TL494 e do optoacoplador foram verificadas no osciloscópio.</p>
+    <p>Nem tudo correu bem: houve maus contactos recorrentes, e alguns componentes chegaram do fornecedor já queimados, o que atrasou as montagens. Dois objetivos ficaram por cumprir por falta de tempo — o depósito de água com sensor de humidade, e o desenho dos circuitos em PCB.</p>
+
+    <h2>O que fiz</h2>
+    <ul>
+      <li>Projeto e montagem dos circuitos de temporização com NE555 e do circuito lógico sequencial.</li>
+      <li>Implementação do atuador comutado (TL494 + HCPL-3120) e integração com a ponte H.</li>
+      <li>Modelação e montagem da componente mecânica: peças impressas em 3D, plataforma e dispensador.</li>
+      <li>Testes em breadboard e protoboard, e verificação dos sinais no osciloscópio.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- VÍDEO — apaga este bloco se não tiveres vídeo -->
+<section class="part">
+  <div class="wrap">
+    <h2>Demonstração</h2>
+    <div class="media"><iframe src="https://www.youtube.com/embed/ID_DO_VIDEO" allowfullscreen title="AGROBOT em funcionamento"></iframe></div>
+    <p class="caption">EDITA: substitui ID_DO_VIDEO pelo código do teu vídeo do YouTube (não listado).</p>
+  </div>
+</section>
+
+<section class="part">
+  <div class="wrap">
+    <h2>Imagens</h2>
+    <div class="gallery">
+      <figure><img src="../assets/pi1/logica.png" alt="Esquema do circuito lógico"><figcaption>Circuito lógico sequencial</figcaption></figure>
+      <figure><img src="../assets/pi1/protoboard.jpg" alt="Circuitos soldados em protoboard"><figcaption>Circuitos em protoboard</figcaption></figure>
+      <figure><img src="../assets/pi1/pecas3d.jpg" alt="Peças impressas em 3D"><figcaption>Peças impressas em 3D</figcaption></figure>
+      <figure><img src="../assets/pi1/broca.jpg" alt="Montagem final da broca"><figcaption>Montagem da broca</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="part">
+  <div class="wrap">
+    <h2>Documentação</h2>
+    <div class="files">
+      <a href="../assets/pi1/relatorio.pdf">relatório (pdf) <span class="arrow">↗</span></a>
+    </div>
+    <iframe class="pdf-embed" src="../assets/pi1/relatorio.pdf" title="Relatório do PI1"></iframe>
+
+    <a class="next" href="pi2.html" style="display:block">
+      <p class="k">A seguir</p>
+      <p class="t">AGROBOT — controlo digital (PI2)</p>
+      <p>No semestre seguinte, o mesmo robô foi reconstruído com um microcontrolador STM32 e a sequência descrita em GRAFCET.</p>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../index.html">← voltar ao portfólio</a>
+    <p class="colophon">Joana Carvalho · 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
