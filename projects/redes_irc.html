@@ -1,1 +1,194 @@
+<!--
+  GUIA RÁPIDO
+  - Onde vês "adicionar imagem", troca pelo <img src="../assets/redes/....jpg">.
+  - O PDF do relatório vai em: assets/redes/
+-->
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redes de Computadores — Emulação com CORE · Joana Carvalho</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F6FA;
+    --ink:#16233A;
+    --slate:#5A6478;
+    --line:rgba(22,35,58,.14);
+    --accent:#2E52A8;
+    --accent-soft:rgba(46,82,168,.10);
+    --serif:"Playfair Display",Georgia,serif;
+    --sans:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;color:var(--ink);background:var(--paper) linear-gradient(180deg,#E4ECF8,rgba(228,236,248,0) 420px) no-repeat;font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:800px;margin:0 auto;padding:0 32px}
+  a{color:var(--accent);text-decoration:none}
+  .mono{font-family:var(--mono)}
+  .arrow{font-family:var(--mono);font-size:.85em}
 
+  header.bar{position:sticky;top:0;z-index:20;background:rgba(244,246,250,.85);backdrop-filter:saturate(140%) blur(9px);border-bottom:1px solid var(--line)}
+  header.bar .wrap{max-width:800px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  header.bar .who{font-family:var(--mono);font-size:13px;color:var(--slate)}
+  header.bar .who a{color:var(--slate);border-bottom:1px solid var(--line)}
+  header.bar .who a:hover{color:var(--accent);border-color:var(--accent)}
+
+  .p-hero{padding:64px 0 8px}
+  .kicker{font-family:var(--mono);font-size:12.5px;color:var(--slate);letter-spacing:.04em;margin:0 0 18px;text-transform:lowercase}
+  .p-hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,6vw,54px);line-height:1.05;letter-spacing:-.02em;margin:0 0 16px}
+  .tagline{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(19px,2.6vw,23px);color:var(--accent);line-height:1.35;margin:0 0 30px;max-width:44ch}
+
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px 28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;margin:0 0 44px}
+  .facts dt{font-family:var(--mono);font-size:11px;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin:0 0 5px}
+  .facts dd{margin:0;font-size:15px}
+
+  .thumb-main{aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.035);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:12px;margin:0 0 56px;overflow:hidden}
+  .thumb-main img{width:100%;height:100%;object-fit:cover;display:block}
+
+  section.p-block{padding:0 0 52px}
+  section.p-block h2{font-family:var(--serif);font-weight:600;font-size:26px;margin:0 0 18px;letter-spacing:-.01em}
+  section.p-block h3{color:var(--accent);margin:26px 0 8px;text-transform:uppercase;letter-spacing:.03em;font-size:12.5px;font-family:var(--mono)}
+  section.p-block p{color:var(--ink);margin:0 0 16px;max-width:66ch}
+  section.p-block p.muted{color:var(--slate)}
+  section.p-block ul{margin:0 0 16px;padding-left:20px}
+  section.p-block li{margin-bottom:6px}
+
+  .callout{border-left:3px solid var(--accent);background:var(--accent-soft);padding:16px 20px;border-radius:0 6px 6px 0;margin:0 0 16px;font-size:15.5px}
+  .callout.warn{border-left-color:#B0532B;background:rgba(176,83,43,.08)}
+
+  table.mat{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14.5px}
+  table.mat th,table.mat td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  table.mat th{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate)}
+
+  .steps{margin:0 0 16px;padding:0;list-style:none;counter-reset:step}
+  .steps li{counter-increment:step;padding:10px 0 10px 34px;position:relative;border-top:1px solid var(--line)}
+  .steps li:first-child{border-top:0}
+  .steps li::before{content:counter(step);position:absolute;left:0;top:10px;width:22px;height:22px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center}
+
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:0 0 16px}
+  .gallery .thumb{aspect-ratio:4/3;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.035);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:11px;padding:10px;overflow:hidden}
+  .gallery .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+  .files{display:flex;flex-wrap:wrap;gap:12px 24px;font-family:var(--mono);font-size:14px;padding:20px 0;border-top:1px solid var(--line)}
+  .files a{color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px}
+  .files a:hover{color:var(--accent);border-color:var(--accent)}
+
+  footer{margin-top:20px;border-top:2px solid var(--ink);padding:34px 0 64px}
+  footer .back{font-family:var(--mono);font-size:13px}
+  footer .colophon{font-family:var(--mono);font-size:12px;color:var(--slate);margin-top:16px}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+</style>
+<style>
+/* ===== Harmonização visual entre páginas ===== */
+.wrap{max-width:860px}
+header.bar .wrap{max-width:1080px;display:flex;align-items:center;justify-content:space-between}
+header.bar .who{order:2;font-size:17px}
+header.bar .back{order:1}
+.head,.hero{padding:72px 0 32px}
+.head h1,.hero h1{font-size:clamp(38px,6.5vw,58px);line-height:1.02;letter-spacing:-.02em}
+.sub,.tagline{font-family:var(--serif);font-style:italic}
+.meta,.meta-row{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px}
+section.part,section.block{border-top:1px solid var(--line);padding:44px 0}
+section.part:first-of-type,section.block:first-of-type{border-top:0}
+footer{border-top:2px solid var(--ink);padding:38px 0 60px;margin-top:56px}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <span class="who"><a href="../index.html">← Joana Carvalho / portfólio</a></span>
+  </div>
+</header>
+
+<div class="p-hero">
+  <div class="wrap">
+    <p class="kicker">redes · introdução às redes de computadores</p>
+    <h1>Redes de Computadores — Emulação com CORE</h1>
+    <p class="tagline">Do cabo Ethernet ao NAT: construir e testar uma rede inteira dentro de um emulador.</p>
+
+    <dl class="facts">
+      <div><dt>Cadeira</dt><dd>Introdução às Redes de Computadores</dd></div>
+      <div><dt>Ano</dt><dd>2024/2025 · 2º semestre</dd></div>
+      <div><dt>Docentes</dt><dd>Adriano Moreira &amp; João Galvão</dd></div>
+      <div><dt>Equipa</dt><dd>Francisca Domingues, Isabel Gomes, Joana Carvalho</dd></div>
+    </dl>
+
+    <div class="thumb-main">adicionar imagem principal (ex.: topologia completa da rede no CORE)</div>
+
+    <section class="p-block">
+      <h2>O que é</h2>
+      <p>Trabalho prático de construção e configuração de uma rede de computadores, do zero, usando o <strong>CORE</strong> (<em>Common Open Research Emulator</em>) — uma ferramenta que permite desenhar topologias de rede num editor gráfico e correr, por trás, máquinas Linux reais para cada equipamento, com terminais e tudo.</p>
+      <p class="muted">O trabalho evolui em capítulos: primeiro uma LAN simples com hubs e switches, depois a interligação de várias LANs por routers, a atribuição automática de IPs com DHCP, o uso de aplicações de rede (HTTP), e por fim o acesso a uma rede privada ao exterior via NAT.</p>
+    </section>
+
+    <section class="p-block">
+      <h2>Como funciona</h2>
+
+      <h3>Capítulo 1 — Emulação de LANs Ethernet</h3>
+      <p>Construção de uma LAN com dois <em>switches</em>, dois <em>hubs</em> e treze terminais. Depois de atribuir os endereços IPv4 e desligar o IPv6, testámos a conectividade com <span class="mono">ping</span> e observámos o tráfego com o <strong>Wireshark</strong>, o que permitiu perceber a diferença essencial entre os dois equipamentos: o <em>switch</em> aprende para onde encaminhar cada trama e reduz o tráfego na rede, enquanto o <em>hub</em> se limita a difundir tudo o que recebe para todas as portas.</p>
+
+      <h3>Capítulo 2 — Interligação de LANs e redes IP</h3>
+      <p>Cinco LANs (A a E) ligadas por oito <em>routers</em>, cada uma com o seu próprio endereçamento e máscara. Foi preciso calcular as sub-redes entre routers, definir manualmente a tabela de encaminhamento de cada um (sem recorrer a protocolos de encaminhamento dinâmico como o OSPF) e configurar a rota por defeito de cada PC. No final, confirmámos com <span class="mono">ping</span> e <span class="mono">traceroute</span> que todos os terminais conseguiam comunicar entre si, mesmo os que estavam em LANs diferentes.</p>
+
+      <h3>Capítulo 3 — DHCP</h3>
+      <p>Ativação da atribuição automática de endereços numa das LANs. Com o Wireshark, seguimos as quatro mensagens clássicas da negociação DHCP — <em>Discover, Offer, Request</em> e <em>Ack</em> — entre um PC cliente e o servidor DHCP.</p>
+
+      <h3>Capítulo 4 — Aplicações de rede</h3>
+      <p>Com a rede já operacional, testámos um serviço HTTP simples num dos PCs (acedido com o navegador em modo texto <span class="mono">lynx</span>) e criámos um formulário HTTP com campos de <em>username</em> e <em>password</em>, para ver na prática o TCP e o HTTP a funcionar sobre a rede que construímos.</p>
+
+      <h3>Capítulo 5 — NAT</h3>
+      <p>Por fim, configurámos um router NAT com <span class="mono">iptables</span>, para permitir que uma rede privada (192.168.1.0/24) tivesse acesso ao exterior através de um único endereço público — o mecanismo que qualquer router doméstico usa para partilhar uma só ligação à internet entre vários dispositivos.</p>
+    </section>
+
+    <section class="p-block">
+      <h2>O que fiz</h2>
+      <p class="muted">EDITA: descreve aqui a tua parte específica do trabalho — por exemplo, se ficaste mais responsável pelo desenho das topologias no CORE, pelo cálculo das sub-redes e tabelas de encaminhamento, pela configuração do DHCP/NAT, ou pela análise das capturas no Wireshark.</p>
+    </section>
+
+    <section class="p-block">
+      <h2>Dificuldades</h2>
+      <div class="callout warn">Não foi possível testar por completo a ligação da rede interna ao exterior através do NAT (nem com <span class="mono">ping</span> nem com o Wireshark), o que ficou identificado no relatório como o único objetivo por concluir. Mesmo assim, toda a configuração do router NAT e da firewall com <span class="mono">iptables</span> foi feita.</div>
+    </section>
+
+    <div class="gallery">
+      <div class="thumb">adicionar imagem — topologia da LAN inicial</div>
+      <div class="thumb">adicionar imagem — capturas no Wireshark</div>
+      <div class="thumb">adicionar imagem — tabela de encaminhamento</div>
+      <div class="thumb">adicionar imagem — configuração do NAT</div>
+    </div>
+
+    <section class="p-block">
+      <h2>Ferramentas e protocolos</h2>
+      <table class="mat">
+        <tr><th>Ferramentas</th><th>Protocolos estudados</th></tr>
+        <tr><td>CORE (Common Open Research Emulator)</td><td>ARP</td></tr>
+        <tr><td>Wireshark</td><td>ICMP</td></tr>
+        <tr><td>ping / traceroute</td><td>DHCP</td></tr>
+        <tr><td>iptables</td><td>IP / TCP</td></tr>
+        <tr><td>lynx</td><td>HTTP</td></tr>
+      </table>
+    </section>
+
+    <div class="files">
+      <a href="../assets/redes/relatorio.pdf">relatório completo (PDF) <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p class="back"><a href="../index.html">← voltar ao portfólio</a></p>
+    <p class="colophon">Joana Carvalho · 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
