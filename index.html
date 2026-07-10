@@ -1,0 +1,368 @@
+<!--
+  GUIA RÁPIDO
+  - Onde vês EDITA, troca pelo teu texto.
+  - Cada projeto liga a uma página própria em: projetos/nome.html
+  - Miniaturas e ficheiros ficam em: assets/nome-do-projeto/
+  - Para pôr uma miniatura, troca:
+        <div class="thumb">adicionar imagem</div>
+    por:
+        <div class="thumb"><img src="assets/boost/capa.jpg" alt="Conversor BOOST"></div>
+-->
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joana Carvalho — Portfólio</title>
+<meta name="description" content="Portfólio de Joana Carvalho — Engenharia Eletrónica Industrial e Computadores, Universidade do Minho.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F6FA;
+    --ink:#16233A;
+    --slate:#5A6478;
+    --line:rgba(22,35,58,.14);
+    --accent:#2E52A8;
+    --accent-soft:rgba(46,82,168,.10);
+    --serif:"Playfair Display",Georgia,serif;
+    --sans:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;color:var(--ink);background:var(--paper) linear-gradient(180deg,#E4ECF8,rgba(228,236,248,0) 560px) no-repeat;font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+  a{color:var(--accent);text-decoration:none}
+  .mono{font-family:var(--mono)}
+  .arrow{font-family:var(--mono);font-size:.85em}
+
+  header.bar{position:sticky;top:0;z-index:20;background:rgba(244,246,250,.82);backdrop-filter:saturate(140%) blur(9px);border-bottom:1px solid var(--line)}
+  header.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  header.bar .who{font-family:var(--serif);font-weight:600;font-size:18px;letter-spacing:.01em}
+  header.bar nav{display:flex;gap:24px;font-family:var(--mono);font-size:12.5px;text-transform:lowercase}
+  header.bar nav a{color:var(--slate)}
+  header.bar nav a:hover{color:var(--accent)}
+  @media(max-width:640px){header.bar nav{display:none}}
+
+  .hero{padding:96px 0 40px}
+  .kicker{font-family:var(--mono);font-size:13px;color:var(--slate);letter-spacing:.04em;margin:0 0 22px}
+  .kicker b{color:var(--accent);font-weight:500}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(52px,11vw,108px);line-height:.98;letter-spacing:-.025em;margin:0 0 22px}
+  .tagline{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(21px,3.2vw,30px);color:var(--accent);line-height:1.25;margin:0 0 26px;max-width:20ch}
+  .hero .lead{font-size:clamp(17px,2vw,19px);color:var(--slate);max-width:56ch;margin:0 0 30px;line-height:1.7}
+  .hero .contacts{display:flex;flex-wrap:wrap;gap:20px;font-family:var(--mono);font-size:14px}
+  .hero .contacts a{border-bottom:1px solid var(--line);padding-bottom:2px}
+  .hero .contacts a:hover{border-color:var(--accent)}
+
+  .index{margin:64px 0 8px;border-top:1px solid var(--line);padding-top:20px}
+  .index .lbl{font-family:var(--mono);font-size:12px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px}
+  .index ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:2px 28px}
+  .index li{border-top:1px solid var(--line)}
+  .index li a{display:flex;align-items:baseline;gap:12px;padding:11px 2px;color:var(--ink)}
+  .index li a:hover{color:var(--accent)}
+  .index .n{font-family:var(--mono);font-size:12px;color:var(--accent);width:24px}
+  .index .t{font-family:var(--serif);font-size:19px}
+
+  section.field{padding:76px 0 12px;scroll-margin-top:72px}
+  .field-head{display:flex;gap:24px;align-items:flex-start;border-top:2px solid var(--ink);padding-top:22px;margin-bottom:40px}
+  .field-num{font-family:var(--serif);font-weight:600;font-size:clamp(56px,9vw,96px);line-height:.8;color:transparent;-webkit-text-stroke:1.4px rgba(46,82,168,.5);flex:0 0 auto}
+  @supports not((-webkit-text-stroke:1px #000)){.field-num{color:rgba(46,82,168,.28);-webkit-text-stroke:0}}
+  .field-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(28px,4vw,38px);line-height:1.05;margin:0 0 6px;letter-spacing:-.01em}
+  .field-head p{color:var(--slate);margin:0;max-width:54ch;font-size:15.5px}
+
+  .work{display:grid;grid-template-columns:150px 1fr;gap:26px;padding:28px 0;border-top:1px solid var(--line)}
+  .work:first-of-type{border-top:0}
+  .field.feature .work{grid-template-columns:230px 1fr;gap:34px;padding:38px 0}
+  .thumb{aspect-ratio:4/3;border:1px dashed var(--line);border-radius:4px;background:rgba(46,82,168,.035);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:11px;padding:10px;overflow:hidden}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+  .work:hover .thumb img{transform:scale(1.05)}
+  .w-body{min-width:0}
+  .w-title{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.15;margin:0 0 8px}
+  .field.feature .w-title{font-size:27px}
+  .w-title a{color:var(--ink);transition:color .15s;border-bottom:1px solid transparent}
+  .work:hover .w-title a{color:var(--accent);border-color:var(--accent)}
+  .w-desc{color:var(--slate);font-size:15px;line-height:1.6;margin:0 0 14px;max-width:60ch}
+  .w-meta{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
+  .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:2px 9px}
+  .w-links{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:13px}
+  .w-links a{color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:1px}
+  .w-links a:hover{color:var(--accent);border-color:var(--accent)}
+  .w-links a.muted{color:var(--slate);border-style:dashed}
+
+  @media(max-width:600px){
+    .field-head{flex-direction:column;gap:6px}
+    .work,.field.feature .work{grid-template-columns:1fr;gap:14px}
+    .thumb{aspect-ratio:16/9;max-width:100%}
+  }
+
+  footer{margin-top:90px;border-top:2px solid var(--ink);padding:44px 0 64px}
+  footer .bye{font-family:var(--serif);font-style:italic;font-size:24px;margin:0 0 18px}
+  footer .contacts{display:flex;flex-wrap:wrap;gap:20px;font-family:var(--mono);font-size:13px;margin:0 0 26px}
+  footer .contacts a{color:var(--ink);border-bottom:1px solid var(--line)}
+  footer .colophon{font-family:var(--mono);font-size:12px;color:var(--slate)}
+
+  .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <span class="who">Joana Carvalho</span>
+    <nav>
+      <a href="#indice">índice</a>
+      <a href="#f01">projetos</a>
+      <a href="#contactos">contactos</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="kicker">portfólio &nbsp;·&nbsp; <b>engenharia eletrónica industrial e computadores</b> &nbsp;·&nbsp; universidade do minho</p>
+    <h1>Joana Carvalho</h1>
+    <p class="tagline">Da eletrónica de potência ao código que a controla.</p>
+    <p class="lead">Estudante na Universidade do Minho, com interesse na área de energia e eletrónica de potência — e gosto por projetos que cruzam o hardware com o software, dos sistemas embebidos à automação. À procura de um mestrado onde aprofundar essa área, levando comigo a base prática dos projetos do curso.</p>
+    <div class="contacts" id="contactos">
+      <a href="mailto:joanamlmc17@gmail.com">email pessoal <span class="arrow">↗</span></a>
+      <a href="mailto:a104865@alunos.uminho.pt">email uminho <span class="arrow">↗</span></a>
+    </div>
+
+    <nav class="index" id="indice" aria-label="Índice de áreas">
+      <p class="lbl">Índice</p>
+      <ol>
+        <li><a href="#f01"><span class="n">01</span><span class="t">Projetos integradores</span></a></li>
+        <li><a href="#f02"><span class="n">02</span><span class="t">Programação</span></a></li>
+        <li><a href="#f03"><span class="n">03</span><span class="t">Sistemas embebidos</span></a></li>
+        <li><a href="#f04"><span class="n">04</span><span class="t">Eletrónica &amp; PCB</span></a></li>
+        <li><a href="#f05"><span class="n">05</span><span class="t">Potência &amp; energia</span></a></li>
+        <li><a href="#f06"><span class="n">06</span><span class="t">Automação</span></a></li>
+        <li><a href="#f07"><span class="n">07</span><span class="t">Redes</span></a></li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- 01 — DESTAQUE -->
+<section class="field feature" id="f01">
+  <div class="wrap">
+    <div class="field-head reveal"><span class="field-num">01</span><div><h2>Projetos integradores</h2><p>Os projetos maiores do curso, levados do conceito ao protótipo funcional.</p></div></div>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/pi1.html">PI1 — projeto final</a></h3>
+        <p class="w-desc">EDITA: o que era o projeto, o teu papel e o resultado, em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">EDITA: tecnologia</span><span class="tag">EDITA: área</span></div>
+        <div class="w-links"><a href="projetos/pi1.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/pi2.html">PI2 — projeto final</a></h3>
+        <p class="w-desc">EDITA: o que era o projeto, o teu papel e o resultado, em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">EDITA: tecnologia</span><span class="tag">EDITA: área</span></div>
+        <div class="w-links"><a href="projetos/pi2.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 02 — PROGRAMAÇÃO -->
+<section class="field" id="f02">
+  <div class="wrap">
+    <div class="field-head reveal"><span class="field-num">02</span><div><h2>Programação</h2><p>Projetos em C++ e fundamentos de programação.</p></div></div>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/jogo-tiro.html">Jogo de tiro</a></h3>
+        <p class="w-desc">Jogo 2D em C++ com movimento do jogador, inimigos e sistema de pontuação. Projeto da cadeira de Complementos de Programação.</p>
+        <div class="w-meta"><span class="tag">C++</span><span class="tag">Allegro</span><span class="tag">lógica de jogo</span></div>
+        <div class="w-links"><a href="projetos/jogo-tiro.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/jogo-bolinha.html">Jogo da bolinha</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">C++</span></div>
+        <div class="w-links"><a href="projetos/jogo-bolinha.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/guias-cpp.html">Guias de C++ (ATC1 / ATC2)</a></h3>
+        <p class="w-desc">EDITA: o que cobrem estes guias.</p>
+        <div class="w-meta"><span class="tag">C++</span></div>
+        <div class="w-links"><a href="projetos/guias-cpp.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 03 — SISTEMAS EMBEBIDOS -->
+<section class="field" id="f03">
+  <div class="wrap">
+    <div class="field-head reveal"><span class="field-num">03</span><div><h2>Sistemas embebidos &amp; microcontroladores</h2><p>Programação de microcontroladores e sistemas com restrições de tempo real.</p></div></div>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/vending-machine.html">Vending machine</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">C++</span><span class="tag">embebidos</span></div>
+        <div class="w-links"><a href="projetos/vending-machine.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/guias-assembly.html">Guias em Assembly</a></h3>
+        <p class="w-desc">EDITA: o que cobrem.</p>
+        <div class="w-meta"><span class="tag">Assembly</span><span class="tag">microcontroladores</span></div>
+        <div class="w-links"><a href="projetos/guias-assembly.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 04 — ELETRÓNICA & PCB -->
+<section class="field" id="f04">
+  <div class="wrap">
+    <div class="field-head reveal"><span class="field-num">04</span><div><h2>Eletrónica &amp; PCB</h2><p>Conceção e análise de circuitos, do esquemático à placa.</p></div></div>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/circuito-555.html">Detetor de escuridão com 555</a></h3>
+        <p class="w-desc">Circuito detetor de escuridão com LDR e temporizador 555, montado em breadboard. Primeiro projeto de eletrónica analógica do curso. Trabalho em par.</p>
+        <div class="w-meta"><span class="tag">eletrónica analógica</span><span class="tag">555</span><span class="tag">LDR</span></div>
+        <div class="w-links"><a href="projetos/circuito-555.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/kicad.html">Projeto em KiCad</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">KiCad</span><span class="tag">PCB</span></div>
+        <div class="w-links"><a href="projetos/kicad.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/motor.html">Motor</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">eletrotecnia</span></div>
+        <div class="w-links"><a href="projetos/motor.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/maquinas-eletricas.html">Máquinas Elétricas — laboratório</a></h3>
+        <p class="w-desc">Ensaios laboratoriais de transformadores, máquina de corrente contínua, motor síncrono trifásico e motor de indução, incluindo arranque estrela-triângulo. Trabalho em par.</p>
+        <div class="w-meta"><span class="tag">máquinas elétricas</span><span class="tag">ensaios</span></div>
+        <div class="w-links"><a href="projetos/maquinas-eletricas.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 05 — POTÊNCIA & ENERGIA -->
+<section class="field" id="f05">
+  <div class="wrap">
+    <div class="field-head reveal"><span class="field-num">05</span><div><h2>Eletrónica de potência &amp; energia</h2><p>Conversão de energia e eletrónica de potência, com aplicação a fontes renováveis.</p></div></div>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/boost.html">Conversor BOOST</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">conversor DC-DC</span><span class="tag">PSIM</span></div>
+        <div class="w-links"><a href="projetos/boost.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/painel-solar.html">Painel solar com Boost</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">energias renováveis</span><span class="tag">MPPT</span></div>
+        <div class="w-links"><a href="projetos/painel-solar.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 06 — AUTOMAÇÃO -->
+<section class="field" id="f06">
+  <div class="wrap">
+    <div class="field-head reveal"><span class="field-num">06</span><div><h2>Automação</h2><p>Controlo e automação de sistemas.</p></div></div>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/automacao.html">Trabalho de automação</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">automação</span></div>
+        <div class="w-links"><a href="projetos/automacao.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 07 — REDES -->
+<section class="field" id="f07">
+  <div class="wrap">
+    <div class="field-head reveal"><span class="field-num">07</span><div><h2>Redes</h2><p>Conceção e configuração de redes de comunicação.</p></div></div>
+
+    <article class="work reveal">
+      <div class="thumb">adicionar imagem</div>
+      <div class="w-body">
+        <h3 class="w-title"><a href="projetos/redes.html">Projeto de redes</a></h3>
+        <p class="w-desc">EDITA: descrição em 1–2 frases.</p>
+        <div class="w-meta"><span class="tag">redes</span><span class="tag">IMUNES</span></div>
+        <div class="w-links"><a href="projetos/redes.html">ver projeto <span class="arrow">↗</span></a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="bye">Obrigada por veres.</p>
+    <div class="contacts">
+      <a href="mailto:joanamlmc17@gmail.com">joanamlmc17@gmail.com</a>
+      <a href="mailto:a104865@alunos.uminho.pt">a104865@alunos.uminho.pt</a>
+    </div>
+    <p class="colophon">Joana Carvalho · 2026 · construído com GitHub Pages</p>
+  </div>
+</footer>
+
+<script>
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+
+</body>
+</html>
