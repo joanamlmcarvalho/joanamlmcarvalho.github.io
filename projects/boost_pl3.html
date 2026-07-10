@@ -1,1 +1,202 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversor CC-CC (Boost) — Joana Carvalho</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F6FA;
+    --ink:#16233A;
+    --slate:#5A6478;
+    --line:rgba(22,35,58,.14);
+    --accent:#2E52A8;
+    --accent-soft:rgba(46,82,168,.10);
+    --serif:"Playfair Display",Georgia,serif;
+    --sans:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;color:var(--ink);background:var(--paper) linear-gradient(180deg,#E4ECF8,rgba(228,236,248,0) 480px) no-repeat;font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 32px}
+  a{color:var(--accent);text-decoration:none}
+  .arrow{font-family:var(--mono);font-size:.85em}
 
+  header.bar{position:sticky;top:0;z-index:20;background:rgba(244,246,250,.82);backdrop-filter:saturate(140%) blur(9px);border-bottom:1px solid var(--line)}
+  header.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:1080px}
+  header.bar .back{font-family:var(--mono);font-size:12.5px;color:var(--slate)}
+  header.bar .back:hover{color:var(--accent)}
+  header.bar .who{font-family:var(--serif);font-weight:600;font-size:16px}
+
+  .hero{padding:64px 0 36px}
+  .kicker{font-family:var(--mono);font-size:13px;color:var(--slate);letter-spacing:.04em;margin:0 0 18px}
+  .kicker b{color:var(--accent);font-weight:500}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,58px);line-height:1.02;letter-spacing:-.02em;margin:0 0 18px}
+  .hero .lead{font-size:clamp(17px,2vw,19px);color:var(--slate);max-width:60ch;margin:0 0 26px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
+  .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:3px 10px}
+
+  .team{display:flex;flex-wrap:wrap;gap:32px;font-family:var(--mono);font-size:13px;color:var(--slate);margin:28px 0 0;padding:20px 0 0;border-top:1px solid var(--line)}
+  .team dt{color:var(--ink);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+  .team dd{margin:0;line-height:1.7}
+
+  .cover{aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.035);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:12.5px;margin:36px 0}
+
+  section.block{padding:36px 0;border-top:1px solid var(--line)}
+  section.block h2{font-family:var(--serif);font-weight:600;font-size:24px;margin:0 0 14px;letter-spacing:-.01em}
+  section.block p{color:var(--slate);max-width:66ch;margin:0 0 14px}
+  section.block ul{margin:0;padding:0 0 0 20px;color:var(--slate)}
+  section.block li{margin:0 0 8px;max-width:64ch}
+  section.block li b{color:var(--ink);font-weight:500}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  @media(max-width:600px){.grid2{grid-template-columns:1fr}}
+
+  .formula{background:var(--accent-soft);border-radius:6px;padding:16px 20px;font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink);margin:0 0 14px;display:inline-block}
+
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 6px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+  th{font-family:var(--mono);font-size:11.5px;color:var(--slate);text-transform:uppercase;letter-spacing:.04em;font-weight:500}
+  td{color:var(--ink)}
+  td.n{font-family:var(--mono)}
+
+  .stagelist{display:flex;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:12.5px;color:var(--accent);margin:0 0 8px}
+  .stagelist span{background:var(--accent-soft);border-radius:4px;padding:4px 11px}
+
+  footer{margin-top:24px;border-top:2px solid var(--ink);padding:36px 0 60px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+  footer a{font-family:var(--mono);font-size:13px;color:var(--ink);border-bottom:1px solid var(--line)}
+  footer a:hover{color:var(--accent);border-color:var(--accent)}
+</style>
+<style>
+/* ===== Harmonização visual entre páginas ===== */
+.wrap{max-width:860px}
+header.bar .wrap{max-width:1080px;display:flex;align-items:center;justify-content:space-between}
+header.bar .who{order:2;font-size:17px}
+header.bar .back{order:1}
+.head,.hero{padding:72px 0 32px}
+.head h1,.hero h1{font-size:clamp(38px,6.5vw,58px);line-height:1.02;letter-spacing:-.02em}
+.sub,.tagline{font-family:var(--serif);font-style:italic}
+.meta,.meta-row{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px}
+section.part,section.block{border-top:1px solid var(--line);padding:44px 0}
+section.part:first-of-type,section.block:first-of-type{border-top:0}
+footer{border-top:2px solid var(--ink);padding:38px 0 60px;margin-top:56px}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="back" href="../index.html#f05">&larr; voltar ao portfólio</a>
+    <span class="who">Joana Carvalho</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="kicker">projeto de grupo &nbsp;·&nbsp; <b>práticas laboratoriais em eletrónica industrial e computadores 3</b> &nbsp;·&nbsp; PL3, grupo 3</p>
+    <h1>Conversor CC-CC (Boost)</h1>
+    <p class="lead">Conceção, simulação e implementação prática de um conversor Step-Up (Boost), desde o circuito de comando em breadboard até a uma PCB desenhada em KiCad, com testes de duty-cycle e frequência em osciloscópio.</p>
+    <div class="meta-row">
+      <span class="tag">Eletrónica de potência</span>
+      <span class="tag">PSIM</span>
+      <span class="tag">KiCad</span>
+      <span class="tag">Osciloscópio</span>
+    </div>
+
+    <dl class="team">
+      <div><dt>Grupo</dt><dd>Francisca Ferreira Domingues<br>Isabel Costa Gomes<br>Joana Maria Carvalho</dd></div>
+      <div><dt>Docentes</dt><dd>Vítor Duarte Fernandes Monteiro<br>Sofia Arriscado Terramoto Paiva<br>José Maria Cerqueira Cunha</dd></div>
+      <div><dt>Instituição</dt><dd>Universidade do Minho<br>2023/2024</dd></div>
+    </dl>
+
+    <div class="cover">fotos do circuito, breadboard ou PCB aqui</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="block">
+    <h2>Sobre o projeto</h2>
+    <p>O trabalho consistiu em estudar e implementar um conversor CC-CC Step-Up (Boost), que eleva uma tensão contínua de entrada para uma tensão de saída superior, através da comutação rápida de um MOSFET. O projeto avançou em três fases, cada uma acrescentando complexidade ao circuito anterior:</p>
+    <div class="stagelist">
+      <span>1 — circuito de comando</span>
+      <span>2 — circuito de potência</span>
+      <span>3 — conversor completo + PCB</span>
+    </div>
+    <p>Em cada fase, os resultados foram primeiro simulados em PSIM e depois validados em laboratório com osciloscópio, gerador de sinais e fonte de alimentação.</p>
+  </section>
+
+  <section class="block">
+    <h2>Princípio de funcionamento</h2>
+    <p>O circuito de potência é composto por uma bobina, um MOSFET, um díodo e um condensador. A bobina armazena energia enquanto o MOSFET conduz e liberta-a para a carga quando este corta; o díodo impede o retorno de corrente e o condensador estabiliza a tensão de saída. A relação entre a tensão de entrada, a de saída e o duty-cycle do sinal de comando é dada por:</p>
+    <div class="formula">D = 1 − (V<sub>in</sub> / V<sub>out</sub>)</div>
+    <p>O circuito de comando, montado com um transístor BC547/BC546, converte o sinal de controlo do gerador de sinais numa onda adequada para acionar a gate do MOSFET.</p>
+  </section>
+
+  <section class="block">
+    <h2>Simulação em PSIM</h2>
+    <p>Antes da montagem física, o circuito foi simulado em PSIM para observar tensões e correntes de entrada e saída, e antecipar o comportamento esperado em diferentes condições de frequência e duty-cycle.</p>
+    <table>
+      <tr><th></th><th>f=20kHz, D=50%</th><th>f=10kHz, D=50%</th><th>f=20kHz, D=30%</th></tr>
+      <tr><td>V<sub>in</sub></td><td class="n">100V</td><td class="n">100V</td><td class="n">100V</td></tr>
+      <tr><td>V<sub>out</sub></td><td class="n">200V</td><td class="n">200V</td><td class="n">≈142V</td></tr>
+      <tr><td>P<sub>out</sub></td><td class="n">400W</td><td class="n">400W</td><td class="n">≈200W</td></tr>
+    </table>
+  </section>
+
+  <section class="block">
+    <h2>Implementação prática</h2>
+    <div class="grid2">
+      <ul>
+        <li><b>Circuito de comando</b> — transístor a operar em corte/saturação, dimensionado para gerar a onda de controlo do MOSFET.</li>
+        <li><b>Circuito de potência</b> — MOSFET, resistência de carga e resistência de gate, testados com diferentes duty-cycles (20% a 75%) e frequências (5kHz a 50kHz).</li>
+      </ul>
+      <ul>
+        <li><b>Conversor completo</b> — acrescida a bobina, o díodo e o condensador, com um díodo de zener e resistência de proteção no comando.</li>
+        <li><b>Instrumentação</b> — osciloscópio, gerador de sinais e fonte de alimentação usados para validar cada etapa.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>PCB — KiCad</h2>
+    <p>O esquemático e o desenho da placa foram feitos em KiCad, incluindo o layout dos componentes de potência (bobina, MOSFET, condensador) e de comando (resistências, transístor, díodo de zener), terminando com a soldadura e montagem da PCB final.</p>
+  </section>
+
+  <section class="block">
+    <h2>Resultados</h2>
+    <p>Na montagem final em PCB, com tensão de entrada de 15V e duty-cycle de 50%, obteve-se uma tensão de saída de aproximadamente 27V — próxima do valor teórico de 30V, com a diferença atribuída a perdas de energia nos componentes reais e a alguma tolerância no dimensionamento das resistências. Confirmou-se ainda que, ao diminuir o duty-cycle de entrada, o duty-cycle efetivo aplicado ao MOSFET aumenta, elevando a tensão de saída — e que frequências mais altas resultam num menor ripple (ondulação) na tensão de saída.</p>
+  </section>
+
+  <section class="block">
+    <h2>Utilizações do Step-Up</h2>
+    <ul>
+      <li>Dispositivos eletrónicos portáteis</li>
+      <li>Sistemas de energia renovável</li>
+      <li>Fontes de alimentação para LED</li>
+      <li>Equipamentos industriais</li>
+      <li>Carregadores de baterias</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Desafios</h2>
+    <p>Por limitações de tempo, não foi possível concluir a implementação do sinal PWM num microcontrolador 8051, ficando o controlo do duty-cycle limitado ao gerador de sinais de laboratório. Na versão final da PCB foi ainda necessário substituir alguns componentes (transístor, resistência de carga e MOSFET) por equivalentes disponíveis, e corrigir a orientação dos pinos drain/gate do MOSFET, sem impacto no funcionamento correto do circuito.</p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;width:100%">
+    <a href="../index.html#f05">&larr; voltar ao portfólio</a>
+    <a href="mailto:joanamlmc17@gmail.com">joanamlmc17@gmail.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
