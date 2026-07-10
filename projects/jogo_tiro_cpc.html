@@ -1,1 +1,155 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jogo R-TYPE — Joana Carvalho</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F6FA;
+    --ink:#16233A;
+    --slate:#5A6478;
+    --line:rgba(22,35,58,.14);
+    --accent:#2E52A8;
+    --accent-soft:rgba(46,82,168,.10);
+    --serif:"Playfair Display",Georgia,serif;
+    --sans:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;color:var(--ink);background:var(--paper) linear-gradient(180deg,#E4ECF8,rgba(228,236,248,0) 480px) no-repeat;font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 32px}
+  a{color:var(--accent);text-decoration:none}
+  .arrow{font-family:var(--mono);font-size:.85em}
 
+  header.bar{position:sticky;top:0;z-index:20;background:rgba(244,246,250,.82);backdrop-filter:saturate(140%) blur(9px);border-bottom:1px solid var(--line)}
+  header.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:1080px}
+  header.bar .back{font-family:var(--mono);font-size:12.5px;color:var(--slate)}
+  header.bar .back:hover{color:var(--accent)}
+  header.bar .who{font-family:var(--serif);font-weight:600;font-size:16px}
+
+  .hero{padding:64px 0 36px}
+  .kicker{font-family:var(--mono);font-size:13px;color:var(--slate);letter-spacing:.04em;margin:0 0 18px}
+  .kicker b{color:var(--accent);font-weight:500}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,58px);line-height:1.02;letter-spacing:-.02em;margin:0 0 18px}
+  .hero .lead{font-size:clamp(17px,2vw,19px);color:var(--slate);max-width:60ch;margin:0 0 26px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
+  .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:3px 10px}
+
+  .cover{aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.035);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:12.5px;margin:36px 0}
+
+  section.block{padding:36px 0;border-top:1px solid var(--line)}
+  section.block h2{font-family:var(--serif);font-weight:600;font-size:24px;margin:0 0 14px;letter-spacing:-.01em}
+  section.block p{color:var(--slate);max-width:66ch;margin:0 0 14px}
+  section.block ul{margin:0;padding:0 0 0 20px;color:var(--slate)}
+  section.block li{margin:0 0 8px;max-width:64ch}
+  section.block li b{color:var(--ink);font-weight:500}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  @media(max-width:600px){.grid2{grid-template-columns:1fr}}
+
+  .controls{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-family:var(--mono);font-size:13.5px;margin:0}
+  .controls dt{color:var(--ink);background:var(--accent-soft);border-radius:4px;padding:2px 9px;justify-self:start;color:var(--accent)}
+  .controls dd{margin:0;color:var(--slate)}
+
+  pre{background:var(--ink);color:#DCE4F5;font-family:var(--mono);font-size:12.5px;line-height:1.6;padding:20px 22px;border-radius:6px;overflow-x:auto;margin:0}
+  pre .cm{color:#7C8DB5}
+
+  footer{margin-top:24px;border-top:2px solid var(--ink);padding:36px 0 60px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+  footer a{font-family:var(--mono);font-size:13px;color:var(--ink);border-bottom:1px solid var(--line)}
+  footer a:hover{color:var(--accent);border-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="back" href="portfolio.html#f02">&larr; voltar ao portfólio</a>
+    <span class="who">Joana Carvalho</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="kicker">projeto &nbsp;·&nbsp; <b>complementos de programação de computadores</b> &nbsp;·&nbsp; 1º ano, 2º semestre</p>
+    <h1>Jogo R-TYPE</h1>
+    <p class="lead">Adaptação do clássico shoot 'em up R-TYPE, desenvolvida em C++ com a biblioteca Allegro. O jogador controla uma nave, enfrenta ondas de aliens e um boss final, com sistema de pontuação, vidas e top score persistente.</p>
+    <div class="meta-row">
+      <span class="tag">C++</span>
+      <span class="tag">Allegro</span>
+      <span class="tag">Programação Orientada a Objetos</span>
+      <span class="tag">Áudio &amp; sprites</span>
+    </div>
+
+    <div class="cover">screenshot ou vídeo de gameplay aqui</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="block">
+    <h2>Sobre o projeto</h2>
+    <p>O objetivo do jogo é sobreviver a ondas crescentes de aliens, disparando mísseis para os destruir e acumulando pontuação. Ao atingir um limiar de pontos, os aliens tornam-se mais rápidos e mais frequentes, até ao aparecimento de um alien "boss" — derrotá-lo dá a vitória. O jogador tem um número limitado de vidas, perdidas em colisões com aliens; ao ficar sem vidas, o jogo termina.</p>
+    <p>A pontuação máxima é guardada num ficheiro de texto e recarregada a cada execução, funcionando como recorde pessoal ("top score") entre partidas.</p>
+  </section>
+
+  <section class="block">
+    <h2>Funcionalidades</h2>
+    <div class="grid2">
+      <ul>
+        <li><b>Movimento do jogador</b> — controlo em 4 direções, com disparo de mísseis.</li>
+        <li><b>Inimigos dinâmicos</b> — geração aleatória de aliens com velocidade e frequência crescentes conforme a pontuação.</li>
+        <li><b>Boss final</b> — surge após atingir a pontuação mínima definida, quando não há mais aliens comuns em jogo.</li>
+      </ul>
+      <ul>
+        <li><b>Deteção de colisões</b> — entre mísseis e aliens, e entre o jogador e os aliens.</li>
+        <li><b>Sistema de vidas e pontuação</b> — com penalização quando um alien escapa pelo ecrã.</li>
+        <li><b>Áudio</b> — efeitos sonoros de disparo, explosão, vitória e game over.</li>
+        <li><b>Persistência</b> — leitura e escrita do top score num ficheiro de texto.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Comandos</h2>
+    <dl class="controls">
+      <dt>↑ ↓ ← →</dt><dd>mover a nave</dd>
+      <dt>ESPAÇO</dt><dd>disparar</dd>
+      <dt>ENTER</dt><dd>começar / reiniciar</dd>
+      <dt>ESC</dt><dd>sair do jogo</dd>
+    </dl>
+  </section>
+
+  <section class="block">
+    <h2>Estrutura técnica</h2>
+    <p>O jogo está organizado em torno de classes próprias — <code>Player</code>, <code>Alien</code> e <code>Missile</code> — que encapsulam posição, movimento e desenho de cada entidade. O ciclo principal (<code>main</code>) gere a máquina de estados do jogo (menu, em jogo, vitória, game over) e delega a lógica de colisões a uma função dedicada.</p>
+    <pre><span class="cm">// excerto do ciclo principal — deteção de colisão missil / alien</span>
+for (auto missileIt = f_player.vctrMissiles.begin(); missileIt != f_player.vctrMissiles.end(); )
+{
+    bool collisionDetected = false;
+
+    for (auto alienIt = f_vctrAliens.begin(); alienIt != f_vctrAliens.end();)
+    {
+        <span class="cm">// verifica sobreposição dos limites (bounding box) do míssil e do alien</span>
+        <span class="cm">// nos eixos X e Y antes de registar a colisão</span>
+        ...
+    }
+}</pre>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;width:100%">
+    <a href="portfolio.html#f02">&larr; voltar ao portfólio</a>
+    <a href="mailto:joanamlmc17@gmail.com">joanamlmc17@gmail.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
