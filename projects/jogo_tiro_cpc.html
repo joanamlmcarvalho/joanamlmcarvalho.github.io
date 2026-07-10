@@ -64,12 +64,26 @@
   footer a{font-family:var(--mono);font-size:13px;color:var(--ink);border-bottom:1px solid var(--line)}
   footer a:hover{color:var(--accent);border-color:var(--accent)}
 </style>
+<style>
+/* ===== Harmonização visual entre páginas ===== */
+.wrap{max-width:860px}
+header.bar .wrap{max-width:1080px;display:flex;align-items:center;justify-content:space-between}
+header.bar .who{order:2;font-size:17px}
+header.bar .back{order:1}
+.head,.hero{padding:72px 0 32px}
+.head h1,.hero h1{font-size:clamp(38px,6.5vw,58px);line-height:1.02;letter-spacing:-.02em}
+.sub,.tagline{font-family:var(--serif);font-style:italic}
+.meta,.meta-row{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px}
+section.part,section.block{border-top:1px solid var(--line);padding:44px 0}
+section.part:first-of-type,section.block:first-of-type{border-top:0}
+footer{border-top:2px solid var(--ink);padding:38px 0 60px;margin-top:56px}
+</style>
 </head>
 <body>
 
 <header class="bar">
   <div class="wrap">
-    <a class="back" href="portfolio.html#f02">&larr; voltar ao portfólio</a>
+    <a class="back" href="../index.html#f02">&larr; voltar ao portfólio</a>
     <span class="who">Joana Carvalho</span>
   </div>
 </header>
@@ -146,7 +160,7 @@ for (auto missileIt = f_player.vctrMissiles.begin(); missileIt != f_player.vctrM
 
 <footer>
   <div class="wrap" style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;width:100%">
-    <a href="portfolio.html#f02">&larr; voltar ao portfólio</a>
+    <a href="../index.html#f02">&larr; voltar ao portfólio</a>
     <a href="mailto:joanamlmc17@gmail.com">joanamlmc17@gmail.com</a>
   </div>
 </footer>
