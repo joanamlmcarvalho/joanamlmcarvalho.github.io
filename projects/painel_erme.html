@@ -1,0 +1,227 @@
+<!--
+  GUIA RÁPIDO
+  - Onde vês "adicionar imagem", troca pelo <img src="../assets/painel-solar/....jpg">.
+  - O PDF do relatório e da apresentação vão em: assets/painel-solar/
+  - Troca os nomes dos ficheiros nos links "relatório.pdf" e "apresentacao.pdf" se lhes deres outro nome.
+-->
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel Solar com Boost — MPPT · Joana Carvalho</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F6FA;--ink:#16233A;--slate:#5A6478;--line:rgba(22,35,58,.14);
+    --accent:#2E52A8;--accent-soft:rgba(46,82,168,.10);
+    --serif:"Playfair Display",Georgia,serif;--sans:"Inter",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;color:var(--ink);background:var(--paper) linear-gradient(180deg,#E4ECF8,rgba(228,236,248,0) 460px) no-repeat;font-family:var(--sans);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:0 32px}
+  a{color:var(--accent);text-decoration:none}
+  .arrow{font-family:var(--mono);font-size:.85em}
+  .mono{font-family:var(--mono)}
+
+  header.bar{position:sticky;top:0;z-index:20;background:rgba(244,246,250,.82);backdrop-filter:saturate(140%) blur(9px);border-bottom:1px solid var(--line)}
+  header.bar .wrap{max-width:1080px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  header.bar .who{order:2;font-family:var(--serif);font-weight:600;font-size:17px}
+  header.bar .back{order:1;font-family:var(--mono);font-size:12.5px;color:var(--slate)}
+  header.bar .back:hover{color:var(--accent)}
+
+  .head,.hero{padding:72px 0 32px}
+  .head .wrap,.hero .wrap{max-width:860px}
+  .kicker{font-family:var(--mono);font-size:12.5px;color:var(--slate);letter-spacing:.04em;margin:0 0 18px;line-height:1.6}
+  .kicker b{color:var(--accent);font-weight:500}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,6.5vw,58px);line-height:1.02;letter-spacing:-.02em;margin:0 0 16px}
+  .sub,.tagline{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(19px,2.4vw,24px);color:var(--accent);margin:0 0 22px;max-width:36ch;line-height:1.3}
+  .lead{font-size:clamp(17px,2vw,19px);color:var(--slate);max-width:62ch;margin:0 0 24px;line-height:1.7}
+  .meta,.meta-row{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px}
+  .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:3px 10px}
+
+  .facts,.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;margin:8px 0 0}
+  .facts>div,.team>div{margin:0}
+  .fact .k,.team dt{font-family:var(--mono);font-size:11px;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin:0 0 3px}
+  .fact .v,.team dd{font-size:15px;margin:0;line-height:1.5}
+  .facts .k,.team dt{font-family:var(--mono);font-size:11px;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin:0 0 3px}
+  .facts .v,.team dd{font-size:15px;margin:0;line-height:1.5}
+
+  .media{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff;margin:0 0 12px}
+  .media img,.media video,.media iframe{display:block;width:100%;height:auto;border:0}
+  .media iframe{aspect-ratio:16/9}
+  .cover,.thumb-main{aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.04);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:12px;padding:12px;margin:24px 0;overflow:hidden}
+  .cover img,.thumb-main img{width:100%;height:100%;object-fit:cover}
+  .caption{font-family:var(--mono);font-size:12px;color:var(--slate);margin:0 0 26px}
+
+  section.part,section.block{border-top:1px solid var(--line);padding:44px 0}
+  section.part:first-of-type,section.block:first-of-type{border-top:0}
+  section.part h2,section.block h2{font-family:var(--serif);font-weight:600;font-size:24px;margin:0 0 14px;letter-spacing:-.01em}
+  section.part h3,section.block h3{font-family:var(--serif);font-weight:500;font-size:20px;margin:24px 0 8px}
+  section.part p,section.block p{color:var(--slate);margin:0 0 16px;max-width:66ch}
+  section.part ul,section.part ol,section.block ul,section.block ol{color:var(--slate);padding-left:20px;margin:0 0 16px}
+  section.part li,section.block li{margin:0 0 7px;max-width:64ch}
+  section.part strong,section.block strong,section.part li b,section.block li b{color:var(--ink);font-weight:500}
+
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:0 0 12px}
+  .gallery figure{margin:0}
+  .gallery img{width:100%;border-radius:6px;border:1px solid var(--line);display:block}
+  .gallery figcaption{font-family:var(--mono);font-size:11.5px;color:var(--slate);margin-top:6px}
+  .thumb{aspect-ratio:4/3;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.04);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:12px;padding:10px}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:20px;border:1px solid var(--line);border-radius:8px;padding:22px;background:#fff;margin:0 0 20px}
+  .stat .n{font-family:var(--serif);font-size:32px;line-height:1;color:var(--accent);margin:0 0 4px}
+  .stat .l{font-family:var(--mono);font-size:11.5px;color:var(--slate);margin:0;line-height:1.4}
+
+  .next{margin-top:44px;border:1px solid var(--line);border-radius:8px;padding:20px 22px;background:rgba(46,82,168,.04);display:block}
+  .next .k{font-family:var(--mono);font-size:11px;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
+  .next .t{font-family:var(--serif);font-size:20px;margin:0 0 6px;color:var(--ink)}
+  .next p{font-size:15px;color:var(--slate);margin:0}
+
+  .files{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 0}
+  .files a{font-family:var(--mono);font-size:13px;border:1px solid var(--line);border-radius:6px;padding:9px 15px;color:var(--ink);transition:border-color .2s,color .2s}
+  .files a:hover{border-color:var(--accent);color:var(--accent)}
+  .files a.muted{color:var(--slate);border-style:dashed}
+  .pdf-embed{width:100%;height:640px;border:1px solid var(--line);border-radius:6px;margin-top:24px}
+
+  table{width:100%;border-collapse:collapse;margin:0 0 16px;font-size:14px}
+  th,td{border:1px solid var(--line);padding:8px 11px;text-align:left}
+  th{background:var(--accent-soft);font-family:var(--mono);font-weight:500;color:var(--accent);font-size:12.5px}
+  td.n,.n{font-family:var(--mono)}
+
+  .formula{font-family:var(--mono);background:var(--accent-soft);color:var(--accent);padding:13px 18px;border-radius:6px;display:inline-block;margin:0 0 16px;font-size:15px}
+  .stagelist{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+  .stagelist span{font-family:var(--mono);font-size:13px;border:1px solid var(--line);border-radius:4px;padding:5px 11px;color:var(--slate)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  @media(max-width:600px){.grid2{grid-template-columns:1fr}}
+
+  .controls{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-family:var(--mono);font-size:13.5px;margin:0 0 8px}
+  .controls dt{background:var(--accent-soft);border-radius:4px;padding:2px 9px;justify-self:start;color:var(--accent)}
+  .controls dd{margin:0;color:var(--slate)}
+
+  .bricks-key{display:flex;flex-wrap:wrap;gap:16px;font-family:var(--mono);font-size:13px;color:var(--slate);margin:0 0 14px}
+  .bricks-key span{display:inline-flex;align-items:center;gap:7px}
+  .dot{width:10px;height:10px;border-radius:2px;display:inline-block}
+  .dot.easy{background:#3E9B5C}.dot.medium{background:#D6A429}.dot.hard{background:#C4483C}
+
+  pre{background:var(--ink);color:#DCE4F5;font-family:var(--mono);font-size:12.5px;line-height:1.6;padding:20px 22px;border-radius:6px;overflow-x:auto;margin:0 0 16px}
+  pre .cm{color:#7C8DB5}
+
+  .proscons{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:0 0 16px}
+  @media(max-width:600px){.proscons{grid-template-columns:1fr}}
+  .pro,.con,.res{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;padding:14px 16px}
+  .pro{border-left-color:#3E9B5C}.con{border-left-color:#C4483C}
+  .pro h3,.con h3,.res h3{margin:0 0 8px;font-size:16px}
+  .callout,.res{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;padding:16px 18px;margin:0 0 16px;color:var(--ink)}
+  .date{font-family:var(--mono);font-size:12px;color:var(--slate)}
+  .mat{font-family:var(--mono);font-size:13px;color:var(--slate)}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  footer{border-top:2px solid var(--ink);padding:38px 0 60px;margin-top:56px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+  footer a{font-family:var(--mono);font-size:13px;color:var(--ink)}
+  footer a:hover{color:var(--accent)}
+  .colophon{font-family:var(--mono);font-size:12px;color:var(--slate);margin-top:0}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  @media(max-width:600px){.grid2,.proscons{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <span class="who"><a href="../index.html">← Joana Carvalho / portfólio</a></span>
+  </div>
+</header>
+
+<div class="p-hero">
+  <div class="wrap">
+    <p class="kicker">eletrónica de potência &amp; energia · energias renováveis e mobilidade elétrica</p>
+    <h1>Painel Solar com Boost — MPPT</h1>
+    <p class="tagline">Um conversor Boost que persegue, em tempo real, o ponto de potência máxima de um painel solar.</p>
+
+    <dl class="facts">
+      <div><dt>Cadeira</dt><dd>Energias Renováveis e Mobilidade Elétrica</dd></div>
+      <div><dt>Ano</dt><dd>2024/2025 · 3º ano · 2º semestre</dd></div>
+      <div><dt>Docentes</dt><dd>João Afonso &amp; Vítor Monteiro</dd></div>
+      <div><dt>Equipa</dt><dd>António Carvalho, Catarina Sousa, Francisca Domingues, Isabel Gomes, Joana Carvalho</dd></div>
+    </dl>
+
+    <div class="thumb-main">adicionar imagem principal (ex.: PCB montada com o painel solar)</div>
+
+    <section class="p-block">
+      <h2>O que é</h2>
+      <p>O objetivo deste projeto foi desenvolver um conversor CC-CC do tipo <em>Boost</em> capaz de atuar como MPPT (<em>Maximum Power Point Tracking</em>) de um painel fotovoltaico — ou seja, um circuito que ajusta continuamente o ponto de funcionamento do painel para extrair dele a máxima potência disponível a cada instante.</p>
+      <p class="muted">A eficiência de conversão de um painel solar é diretamente afetada por variáveis ambientais como a irradiância e a temperatura, o que torna necessário este tipo de estratégia para maximizar o aproveitamento de energia.</p>
+    </section>
+
+    <section class="p-block">
+      <h2>Como funciona</h2>
+
+      <h3>O algoritmo — Perturbação e Observação (P&amp;O)</h3>
+      <p>A cada ciclo, mede-se a tensão e a corrente do painel e calcula-se a potência <span class="mono">p[k] = i[k]·v[k]</span>. Compara-se essa potência com a do ciclo anterior: se a variação de potência e a variação de tensão tiverem o mesmo sinal, o <em>duty-cycle</em> aumenta; caso contrário, diminui. É esta "perturbação" repetida que faz o sistema convergir para o ponto de potência máxima.</p>
+
+      <h3>O circuito de controlo</h3>
+      <p>Um microcontrolador EFM8BB3 gera o sinal PWM que controla um transístor bipolar (BC546), que por sua vez comanda a tensão de gate de um MOSFET (BUK453) — com um díodo Zener de 16V e uma resistência de <em>pull-down</em> a proteger a gate. O transístor funciona como interruptor: quando conduz, bloqueia o MOSFET; quando corta, liga-o.</p>
+
+      <h3>O estágio de potência</h3>
+      <p>O MOSFET comuta a corrente que passa por uma bobina de 588 µH; um díodo (1N5822) e um condensador de saída (10 µF) filtram e entregam a tensão à carga. A relação entre a tensão de entrada, a de saída e o <em>duty-cycle</em> D é a de um conversor Boost clássico:</p>
+      <span class="eq">Vout = Vin / (1 − D)</span>
+      <p class="muted">Ou seja: aumentar o duty-cycle aumenta a tensão de saída, mas reduz a corrente disponível — e vice-versa, mantendo a potência.</p>
+    </section>
+
+    <section class="p-block">
+      <h2>O que fiz</h2>
+      <p class="muted">EDITA: descreve aqui a tua parte específica do projeto — por exemplo, se trabalhaste mais no código do microcontrolador, no desenho do circuito em KiCad, na soldadura da PCB, ou nos testes com o osciloscópio e o painel solar.</p>
+    </section>
+
+    <section class="p-block">
+      <h2>Testes e resultados</h2>
+      <p>O sistema foi validado em três fases: primeiro em <em>breadboard</em>, depois já soldado na PCB, e por fim com o painel solar exposto à luz real.</p>
+      <div class="callout">Com o painel totalmente exposto ao sol: tensão de entrada de 19,92V e tensão de saída de 54,48V. Com o painel parcialmente exposto: 7,82V à entrada e 14,02V à saída — confirmando que o conversor eleva a tensão de forma proporcional às condições de irradiância.</div>
+      <p>As medições no osciloscópio confirmaram o comportamento esperado do sinal de controlo, do MOSFET e da tensão de carga, com um <em>duty-cycle</em> próximo dos 50% e frequência de comutação na ordem dos 16-20 kHz.</p>
+
+      <div class="gallery">
+        <div class="thumb">adicionar imagem — testes em breadboard</div>
+        <div class="thumb">adicionar imagem — PCB montada</div>
+        <div class="thumb">adicionar imagem — teste com painel ao ar livre</div>
+        <div class="thumb">adicionar imagem — osciloscópio</div>
+      </div>
+    </section>
+
+    <section class="p-block">
+      <h2>Material utilizado</h2>
+      <table class="mat">
+        <tr><th>Circuito de controlo</th><th>Circuito de potência</th></tr>
+        <tr><td>Transístor BC546</td><td>Bobina de 588 µH</td></tr>
+        <tr><td>Díodo de Zener 16V</td><td>MOSFET BUK453</td></tr>
+        <tr><td>Resistências R1–R4</td><td>Díodo 1N5822</td></tr>
+        <tr><td>Microcontrolador EFM8BB3</td><td>Condensador 10 µF</td></tr>
+        <tr><td>Fonte de tensão contínua</td><td>Painel solar (20W, CL-SM20P)</td></tr>
+      </table>
+    </section>
+
+    <div class="files">
+      <a href="../assets/painel-solar/relatorio.pdf">relatório completo (PDF) <span class="arrow">↗</span></a>
+      <a href="../assets/painel-solar/apresentacao.pdf">apresentação (PDF) <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p class="back"><a href="../index.html">← voltar ao portfólio</a></p>
+    <p class="colophon">Joana Carvalho · 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
