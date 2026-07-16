@@ -164,34 +164,7 @@
     <p>O AGROBOT é um robô agrícola de pequena escala que automatiza a sementeira. Desloca-se em linha reta, para, perfura o solo com uma broca, deixa cair uma semente, e um ancinho traseiro tapa o buraco. Depois recomeça o ciclo.</p>
     <p>A ideia partiu de um problema real: a agricultura de pequena escala continua dependente de mão de obra para tarefas repetitivas como plantar sementes uma a uma. O objetivo era construir algo funcional e acessível a quem tem um jardim, e não apenas a grandes explorações.</p>
 
-    <p>A restrição que define este projeto: <strong>todo o controlo tinha de ser analógico</strong>. Sem microcontrolador, sem software. A sequência de estados do robô — andar, descer a broca, subir a broca, semear, repetir — teve de ser construída inteiramente com temporizadores, portas lógicas e interruptores de fim de curso.</p>
-
-    <h2>Como funciona</h2>
-    <p>O robô move-se sobre duas lagartas acionadas por motores DC. O sistema divide-se em três blocos:</p>
-
-    <h3>Módulo de potência e acionamento</h3>
-    <p>Um <strong>TL494</strong> gera um sinal PWM de ciclo de trabalho ajustável, que passa por um optoacoplador <strong>HCPL-3120</strong>. Este converte o sinal elétrico em ótico e volta a convertê-lo, garantindo isolamento galvânico entre o controlo de baixa tensão e a potência — o que protege os circuitos de controlo. A saída aciona uma <strong>ponte H L298N</strong>, que permite inverter o sentido de rotação dos motores sem trocar fios: é assim que a broca desce a rodar num sentido e sobe no sentido inverso.</p>
-
-    <h3>Temporização</h3>
-    <p>Cinco temporizadores <strong>NE555</strong> em modo monoestável marcam a duração de cada etapa. Cada um foi dimensionado com a sua resistência e condensador para o tempo pretendido — as rodas andam 6,27&nbsp;s, a broca sobe e desce em 1&nbsp;s, e a escotilha e o bloqueio de ciclo duram 10&nbsp;s.</p>
-
-    <h3>Lógica sequencial</h3>
-    <p>É aqui que está o coração do projeto. Sem software, a máquina de estados foi montada com portas <strong>NOT, AND e OR</strong> (74LS04, 74LS08, 74LS32) e quatro interruptores de fim de curso. Um botão inicia o ciclo através de uma porta OR; a saída do timer das rodas passa por uma NOT, o que garante que os restantes circuitos só arrancam <em>depois</em> de as rodas pararem. Os fins de curso A e B assinalam as posições extremas da broca, e um timer adicional (E) memoriza que a plataforma já desceu neste ciclo — evitando que o robô entre num <em>loop</em> de subir e descer.</p>
-
-    <h2>Componente mecânica</h2>
-    <p>As rodas, lagartas e a broca foram modeladas em <strong>Rhinoceros 3D</strong> e impressas no laboratório de robótica da Universidade do Minho. A plataforma (50×50&nbsp;cm) foi cortada à mão em madeira leve, para evitar sobrepeso. O dispensador de sementes é uma placa rotativa com um orifício que, ao alinhar-se com o reservatório, deixa cair uma semente por um funil e uma rampa até ao buraco acabado de perfurar.</p>
-
-    <h2>Testes e dificuldades</h2>
-    <p>Cada circuito foi primeiro validado em breadboard e só depois soldado em protoboard. As ondas nos pinos do TL494 e do optoacoplador foram verificadas no osciloscópio.</p>
-    <p>Nem tudo correu bem: houve maus contactos recorrentes, e alguns componentes chegaram do fornecedor já queimados, o que atrasou as montagens. Dois objetivos ficaram por cumprir por falta de tempo — o depósito de água com sensor de humidade, e o desenho dos circuitos em PCB.</p>
-
-    <h2>O que fiz</h2>
-    <ul>
-      <li>Projeto e montagem dos circuitos de temporização com NE555 e do circuito lógico sequencial.</li>
-      <li>Implementação do atuador comutado (TL494 + HCPL-3120) e integração com a ponte H.</li>
-      <li>Modelação e montagem da componente mecânica: peças impressas em 3D, plataforma e dispensador.</li>
-      <li>Testes em breadboard e protoboard, e verificação dos sinais no osciloscópio.</li>
-    </ul>
+    <p>A restrição que define este projeto: <strong>o controlo tinha de ser analógico</strong>. Sem microcontrolador, sem software. A sequência de estados do robô — andar, descer a broca, subir a broca, semear, repetir — teve de ser construída inteiramente com temporizadores, portas lógicas e interruptores de fim de curso.</p>
   </div>
 </section>
 
@@ -220,21 +193,19 @@
   <div class="wrap">
     <h2>Documentação</h2>
     <div class="files">
-      <a href="../assets/pi1/relatorio.pdf">relatório (pdf) <span class="arrow">↗</span></a>
+      <a href="assets/3_1__PI1/relatorio_agrobot_pi1.pdf">relatório (pdf) <span class="arrow">↗</span></a>
     </div>
-    <iframe class="pdf-embed" src="../assets/pi1/relatorio.pdf" title="Relatório do PI1"></iframe>
+    <iframe class="pdf-embed" src="assets/3_1__PI1/relatorio_agrobot_pi1.pdf" title="Relatório do PI1"></iframe>
 
     <a class="next" href="pi2.html" style="display:block">
       <p class="k">A seguir</p>
-      <p class="t">AGROBOT — controlo digital (PI2)</p>
-      <p>No semestre seguinte, o mesmo robô foi reconstruído com um microcontrolador STM32 e a sequência descrita em GRAFCET.</p>
+      <p class="t">AGROBOT — Controlo Digital</p>
     </a>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <a href="../index.html">← voltar ao portfólio</a>
     <p class="colophon">Joana Carvalho · 2026</p>
   </div>
 </footer>
