@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AGROBOT (PI1) — Joana Carvalho</title>
+<title>AGROBOT — Joana Carvalho</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -140,45 +140,34 @@
 <div class="head">
   <div class="wrap">
     <p class="kicker">Projeto integrador I</p>
-    <h1>AGROBOT — controlo analógico</h1>
-    <p class="sub">Um robô que fura, semeia e tapa. Sem uma única linha de código.</p>
-
-    <div class="meta">
-      <span class="tag">eletrónica analógica</span>
-      <span class="tag">NE555</span>
-      <span class="tag">TL494</span>
-      <span class="tag">ponte H L298N</span>
-      <span class="tag">portas lógicas</span>
-      <span class="tag">impressão 3D</span>
-    </div>
+    <h1>AGROBOT</h1>
+    <p class="sub">Controlo Analógico</p>
 
     <div class="facts">
       <div class="fact"><p class="k">Unidade curricular</p><p class="v">Projeto Integrador em EEIC 1</p></div>
       <div class="fact"><p class="k">Ano</p><p class="v">3.º ano, 1.º semestre · 2024/25</p></div>
-      <div class="fact"><p class="k">Equipa</p><p class="v">4 elementos</p></div>
-      <div class="fact"><p class="k">Orientação</p><p class="v">Prof. Inês Garcia</p></div>
+      <div class="fact"><p class="k">Equipa</p><p class="v">4 elementos e orientador</p></div>
     </div>
   </div>
 </div>
 
 <section class="part">
   <div class="wrap">
-    <div class="media"><img src="../assets/pi1/agrobot.jpg" alt="O robô AGROBOT montado"></div>
+    <div class="media"><img src="assets/3_1__PI1/img1_agrobot_pi1.png" alt="O robô AGROBOT montado"></div>
     <p class="caption">O AGROBOT: plataforma sobre lagartas, com broca e dispensador de sementes.</p>
   </div>
 </section>
 
 <section class="part">
   <div class="wrap">
-    <h2>O que é</h2>
+    <h2>Descrição do problema apresentado</h2>
     <p>O AGROBOT é um robô agrícola de pequena escala que automatiza a sementeira. Desloca-se em linha reta, para, perfura o solo com uma broca, deixa cair uma semente, e um ancinho traseiro tapa o buraco. Depois recomeça o ciclo.</p>
-    <p>A ideia partiu de um problema real: a agricultura de pequena escala continua dependente de mão de obra para tarefas repetitivas como plantar sementes uma a uma. O objetivo era construir algo funcional, modular e de <strong>baixo custo</strong> — acessível a quem tem um jardim, não só a grandes explorações.</p>
+    <p>A ideia partiu de um problema real: a agricultura de pequena escala continua dependente de mão de obra para tarefas repetitivas como plantar sementes uma a uma. O objetivo era construir algo funcional e acessível a quem tem um jardim, e não apenas a grandes explorações.</p>
 
-    <h2>O desafio</h2>
     <p>A restrição que define este projeto: <strong>todo o controlo tinha de ser analógico</strong>. Sem microcontrolador, sem software. A sequência de estados do robô — andar, descer a broca, subir a broca, semear, repetir — teve de ser construída inteiramente com temporizadores, portas lógicas e interruptores de fim de curso.</p>
 
     <h2>Como funciona</h2>
-    <p>O robô move-se sobre duas lagartas acionadas por motores DC de 12&nbsp;V e 300&nbsp;rpm. O sistema divide-se em três blocos:</p>
+    <p>O robô move-se sobre duas lagartas acionadas por motores DC. O sistema divide-se em três blocos:</p>
 
     <h3>Módulo de potência e acionamento</h3>
     <p>Um <strong>TL494</strong> gera um sinal PWM de ciclo de trabalho ajustável, que passa por um optoacoplador <strong>HCPL-3120</strong>. Este converte o sinal elétrico em ótico e volta a convertê-lo, garantindo isolamento galvânico entre o controlo de baixa tensão e a potência — o que protege os circuitos de controlo. A saída aciona uma <strong>ponte H L298N</strong>, que permite inverter o sentido de rotação dos motores sem trocar fios: é assim que a broca desce a rodar num sentido e sobe no sentido inverso.</p>
