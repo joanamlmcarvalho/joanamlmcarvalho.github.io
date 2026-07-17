@@ -88,7 +88,7 @@ section.field{padding:76px 0 12px;scroll-margin-top:72px}
 .media iframe{aspect-ratio:16/9}
 .cover,.thumb-main{aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.04);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:12px;padding:12px;margin:24px 0;overflow:hidden}
 .cover img,.thumb-main img{width:100%;height:100%;object-fit:cover}
-.caption{font-family:var(--mono);font-size:11px;color:var(--slate);max-width:66ch;margin:0 auto 26px;text-align:center}
+.caption{font-family:var(--mono);font-size:11px;color:var(--slate);max-width:620px;margin:0 auto 26px;text-align:center}
 
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:0 0 12px}
 .gallery figure{margin:0}
