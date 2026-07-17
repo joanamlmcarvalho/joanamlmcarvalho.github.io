@@ -29,7 +29,7 @@ header.bar nav a:hover{color:var(--accent)}
 .kicker b{color:var(--accent);font-weight:500}
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,6.5vw,58px);line-height:1.02;letter-spacing:-.02em;margin:0 0 16px}
 .sub,.tagline{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(19px,2.4vw,24px);color:var(--accent);margin:0 0 22px;max-width:36ch;line-height:1.3}
-.lead{font-size:clamp(17px,2vw,19px);color:var(--slate);max-width:62ch;margin:0 0 24px;line-height:1.7;text-align:justify;text-justify:inter-word;hyphens:auto}
+.lead{font-size:clamp(17px,2vw,19px);color:var(--slate);max-width:62ch;margin:0 0 24px;line-height:1.7;text-align:justify;text-justify:inter-word}
 .meta,.meta-row{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px}
 .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:3px 10px}
 
@@ -71,7 +71,7 @@ section.field{padding:76px 0 12px;scroll-margin-top:72px}
 .field.feature .w-title{font-size:27px}
 .w-title a{color:var(--ink);transition:color .15s;border-bottom:1px solid transparent}
 .work:hover .w-title a{color:var(--accent);border-color:var(--accent)}
-.w-desc{color:var(--slate);font-size:15px;line-height:1.6;margin:0 0 14px;max-width:60ch;text-align:justify;text-justify:inter-word;hyphens:auto}
+.w-desc{color:var(--slate);font-size:15px;line-height:1.6;margin:0 0 14px;max-width:60ch;text-align:justify;text-justify:inter-word}
 .w-meta{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
 .w-links{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:13px}
 .w-links a{color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:1px}
@@ -109,7 +109,7 @@ section.part,section.block{border-top:1px solid var(--line);padding:44px 0}
 section.part:first-of-type,section.block:first-of-type{border-top:0}
 section.part h2,section.block h2{font-family:var(--serif);font-weight:600;font-size:24px;margin:0 0 14px;letter-spacing:-.01em}
 section.part h3,section.block h3{font-family:var(--serif);font-weight:500;font-size:20px;margin:24px 0 8px}
-section.part p,section.block p{color:var(--slate);margin:0 0 16px;max-width:66ch;text-align:justify;text-justify:inter-word;hyphens:auto}
+section.part p,section.block p{color:var(--slate);margin:0 0 16px;max-width:66ch;text-align:justify;text-justify:inter-word}
 section.part ul,section.part ol,section.block ul,section.block ol{color:var(--slate);padding-left:20px;margin:0 0 16px}
 section.part li,section.block li{margin:0 0 7px;max-width:64ch}
 section.part strong,section.block strong,section.part li b,section.block li b{color:var(--ink);font-weight:500}
