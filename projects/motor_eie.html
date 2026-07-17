@@ -8,131 +8,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#F4F6FA;--ink:#16233A;--slate:#5A6478;--line:rgba(22,35,58,.14);
-    --accent:#2E52A8;--accent-soft:rgba(46,82,168,.10);
-    --serif:"Playfair Display",Georgia,serif;--sans:"Inter",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;color:var(--ink);background:var(--paper) linear-gradient(180deg,#E4ECF8,rgba(228,236,248,0) 460px) no-repeat;font-family:var(--sans);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:860px;margin:0 auto;padding:0 32px}
-  a{color:var(--accent);text-decoration:none}
-  .arrow{font-family:var(--mono);font-size:.85em}
-  .mono{font-family:var(--mono)}
-
-  header.bar{position:sticky;top:0;z-index:20;background:rgba(244,246,250,.82);backdrop-filter:saturate(140%) blur(9px);border-bottom:1px solid var(--line)}
-  header.bar .wrap{max-width:1080px;display:flex;align-items:center;justify-content:space-between;height:62px}
-  header.bar .who{order:2;font-family:var(--serif);font-weight:600;font-size:17px}
-  header.bar .back{order:1;font-family:var(--mono);font-size:12.5px;color:var(--slate)}
-  header.bar .back:hover{color:var(--accent)}
-
-  .head,.hero{padding:72px 0 32px}
-  .head .wrap,.hero .wrap{max-width:860px}
-  .kicker{font-family:var(--mono);font-size:12.5px;color:var(--slate);letter-spacing:.04em;margin:0 0 18px;line-height:1.6}
-  .kicker b{color:var(--accent);font-weight:500}
-  h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,6.5vw,58px);line-height:1.02;letter-spacing:-.02em;margin:0 0 16px}
-  .sub,.tagline{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(19px,2.4vw,24px);color:var(--accent);margin:0 0 22px;max-width:36ch;line-height:1.3}
-  .lead{font-size:clamp(17px,2vw,19px);color:var(--slate);max-width:62ch;margin:0 0 24px;line-height:1.7}
-  .meta,.meta-row{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px}
-  .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:3px 10px}
-
-  .facts,.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;margin:8px 0 0}
-  .facts>div,.team>div{margin:0}
-  .fact .k,.team dt{font-family:var(--mono);font-size:11px;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin:0 0 3px}
-  .fact .v,.team dd{font-size:15px;margin:0;line-height:1.5}
-  .facts .k,.team dt{font-family:var(--mono);font-size:11px;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin:0 0 3px}
-  .facts .v,.team dd{font-size:15px;margin:0;line-height:1.5}
-
-  .media{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff;margin:0 0 12px}
-  .media img,.media video,.media iframe{display:block;width:100%;height:auto;border:0}
-  .media iframe{aspect-ratio:16/9}
-  .cover,.thumb-main{aspect-ratio:16/9;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.04);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:12px;padding:12px;margin:24px 0;overflow:hidden}
-  .cover img,.thumb-main img{width:100%;height:100%;object-fit:cover}
-  .caption{font-family:var(--mono);font-size:12px;color:var(--slate);margin:0 0 26px}
-
-  section.part,section.block{border-top:1px solid var(--line);padding:44px 0}
-  section.part:first-of-type,section.block:first-of-type{border-top:0}
-  section.part h2,section.block h2{font-family:var(--serif);font-weight:600;font-size:24px;margin:0 0 14px;letter-spacing:-.01em}
-  section.part h3,section.block h3{font-family:var(--serif);font-weight:500;font-size:20px;margin:24px 0 8px}
-  section.part p,section.block p{color:var(--slate);margin:0 0 16px;max-width:66ch}
-  section.part ul,section.part ol,section.block ul,section.block ol{color:var(--slate);padding-left:20px;margin:0 0 16px}
-  section.part li,section.block li{margin:0 0 7px;max-width:64ch}
-  section.part strong,section.block strong,section.part li b,section.block li b{color:var(--ink);font-weight:500}
-
-  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:0 0 12px}
-  .gallery figure{margin:0}
-  .gallery img{width:100%;border-radius:6px;border:1px solid var(--line);display:block}
-  .gallery figcaption{font-family:var(--mono);font-size:11.5px;color:var(--slate);margin-top:6px}
-  .thumb{aspect-ratio:4/3;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.04);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:12px;padding:10px}
-
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:20px;border:1px solid var(--line);border-radius:8px;padding:22px;background:#fff;margin:0 0 20px}
-  .stat .n{font-family:var(--serif);font-size:32px;line-height:1;color:var(--accent);margin:0 0 4px}
-  .stat .l{font-family:var(--mono);font-size:11.5px;color:var(--slate);margin:0;line-height:1.4}
-
-  .next{margin-top:44px;border:1px solid var(--line);border-radius:8px;padding:20px 22px;background:rgba(46,82,168,.04);display:block}
-  .next .k{font-family:var(--mono);font-size:11px;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
-  .next .t{font-family:var(--serif);font-size:20px;margin:0 0 6px;color:var(--ink)}
-  .next p{font-size:15px;color:var(--slate);margin:0}
-
-  .files{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 0}
-  .files a{font-family:var(--mono);font-size:13px;border:1px solid var(--line);border-radius:6px;padding:9px 15px;color:var(--ink);transition:border-color .2s,color .2s}
-  .files a:hover{border-color:var(--accent);color:var(--accent)}
-  .files a.muted{color:var(--slate);border-style:dashed}
-  .pdf-embed{width:100%;height:640px;border:1px solid var(--line);border-radius:6px;margin-top:24px}
-
-  table{width:100%;border-collapse:collapse;margin:0 0 16px;font-size:14px}
-  th,td{border:1px solid var(--line);padding:8px 11px;text-align:left}
-  th{background:var(--accent-soft);font-family:var(--mono);font-weight:500;color:var(--accent);font-size:12.5px}
-  td.n,.n{font-family:var(--mono)}
-
-  .formula{font-family:var(--mono);background:var(--accent-soft);color:var(--accent);padding:13px 18px;border-radius:6px;display:inline-block;margin:0 0 16px;font-size:15px}
-  .stagelist{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
-  .stagelist span{font-family:var(--mono);font-size:13px;border:1px solid var(--line);border-radius:4px;padding:5px 11px;color:var(--slate)}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
-  @media(max-width:600px){.grid2{grid-template-columns:1fr}}
-
-  .controls{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-family:var(--mono);font-size:13.5px;margin:0 0 8px}
-  .controls dt{background:var(--accent-soft);border-radius:4px;padding:2px 9px;justify-self:start;color:var(--accent)}
-  .controls dd{margin:0;color:var(--slate)}
-
-  .bricks-key{display:flex;flex-wrap:wrap;gap:16px;font-family:var(--mono);font-size:13px;color:var(--slate);margin:0 0 14px}
-  .bricks-key span{display:inline-flex;align-items:center;gap:7px}
-  .dot{width:10px;height:10px;border-radius:2px;display:inline-block}
-  .dot.easy{background:#3E9B5C}.dot.medium{background:#D6A429}.dot.hard{background:#C4483C}
-
-  pre{background:var(--ink);color:#DCE4F5;font-family:var(--mono);font-size:12.5px;line-height:1.6;padding:20px 22px;border-radius:6px;overflow-x:auto;margin:0 0 16px}
-  pre .cm{color:#7C8DB5}
-
-  .proscons{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:0 0 16px}
-  @media(max-width:600px){.proscons{grid-template-columns:1fr}}
-  .pro,.con,.res{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;padding:14px 16px}
-  .pro{border-left-color:#3E9B5C}.con{border-left-color:#C4483C}
-  .pro h3,.con h3,.res h3{margin:0 0 8px;font-size:16px}
-  .callout,.res{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;padding:16px 18px;margin:0 0 16px;color:var(--ink)}
-  .date{font-family:var(--mono);font-size:12px;color:var(--slate)}
-  .mat{font-family:var(--mono);font-size:13px;color:var(--slate)}
-
-  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.in{opacity:1;transform:none}
-
-  footer{border-top:2px solid var(--ink);padding:38px 0 60px;margin-top:56px}
-  footer .wrap{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
-  footer a{font-family:var(--mono);font-size:13px;color:var(--ink)}
-  footer a:hover{color:var(--accent)}
-  .colophon{font-family:var(--mono);font-size:12px;color:var(--slate);margin-top:0}
-
-  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
-  @media(max-width:600px){.grid2,.proscons{grid-template-columns:1fr}}
-  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}.reveal{opacity:1;transform:none}}
-</style>
+<link rel="stylesheet" href="../stylesheet.css">
 </head>
 <body>
 
 <header class="bar">
   <div class="wrap">
-    <a class="back" href="../index.html#f04">&larr; voltar ao portfólio</a>
+    <a class="back" href="../index.html">← voltar ao portfólio</a>
     <span class="who">Joana Carvalho</span>
   </div>
 </header>
@@ -170,31 +52,31 @@
   <section class="block">
     <h2>Motores multipolares: com vs. sem escovas</h2>
     <p>Motores mais eficientes recorrem a várias bobinas (multipolares), existindo duas variantes principais:</p>
-    <div class="prosconsgrid">
-      <div class="proscons pro">
-        <h4>Com escovas</h4>
+    <div class="proscons">
+      <div class="pro">
+        <h3>Com escovas</h3>
         <ul>
           <li>Controlo simples</li>
           <li>Baixo custo de produção</li>
         </ul>
       </div>
-      <div class="proscons con">
-        <h4>Com escovas — limitações</h4>
+      <div class="con">
+        <h3>Com escovas — limitações</h3>
         <ul>
           <li>Menos eficiente (atrito e calor)</li>
           <li>Risco de faíscas</li>
           <li>Vida útil mais curta</li>
         </ul>
       </div>
-      <div class="proscons pro">
-        <h4>Sem escovas</h4>
+      <div class="pro">
+        <h3>Sem escovas</h3>
         <ul>
           <li>Ruído reduzido, longa vida útil</li>
           <li>Baixa manutenção, elevada eficiência</li>
         </ul>
       </div>
-      <div class="proscons con">
-        <h4>Sem escovas — limitações</h4>
+      <div class="con">
+        <h3>Sem escovas — limitações</h3>
         <ul>
           <li>Controlo mais complexo</li>
           <li>Custo inicial superior</li>
@@ -206,7 +88,7 @@
   <section class="block">
     <h2>Construção do motor</h2>
     <p>Com a teoria estabelecida, seguiu-se a construção prática de um motor DC de escovas, passo a passo:</p>
-    <ol class="steps">
+    <ol>
       <li><b>Rotor — laminação.</b> Latas de ferro foram cortadas em folhas e depois em círculos, usando uma rolha como molde. O ferro foi escolhido por ser facilmente magnetizável, essencial para criar o campo do motor. No total, foram cortadas 35 chapas idênticas, cada uma com três fendas.</li>
       <li><b>Isolamento.</b> As chapas foram isoladas entre si com massa de silicone, para evitar contacto elétrico direto. Após a secagem, o excesso foi limpo com uma broca e reforçado com uma tira de cartão em volta do rotor.</li>
       <li><b>Veio e contactos.</b> Massa epóxi nas duas bases do rotor serviu para fixar a vareta metálica (veio do motor) e três pequenos contactos metálicos, isolados também com epóxi.</li>
@@ -260,9 +142,9 @@
 </div>
 
 <footer>
-  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;width:100%">
-    <a href="../index.html#f04">&larr; voltar ao portfólio</a>
-    <a href="mailto:joanamlmc17@gmail.com">joanamlmc17@gmail.com</a>
+  <div class="wrap">
+    <a href="../index.html">← voltar ao portfólio</a>
+    <p class="colophon">Joana Carvalho · 2026</p>
   </div>
 </footer>
 
