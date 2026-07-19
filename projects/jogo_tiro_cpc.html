@@ -19,32 +19,42 @@
   </div>
 </header>
 
-<div class="hero">
+<div class="head">
   <div class="wrap">
-    <p class="kicker">projeto &nbsp;·&nbsp; <b>complementos de programação de computadores</b> &nbsp;·&nbsp; 1º ano, 2º semestre</p>
+    <p class="kicker">Complementos de Programação de Computadores</p>
     <h1>Jogo R-TYPE</h1>
-    <p class="sub">Pilotar a nave, enfrentar o boss — em C++ e Allegro.</p>
-    <p class="lead">Adaptação do clássico shoot 'em up R-TYPE, desenvolvida em C++ com a biblioteca Allegro. O jogador controla uma nave, enfrenta ondas de aliens e um boss final, com sistema de pontuação, vidas e top score persistente.</p>
-    <div class="meta-row">
-      <span class="tag">C++</span>
-      <span class="tag">Allegro</span>
-      <span class="tag">Programação Orientada a Objetos</span>
-      <span class="tag">Áudio &amp; sprites</span>
-    </div>
+    <p class="sub">Adaptação do clássico R-TYPE</p>
 
-    <div class="cover">screenshot ou vídeo de gameplay aqui</div>
+    <div class="facts">
+      <div class="fact"><p class="k">Unidade curricular</p><p class="v">Complementos de Programação de Computadores</p></div>
+      <div class="fact"><p class="k">Ano</p><p class="v">1.º ano, 2.º semestre · 2024/25</p></div>
+      <div class="fact"><p class="k">Equipa</p><p class="v">3 elementos</p></div>
+    </div>
   </div>
 </div>
 
-<div class="wrap">
 
-  <section class="block">
-    <h2>Sobre o projeto</h2>
-    <p>O objetivo do jogo é sobreviver a ondas crescentes de aliens, disparando mísseis para os destruir e acumulando pontuação. Ao atingir um limiar de pontos, os aliens tornam-se mais rápidos e mais frequentes, até ao aparecimento de um alien "boss" — derrotá-lo dá a vitória. O jogador tem um número limitado de vidas, perdidas em colisões com aliens; ao ficar sem vidas, o jogo termina.</p>
+<div class="gallery">
+  <figure>
+    <img src="../assets/1_2__CPC/img_jogo_tiro_cpc.jpg" alt="descrição da imagem 1">
+    <figcaption>Menu do jogo R-Type.</figcaption>
+  </figure>
+  <figure>
+    <img src="../assets/1_2__CPC/img2_jogo_tiro_cpc.jpg" alt="descrição da imagem 2">
+    <figcaption>Adaptação do jogo R-Type.</figcaption>
+  </figure>
+</div>
+
+<section class="part">
+  <div class="wrap">
+    <h2>Descrição do problema apresentado</h2>
+    <p>O objetivo do jogo é sobreviver a ondas crescentes de aliens, disparar mísseis para os destruir e acumular pontos. Ao atingir um determinado valor de pontos, os aliens tornam-se mais rápidos e mais frequentes, até aparecer o alien "boss". Ao derrotá-lo o jogador vence o jogo.</p>
+    <p>O jogador tem um número limitado de vidas, sendo perdidas com a colisões contra os aliens. Ao ficar sem vidas, o jogo termina.</p>
     <p>A pontuação máxima é guardada num ficheiro de texto e recarregada a cada execução, funcionando como recorde pessoal ("top score") entre partidas.</p>
-  </section>
+  </div>
+</section>
 
-  <section class="block">
+<section class="block">
     <h2>Funcionalidades</h2>
     <div class="grid2">
       <ul>
@@ -70,25 +80,28 @@
       <dt>ESC</dt><dd>sair do jogo</dd>
     </dl>
   </section>
-
-  <section class="block">
-    <h2>Estrutura técnica</h2>
-    <p>O jogo está organizado em torno de classes próprias — <code>Player</code>, <code>Alien</code> e <code>Missile</code> — que encapsulam posição, movimento e desenho de cada entidade. O ciclo principal (<code>main</code>) gere a máquina de estados do jogo (menu, em jogo, vitória, game over) e delega a lógica de colisões a uma função dedicada.</p>
-    <pre><span class="cm">// excerto do ciclo principal — deteção de colisão missil / alien</span>
-for (auto missileIt = f_player.vctrMissiles.begin(); missileIt != f_player.vctrMissiles.end(); )
-{
-    bool collisionDetected = false;
-
-    for (auto alienIt = f_vctrAliens.begin(); alienIt != f_vctrAliens.end();)
-    {
-        <span class="cm">// verifica sobreposição dos limites (bounding box) do míssil e do alien</span>
-        <span class="cm">// nos eixos X e Y antes de registar a colisão</span>
-        ...
-    }
-}</pre>
-  </section>
-
 </div>
+
+<section class="part">
+  <div class="wrap">
+    <h2>Demonstração</h2>
+    <div class="media"><video controls muted playsinline src="../assets/1_2__CPC/video_jogo_tiro_cpc.mp4"></video></div>
+    <p class="caption">Curta demonstração do funcionamento do jogo.</p>
+  </div>
+</section>
+
+
+<section class="part">
+  <div class="wrap">
+    <h2>Documentação</h2>
+    <div class="files">
+      <a href="../assets/1_2__CPC/relatorio_jogo_tiro_cpc.pdf"target="_blank" rel="noopener">relatório (pdf) <span class="arrow">↗</span></a>
+      <a class="muted" href="#">código privado</a>
+    </div>
+    <iframe class="pdf-embed" src="../assets/1_2__CPC/relatorio_jogo_tiro_cpc.pdf" title="Relatório do CPC"></iframe>
+    
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
