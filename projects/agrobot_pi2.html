@@ -44,37 +44,8 @@
   <div class="wrap">
     <h2>Descrição da continuação executada</h2>
     <p>Este projeto retoma o AGROBOT do semestre anterior: robô agrícola de pequena escala que automatiza a sementeira.</p>
-    <p>Na evolução deste projeto implementámos o <strong>controlo digital</strong> com a utilização de um microcontrolador <strong>STM32H755ZI-Q</strong>strong>. O resultado é um sistema mais robusto, mais preciso e mais fácil de modificar</p>
-    <p>Adicionalmente, elaborou-se um <strong>GRAFCET</strong>strong> para descrever o ciclo como uma máquina de estados formal, com entradas e saídas.</p>
-    
-    <h2>Resultados</h2>
-    <p>O robô foi testado ao longo de <strong>15 ciclos consecutivos</strong> em laboratório, com uma distância alvo de 100&nbsp;cm por ciclo.</p>
-
-    <div class="stats">
-      <div class="stat"><p class="n">15</p><p class="l">ciclos testados</p></div>
-      <div class="stat"><p class="n">~70 s</p><p class="l">tempo médio por ciclo</p></div>
-      <div class="stat"><p class="n">1501 cm</p><p class="l">distância total percorrida</p></div>
-      <div class="stat"><p class="n">1054 s</p><p class="l">tempo total</p></div>
-    </div>
-
-    <p>As distâncias medidas mantiveram-se próximas do valor pretendido, e o incremento da distância ao longo do tempo mostrou-se <strong>linear</strong> — um sinal de comportamento consistente e previsível. Vale ressalvar que os ensaios decorreram em ambiente laboratorial, não em terreno real.</p>
-
-    <h2>Comparação com o PI1</h2>
-    <p>A mesma função, resolvida duas vezes. O que a passagem ao digital trouxe:</p>
-    <ul>
-      <li><strong>Precisão</strong> — a distância deixou de depender do tempo de um condensador a carregar e passou a ser medida por um encoder.</li>
-      <li><strong>Segurança</strong> — um botão de emergência que interrompe qualquer estado, coisa difícil de garantir numa teia de portas lógicas.</li>
-      <li><strong>Flexibilidade</strong> — alterar um tempo ou uma condição passou a ser mudar uma linha de código, em vez de dessoldar uma resistência.</li>
-    </ul>
-
-    <h2>O que fiz</h2>
-    <ul>
-      <li>Definição da máquina de estados em GRAFCET, com as tabelas de entradas e saídas.</li>
-      <li>Implementação do controlo digital na STM32: geração de PWM, leitura do encoder e dos fins de curso.</li>
-      <li>Dimensionamento e integração do sistema de alimentação (bateria LiFePO₄ com BMS).</li>
-      <li>Realização dos ensaios de validação e tratamento dos resultados.</li>
-      <li>Elaboração do relatório em formato de artigo e do póster de apresentação.</li>
-    </ul>
+    <p>Na evolução deste projeto implementámos o <strong>controlo digital</strong> com a utilização de um microcontrolador <strong>STM32H755ZI-Q</strong>. O resultado é um sistema mais robusto, mais preciso e mais fácil de modificar</p>
+    <p>Adicionalmente, elaborou-se um <strong>GRAFCET</strong> para descrever o ciclo como uma máquina de estados formal, com entradas e saídas.</p>
   </div>
 </section>
 
@@ -89,12 +60,10 @@
 <section class="part">
   <div class="wrap">
     <h2>Imagens</h2>
-    <div class="gallery">
-      <figure><img src="../assets/3_2__PI2/grafcet.png" alt="Diagrama GRAFCET do ciclo"><figcaption>GRAFCET do ciclo de operação</figcaption></figure>
-      <figure><img src="../assets/3_2__PI2/arquitetura.png" alt="Esquema geral do sistema"><figcaption>Arquitetura do sistema</figcaption></figure>
-      <figure><img src="../assets/3_2__PI2/montagem.jpg" alt="Montagem mecânica do AGROBOT"><figcaption>Montagem mecânica</figcaption></figure>
-      <figure><img src="../assets/3_2__PI2/testes.png" alt="Gráfico dos resultados dos testes"><figcaption>Distância percorrida por ciclo</figcaption></figure>
-    </div>
+    <div class="media"><img src="../assets/3_2__PI2/img2_agrobot_pi2.png" alt="Arquitetura do sistema"></div>
+    <p class="caption">Arquitetura do sistema.</p>
+  </div>
+</section>
   </div>
 </section>
 
