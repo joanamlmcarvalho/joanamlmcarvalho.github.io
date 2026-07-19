@@ -42,32 +42,11 @@
 
 <section class="part">
   <div class="wrap">
-    <h2>A continuação de uma ideia</h2>
-    <p>Este projeto retoma o <a href="agrobot_pi1.html">AGROBOT do semestre anterior</a> — o robô agrícola que perfura o solo, deposita uma semente e a cobre. A missão é a mesma. O que muda é <strong>tudo o que decide</strong>.</p>
-    <p>No PI1, a sequência de estados vivia numa teia de temporizadores 555 e portas lógicas soldadas. Aqui, essa mesma sequência é descrita formalmente em <strong>GRAFCET</strong> e implementada num microcontrolador. O resultado é um sistema mais robusto, mais preciso e — sobretudo — mais fácil de alterar.</p>
-
-    <h2>Arquitetura</h2>
-    <p>O sistema divide-se em três subsistemas, todos coordenados pela mesma unidade de controlo:</p>
-    <ul>
-      <li><strong>Locomoção</strong> — duas lagartas acionadas por motores DC, comandadas por uma ponte H com controlo de direção e de velocidade. Um <em>encoder</em> ótico mede a distância percorrida.</li>
-      <li><strong>Perfuração</strong> — dois motores: um faz rodar a broca, outro move o conjunto verticalmente. Dois interruptores de fim de curso limitam o percurso e protegem a estrutura.</li>
-      <li><strong>Semeadura</strong> — um motor aciona uma placa rotativa com um orifício; ao alinhar-se com o reservatório, deixa cair uma semente por um tubo até ao buraco perfurado.</li>
-    </ul>
-
-    <h3>Controlo digital</h3>
-    <p>A unidade de controlo é uma <strong>STM32H755ZI-Q</strong>, que gera os sinais PWM para as pontes H e lê as saídas do encoder e dos fins de curso. A alimentação vem de uma bateria recarregável <strong>LiFePO₄ de 12&nbsp;V e 8&nbsp;Ah</strong>, com sistema de gestão integrado (BMS) que protege contra sobrecarga, curto-circuito e descarga profunda.</p>
-
-    <h3>A sequência, em GRAFCET</h3>
-    <p>O GRAFCET descreve o ciclo como uma máquina de estados formal, com entradas (START, STOP, o encoder de distância, os dois fins de curso) e saídas (os sinais de cada motor):</p>
-    <ol>
-      <li>O sistema espera pelo sinal de <strong>START</strong>.</li>
-      <li>Os motores das rodas ligam, até o encoder detetar que a distância pretendida foi percorrida.</li>
-      <li>A broca e o seu eixo descem, a rodar para a direita, até o primeiro fim de curso ser acionado.</li>
-      <li>A broca sobe, a rodar em sentido inverso, até ao segundo fim de curso.</li>
-      <li>O motor da escotilha atua durante 2&nbsp;segundos e deposita a semente. O ciclo recomeça.</li>
-    </ol>
-    <p>Um botão de <strong>STOP</strong> de emergência é verificado ao longo de todo o processo: se for acionado, o ciclo é interrompido e o sistema regressa ao estado inicial.</p>
-
+    <h2>Descrição da continuação executada</h2>
+    <p>Este projeto retoma o AGROBOT do semestre anterior: robô agrícola de pequena escala que automatiza a sementeira.</p>
+    <p>Na evolução deste projeto implementámos o <strong>controlo digital</strong> com a utilização de um microcontrolador STM32H755ZI-Q. O resultado é um sistema mais robusto, mais preciso e mais fácil de modificar</p>
+    <p>Adicionalmente, elaborou-se um GRAFCET para descrever o ciclo como uma máquina de estados formal, com entradas e saídas.</p>
+    
     <h2>Resultados</h2>
     <p>O robô foi testado ao longo de <strong>15 ciclos consecutivos</strong> em laboratório, com uma distância alvo de 100&nbsp;cm por ciclo.</p>
 
@@ -131,7 +110,7 @@
     <iframe class="pdf-embed" src="../assets/3_2__PI2/poster_agrobot_pi2.pdf" title="Poster do PI2"></iframe>
 
     <a class="next" href="agrobot_pi1.html">
-      <p class="k">Projeto Anterior: </p>
+      <p class="k">Anterior </p>
       <p class="t">AGROBOT — Controlo Analógico</p>
     </a>
   </div>
