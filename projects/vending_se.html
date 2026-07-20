@@ -102,7 +102,60 @@
     </div>
   </div>
 </section>
+  
+<section class="part">
+  <div class="wrap">
+    <h2>Arquitetura técnica</h2>
+    <p>O sistema está organizado em módulos independentes, cada um com o seu próprio <code>.c</code>/<code>.h</code>, coordenados por uma máquina de estados central (<code>VM_HandleTypeDef</code>) com três estados: <code>VM_IDLE</code>, <code>VM_SELECAO</code> e <code>VM_DISPENSING</code>. O ciclo principal em <code>main.c</code> resume-se a duas chamadas por iteração — <code>Refrig_Update()</code> e <code>VM_Update()</code> — nunca bloqueantes, com toda a comunicação série tratada por interrupção.</p>
 
+    <h3>Periféricos do STM32H755ZI-Q</h3>
+    <table>
+      <tr><th>Periférico</th><th>Configuração</th><th>Função no projeto</th></tr>
+      <tr><td>USART1</td><td>9600 baud, PB6 (TX) / PB15 (RX)</td><td>Comunicação Bluetooth (HC-05), por interrupção</td></tr>
+      <tr><td>USART3</td><td>115200 baud, PD8 (TX) / PD9 (RX)</td><td>Receção das medições do sensor de moedas</td></tr>
+      <tr><td>TIM6</td><td>Interrupção periódica a cada 2 s</td><td>Sinaliza ao ciclo principal quando fazer uma nova leitura do DHT11</td></tr>
+      <tr><td>TIM3</td><td>Base de tempo livre em microssegundos</td><td>Usado pelo driver do DHT11 para medir a duração dos pulsos do protocolo</td></tr>
+      <tr><td>RTC</td><td>Fonte de relógio LSI, alarmes A e B</td><td>Hora/data do sistema; Alarme A liga as luzes às 07:00, Alarme B desliga às 20:00</td></tr>
+      <tr><td>GPIO (portas B, C, D, E)</td><td>—</td><td>Matrizes de botões, LCD, sensor IR, motor de refrigeração, motores da espiral</td></tr>
+    </table>
+
+    <h3>Comunicação série orientada a interrupção</h3>
+    <p>Tanto o Bluetooth (USART1) como o sensor de moedas (USART3) recebem um byte de cada vez através de <code>HAL_UART_RxCpltCallback()</code>, que distingue a origem pelo <code>huart-&gt;Instance</code> e encaminha para <code>Comms_RxCallback()</code> ou <code>VM_UartRxCallback()</code>. Cada canal acumula os caracteres recebidos num buffer próprio até encontrar um terminador de linha (<code>\r</code> ou <code>\n</code>), altura em que a linha completa é processada de uma vez. Isto permite que o <code>VM_Update()</code> corra em ciclo apertado, sem nunca esperar bloqueado por dados de rede.</p>
+
+    <h3>Identificação de moedas por medição física</h3>
+    <p>O sensor de moedas envia uma linha de texto com três medições — <code>"peso diâmetro espessura"</code> — que é comparada contra uma tabela de 6 moedas (5c a 2€), cada uma com o seu peso, diâmetro e espessura de referência. Uma moeda é identificada quando as três medições estão dentro de uma tolerância de ±0,10 (gramas/mm) dos valores tabelados; se nenhuma combinação bater certo, a leitura é rejeitada e reportada como não reconhecida, sem alterar o saldo.</p>
+
+    <h3>Driver do sensor DHT11 (bit-banging)</h3>
+    <p>Como o DHT11 não usa um protocolo standard (I2C/SPI/UART), a comunicação é feita por <em>bit-banging</em>: o pino é alternado entre saída (para o pedido inicial) e entrada (para ler a resposta), e a duração de cada pulso é medida com o TIM3 em microssegundos — um pulso de ~28&nbsp;µs representa um bit 0, um de ~70&nbsp;µs representa um bit 1. Toda a janela crítica de leitura corre com as interrupções desativadas (<code>__disable_irq()</code>), para que nenhum outro evento atrase a contagem e corrompa a leitura. No final dos 40 bits (32 de dados + 8 de checksum), o valor de verificação é comparado com a soma dos 4 bytes anteriores — se não coincidir, a leitura é descartada como <code>DHT11_CHECKSUM_MISMATCH</code>.</p>
+
+    <h3>Controlo da refrigeração com histerese</h3>
+    <p>A leitura do DHT11 é acionada a cada 2 segundos pela interrupção do TIM6 (que só liga uma flag <code>ReadPending</code> — a leitura em si acontece depois, fora da interrupção). O controlo de temperatura usa três limiares:</p>
+    <table>
+      <tr><th>Limiar</th><th>Valor</th><th>Ação</th></tr>
+      <tr><td>Liga a refrigeração</td><td>&gt; 7,0 °C</td><td>referência (5°C) + histerese (2°C)</td></tr>
+      <tr><td>Desliga a refrigeração</td><td>&lt; 3,0 °C</td><td>referência (5°C) − histerese (2°C)</td></tr>
+      <tr><td>Alerta crítico</td><td>&gt; 15,0 °C</td><td>força a refrigeração ON e envia alerta imediato por Bluetooth</td></tr>
+    </table>
+    <p>A janela entre os 3°C e os 7°C existe deliberadamente — sem ela, a temperatura a oscilar mesmo à volta de um único limiar faria o motor ligar e desligar repetidamente.</p>
+
+    <h3>Dispensação com deteção de falhas em duplo sensor</h3>
+    <p>Cada motor de espiral é ativado através de uma matriz de LEDs 4×4 (linha a HIGH, coluna a LOW liga o motor correspondente). A confirmação de que o produto foi mesmo entregue combina dois sensores:</p>
+    <ul>
+      <li><strong>Sensor ótico (IR)</strong> — deteta o produto a cair no tabuleiro de recolha</li>
+      <li><strong>Sensor de posição</strong> — deteta uma rotação completa da espiral (matriz de botões 4×4, lida de forma semelhante ao teclado de seleção)</li>
+    </ul>
+    <p>Se o tabuleiro já estiver ocupado no início (sensor IR bloqueado), o sistema assume que só falta confirmar a rotação da espiral. Caso contrário, corre até dois ciclos completos do motor (com um <em>timeout</em> de 10 segundos cada, e uma pausa de 1 segundo entre eles): se o produto cair ou a espiral completar uma rotação em qualquer dos dois ciclos, a operação é um sucesso; se ambos os ciclos esgotarem sem confirmação, é reportada falha de dispensação, tanto no LCD como por Bluetooth.</p>
+
+    <h3>Leitura de matrizes de botões com debounce</h3>
+    <p>Tanto o teclado de seleção (4×3) como o sensor de posição (4×4) partilham o mesmo driver genérico: cada linha é colocada a LOW sequencialmente (as restantes ficam a HIGH), e as colunas são lidas em busca de um pino a LOW, o que indica uma tecla premida. Uma vez detetada, aguarda 20&nbsp;ms e volta a confirmar a leitura antes de aceitar a tecla como válida (para filtrar ruído no contacto), e só devolve o caráter depois de confirmar que a tecla foi largada.</p>
+
+    <h3>Protocolo de comunicação Bluetooth</h3>
+    <p>Os comandos e notificações seguem um formato de texto simples, todos precedidos por um <em>timestamp</em> do RTC (<code>[DD/MM/AAAA HH:MM:SS]</code>). O parser em <code>Comms_RxCallback()</code> reconhece comandos simples (<code>TEMP</code>, <code>VENDAS</code>, <code>AJUDA</code>, <code>STOCK:STATUS</code>) e comandos parametrizados por posição de produto (<code>STOCK:L<em>x</em>C<em>x</em></code>, com extensões <code>:QTY:n</code> para alterar quantidade e <code>:VAL:DD/MM/AA</code> para alterar validade). O sistema envia automaticamente alertas de stock baixo/esgotado, validade a expirar/expirada, falha de dispensação e falhas do sensor DHT11 — sem que seja preciso pedir.</p>
+
+    <h3>Gestão de stock e cálculo de validade</h3>
+    <p>Uma tabela 4×4 guarda quantidade, preço e data de validade de cada posição. Como não há biblioteca de datas disponível, a comparação entre a data atual e a validade é feita convertendo ambas para uma contagem aproximada de dias desde o "ano 0" (<code>ano×365 + dias dos meses completos + dia</code> — uma simplificação que ignora anos bissextos, suficiente para comparações relativas de curto prazo). A diferença entre as duas contagens determina se um produto está dentro da validade, a expirar em breve (7 dias ou menos) ou já expirado.</p>
+  </div>
+</section>
 <section class="part">
   <div class="wrap">
     <h2>Documentação</h2>
