@@ -23,37 +23,27 @@
   <div class="wrap">
     <p class="kicker">Sistemas Embebidos</p>
     <h1>Vending Machine</h1>
-    <p class="sub">Uma máquina de venda automática, simulada do zero num STM32.</p>
-
-    <div class="meta">
-      <span class="tag">STM32H755ZI-Q</span>
-      <span class="tag">C</span>
-      <span class="tag">simulação</span>
-      <span class="tag">Bluetooth</span>
-      <span class="tag">RTC</span>
-    </div>
-
+    <p class="sub">Simulacão de uma máquina de venda automática.</p>
+    
     <div class="facts">
       <div class="fact"><p class="k">Unidade curricular</p><p class="v">Sistemas Embebidos</p></div>
-      <div class="fact"><p class="k">Grupo</p><p class="v">Grupo 8</p></div>
-      <div class="fact"><p class="k">Equipa</p><p class="v">Em par com Francisca Domingues</p></div>
+      <div class="fact"><p class="k">Ano</p><p class="v">3.º ano, 2.º semestre · 2025/26</p></div>
+      <div class="fact"><p class="k">Equipa</p><p class="v">2 elementos</p></div>
     </div>
   </div>
 </div>
 
-<!-- ============ IMAGEM PRINCIPAL ============ -->
 <section class="part">
   <div class="wrap">
-    <div class="media"><img src="../assets/3_2__SE/prototipo.png" alt="Protótipo do sistema montado com a placa STM32, teclado, matriz de LEDs/botões e LCD"></div>
-    <p class="caption">O protótipo montado: STM32H755ZI-Q, teclado de seleção, matriz de botões (simula os sensores de posição das espirais) e LCD.</p>
+    <div class="media"><img src="../assets/3_2__SE/img_vending_se.png" alt="Protótipo do sistema montado"></div>
+    <p class="caption">O protótipo montado: STM32 e restantes componentes.</p>
   </div>
 </section>
 
-<!-- ============ TEXTO ============ -->
 <section class="part">
   <div class="wrap">
-    <h2>O que é</h2>
-    <p>Uma máquina de venda automática controlada por um microcontrolador STM32, desenvolvida para a UC de Sistemas Embebidos. O trabalho não passou pela construção física da máquina — o foco foi a lógica de controlo e a simulação fiel do funcionamento real: seleção de produto, pagamento por moedas, dispensação, gestão de stock, refrigeração e monitorização remota.</p>
+    <h2>Descrição</h2>
+    <p>Uma máquina de venda automática controlada por um microcontrolador STM32. O trabalho não passou pela construção física da máquina, sendo o seu foco na lógica de controlo e na simulação do funcionamento real: seleção de produto, pagamento por moedas, dispensação, gestão de stock, refrigeração, iluminação e monitorização remota.</p>
 
     <h2>Como funciona</h2>
     <p>O sistema está organizado à volta de uma unidade de controlo central que comunica com sete subsistemas: iluminação, refrigeração, pagamento, seleção, dispensação, stock e comunicação. O fluxo principal é sequencial — validar seleção e pagamento, controlar a dispensação, confirmar a queda do produto, entregar o troco e atualizar o stock — mas vários processos correm em paralelo por interrupção: a leitura periódica de temperatura (a cada 2 segundos, via timer), a receção de moedas por UART e os comandos Bluetooth chegam sem bloquear o ciclo principal.</p>
@@ -80,28 +70,51 @@
     <h2>Arquitetura</h2>
     <div class="gallery">
       <figure>
-        <img src="../assets/3_2__SE/diagrama-blocos.png" alt="Diagrama de blocos: unidade de controlo central ligada aos sete subsistemas">
+        <img src="../assets/3_2__SE/blocos_vending_se.png" alt="Diagrama de blocos">
         <figcaption>Diagrama de blocos do sistema</figcaption>
       </figure>
       <figure>
-        <img src="../assets/3_2__SE/esboco.png" alt="Esboço conceptual de uma vending machine">
-        <figcaption>Esboço conceptual do projeto</figcaption>
+        <img src="../assets/3_2__SE/luz_vending_se.png" alt="Sistema de Iluminação">
+        <figcaption>Sistema de Iluminação</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/reffri_vending_se.png" alt="Sistema de Refrigeração">
+        <figcaption>Sistema de Refrigeração</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/pag_vending_se.png" alt="Sistema de Pagamento">
+        <figcaption>Sistema de Pagamento</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/selec_vending_se.png" alt="Sistema de Seleção">
+        <figcaption>Sistema de Seleção</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/disp_vending_se.png" alt="Sistema de Dispensação">
+        <figcaption>Sistema de Dispensação</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/stock_vending_se.png" alt="Sistema de Stock">
+        <figcaption>Sistema de Stock</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/coms_vending_se.png" alt="Sistema de Comunicação">
+        <figcaption>Sistema de Comunicação</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ============ FICHEIROS + PDF ============ -->
 <section class="part">
   <div class="wrap">
     <h2>Documentação</h2>
 
     <div class="files">
-      <a href="../assets/3_2__SE/apresentacao.pdf">apresentação (pdf) <span class="arrow">↗</span></a>
+      <a href="../assets/3_2__SE/ppt_vending_se.pdf">apresentação (pdf) <span class="arrow">↗</span></a>
       <a class="muted" href="#">código privado</a>
     </div>
 
-    <iframe class="pdf-embed" src="../assets/3_2__SE/apresentacao.pdf" title="Apresentação em PDF"></iframe>
+    <iframe class="pdf-embed" src="../assets/3_2__SE/ppt_vending_se.pdf" title="Apresentação em PDF"></iframe>
   </div>
 </section>
 
