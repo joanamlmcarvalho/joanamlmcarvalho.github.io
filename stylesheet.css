@@ -90,9 +90,9 @@ section.field{padding:76px 0 12px;scroll-margin-top:72px}
 .cover img,.thumb-main img{width:100%;height:100%;object-fit:cover}
 section.part .caption,section.block .caption{font-family:var(--mono);font-size:11px;color:var(--slate);max-width:620px;margin:0 auto 26px;text-align:center}
 
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:0 0 12px;align-items:start}
+.gallery{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 12px}
 .gallery figure{margin:0}
-.gallery img{width:100%;border-radius:6px;border:1px solid var(--line);display:block}
+.gallery img{height:170px;width:auto;max-width:100%;border-radius:6px;border:1px solid var(--line);display:block}
 .gallery figcaption{font-family:var(--mono);font-size:11.5px;color:var(--slate);margin-top:6px;text-align:center}
 
 /* duas imagens lado a lado com UMA legenda única, centrada por baixo de ambas */
