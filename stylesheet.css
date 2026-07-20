@@ -90,10 +90,16 @@ section.field{padding:76px 0 12px;scroll-margin-top:72px}
 .cover img,.thumb-main img{width:100%;height:100%;object-fit:cover}
 section.part .caption,section.block .caption{font-family:var(--mono);font-size:11px;color:var(--slate);max-width:620px;margin:0 auto 26px;text-align:center}
 
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:0 0 12px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:0 0 12px;align-items:start}
 .gallery figure{margin:0}
 .gallery img{width:100%;border-radius:6px;border:1px solid var(--line);display:block}
 .gallery figcaption{font-family:var(--mono);font-size:11.5px;color:var(--slate);margin-top:6px;text-align:center}
+
+/* duas imagens lado a lado com UMA legenda única, centrada por baixo de ambas */
+.img-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 8px}
+.img-pair img{width:100%;border-radius:6px;border:1px solid var(--line);display:block}
+.img-pair-caption{font-family:var(--mono);font-size:12px;color:var(--slate);margin:0 0 26px;text-align:center}
+@media(max-width:600px){.img-pair{grid-template-columns:1fr}}
 .thumb{aspect-ratio:4/3;border:1px dashed var(--line);border-radius:6px;background:rgba(46,82,168,.04);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);font-family:var(--mono);font-size:12px;padding:10px;overflow:hidden}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
 .work:hover .thumb img{transform:scale(1.05)}
