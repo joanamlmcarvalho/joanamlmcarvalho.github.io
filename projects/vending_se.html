@@ -119,17 +119,11 @@
       <tr><td>GPIO</td><td>—</td><td>Matrizes de botões, LCD, sensor IR, motor de refrigeração, motores da espiral</td></tr>
     </table>
 
-    <h3>Comunicação série orientada a interrupção</h3>
-    <p>Tanto o Bluetooth (USART1) como o sensor de moedas (USART3) recebem um byte de cada vez através de <code>HAL_UART_RxCpltCallback()</code>, que distingue a origem pelo <code>huart-&gt;Instance</code> e encaminha para <code>Comms_RxCallback()</code> ou <code>VM_UartRxCallback()</code>. Cada canal acumula os caracteres recebidos num buffer próprio até encontrar um terminador de linha (<code>\r</code> ou <code>\n</code>), altura em que a linha completa é processada de uma vez. Isto permite que o <code>VM_Update()</code> corra em ciclo apertado, sem nunca esperar bloqueado por dados de rede.</p>
-
     <h3>Identificação de moedas por medição física</h3>
     <p>O sensor de moedas envia uma linha de texto com três medições — <code>"peso diâmetro espessura"</code> — que é comparada contra uma tabela de 6 moedas (5c a 2€), cada uma com o seu peso, diâmetro e espessura de referência. Uma moeda é identificada quando as três medições estão dentro de uma tolerância de ±0,10 (gramas/mm) dos valores tabelados; se nenhuma combinação bater certo, a leitura é rejeitada e reportada como não reconhecida, sem alterar o saldo.</p>
 
-    <h3>Driver do sensor DHT11 (bit-banging)</h3>
-    <p>Como o DHT11 não usa um protocolo standard (I2C/SPI/UART), a comunicação é feita por <em>bit-banging</em>: o pino é alternado entre saída (para o pedido inicial) e entrada (para ler a resposta), e a duração de cada pulso é medida com o TIM3 em microssegundos — um pulso de ~28&nbsp;µs representa um bit 0, um de ~70&nbsp;µs representa um bit 1. Toda a janela crítica de leitura corre com as interrupções desativadas (<code>__disable_irq()</code>), para que nenhum outro evento atrase a contagem e corrompa a leitura. No final dos 40 bits (32 de dados + 8 de checksum), o valor de verificação é comparado com a soma dos 4 bytes anteriores — se não coincidir, a leitura é descartada como <code>DHT11_CHECKSUM_MISMATCH</code>.</p>
-
     <h3>Controlo da refrigeração com histerese</h3>
-    <p>A leitura do DHT11 é acionada a cada 2 segundos pela interrupção do TIM6 (que só liga uma flag <code>ReadPending</code> — a leitura em si acontece depois, fora da interrupção). O controlo de temperatura usa três limiares:</p>
+    <p>A leitura do DHT11 é acionada periodicamente e o controlo de temperatura usa três limites:</p>
     <table>
       <tr><th>Limiar</th><th>Valor</th><th>Ação</th></tr>
       <tr><td>Liga a refrigeração</td><td>&gt; 7,0 °C</td><td>referência (5°C) + histerese (2°C)</td></tr>
