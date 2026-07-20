@@ -106,17 +106,17 @@
 <section class="part">
   <div class="wrap">
     <h2>Arquitetura técnica</h2>
-    <p>O sistema está organizado em módulos independentes, cada um com o seu próprio <code>.c</code>/<code>.h</code>, coordenados por uma máquina de estados central (<code>VM_HandleTypeDef</code>) com três estados: <code>VM_IDLE</code>, <code>VM_SELECAO</code> e <code>VM_DISPENSING</code>. O ciclo principal em <code>main.c</code> resume-se a duas chamadas por iteração — <code>Refrig_Update()</code> e <code>VM_Update()</code> — nunca bloqueantes, com toda a comunicação série tratada por interrupção.</p>
+    <p>O sistema está organizado em módulos independentes coordenados por uma máquina de estados central.</p>
 
     <h3>Periféricos do STM32H755ZI-Q</h3>
     <table>
       <tr><th>Periférico</th><th>Configuração</th><th>Função no projeto</th></tr>
-      <tr><td>USART1</td><td>9600 baud, PB6 (TX) / PB15 (RX)</td><td>Comunicação Bluetooth (HC-05), por interrupção</td></tr>
-      <tr><td>USART3</td><td>115200 baud, PD8 (TX) / PD9 (RX)</td><td>Receção das medições do sensor de moedas</td></tr>
-      <tr><td>TIM6</td><td>Interrupção periódica a cada 2 s</td><td>Sinaliza ao ciclo principal quando fazer uma nova leitura do DHT11</td></tr>
-      <tr><td>TIM3</td><td>Base de tempo livre em microssegundos</td><td>Usado pelo driver do DHT11 para medir a duração dos pulsos do protocolo</td></tr>
-      <tr><td>RTC</td><td>Fonte de relógio LSI, alarmes A e B</td><td>Hora/data do sistema; Alarme A liga as luzes às 07:00, Alarme B desliga às 20:00</td></tr>
-      <tr><td>GPIO (portas B, C, D, E)</td><td>—</td><td>Matrizes de botões, LCD, sensor IR, motor de refrigeração, motores da espiral</td></tr>
+      <tr><td>USART1</td><td>9600 baudrate</td><td>Comunicação Bluetooth (HC-05), por interrupção</td></tr>
+      <tr><td>USART3</td><td>115200 baudrate</td><td>Receção das medições do sensor de moedas</td></tr>
+      <tr><td>TIM6</td><td>Interrupção periódica</td><td>Sinaliza ao ciclo principal quando fazer uma nova leitura do DHT11</td></tr>
+      <tr><td>TIM3</td><td>Base de tempo</td><td>Medir a duração dos pulsos do protocolo, pelo driver do DHT11</td></tr>
+      <tr><td>RTC</td><td>Relógio de tempo real, com 2 alarmes</td><td>Hora/data do sistema; liga e desliga as luzes</td></tr>
+      <tr><td>GPIO</td><td>—</td><td>Matrizes de botões, LCD, sensor IR, motor de refrigeração, motores da espiral</td></tr>
     </table>
 
     <h3>Comunicação série orientada a interrupção</h3>
