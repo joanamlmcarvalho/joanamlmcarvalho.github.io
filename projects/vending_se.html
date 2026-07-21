@@ -138,18 +138,16 @@
       <tr><td>GPIO</td><td>—</td><td>Matrizes de botões, LCD, sensor IR, motor de refrigeração, motores da espiral</td></tr>
     </table>
     
-    <h3>Identificação de moedas por medição física</h3>
-    <p>O sensor de moedas envia uma linha de texto com três medições — <code>"peso diâmetro espessura"</code> — que é comparada contra uma tabela de 6 moedas (5c a 2€), cada uma com o seu peso, diâmetro e espessura de referência. Uma moeda é identificada quando as três medições estão dentro de uma tolerância de ±0,10 (gramas/mm) dos valores tabelados; se nenhuma combinação bater certo, a leitura é rejeitada e reportada como não reconhecida, sem alterar o saldo.</p>
+    <h3>Identificação de moedas - introdução de medidas física</h3>
+    <p>É enviada uma linha de texto, via UART, com três medições (peso diâmetro espessura). Estas são comparadas com uma tabela de 6 moedas (5c a 2€) e apenas aceites se: <code>valor = referência ±tolerância de 0,10 (gramas/mm)</code>.</p>
 
-    <h3>Controlo da refrigeração com histerese</h3>
-    <p>A leitura do DHT11 é acionada periodicamente e o controlo de temperatura usa três limites:</p>
+    <h3>Controlo da refrigeração com histerese - leitura periódica do DHT11</h3>
     <table>
       <tr><th>Limiar</th><th>Valor</th><th>Ação</th></tr>
       <tr><td>Liga a refrigeração</td><td>&gt; 7,0 °C</td><td>referência (5°C) + histerese (2°C)</td></tr>
       <tr><td>Desliga a refrigeração</td><td>&lt; 3,0 °C</td><td>referência (5°C) − histerese (2°C)</td></tr>
       <tr><td>Alerta crítico</td><td>&gt; 15,0 °C</td><td>força a refrigeração ON e envia alerta imediato por Bluetooth</td></tr>
     </table>
-    <p>A janela entre os 3°C e os 7°C existe deliberadamente — sem ela, a temperatura a oscilar mesmo à volta de um único limiar faria o motor ligar e desligar repetidamente.</p>
 
     <h3>Dispensação com deteção de falhas em duplo sensor</h3>
     <p>Cada motor de espiral é ativado através de uma matriz de LEDs 4×4 (linha a HIGH, coluna a LOW liga o motor correspondente). A confirmação de que o produto foi mesmo entregue combina dois sensores:</p>
