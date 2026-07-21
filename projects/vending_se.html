@@ -135,7 +135,7 @@
     </table>
     
     <h3>Identificação de moedas - introdução de medidas física</h3>
-    <p>É enviada uma linha de texto, via UART, com três medições (peso diâmetro espessura). Estas são comparadas com uma tabela de 6 moedas (5c a 2€) e apenas aceites se: <code>valor = referência ±tolerância de 0,10 (gramas/mm)</code>.</p>
+    <p>É enviada uma linha de texto, via UART, com três medições (peso diâmetro espessura). Estas são comparadas com uma tabela de 6 moedas (5cent a 2€) e apenas aceites se: <code>valor = referência ±tolerância de 0,10 (gramas/mm)</code>.</p>
 
     <h3>Controlo da refrigeração com histerese - leitura periódica do DHT11</h3>
     <table>
@@ -155,10 +155,10 @@
     <p>Tanto o teclado de seleção (4×3) como o sensor de posição (4×4) partilham o mesmo driver genérico, com uso de uma técnica de debounce para a leitura de botões de pressão.</p>
 
     <h3>Protocolo de comunicação Bluetooth</h3>
-    <p>Os comandos e notificações seguem um formato de texto simples, todos precedidos por um <em>timestamp</em> do RTC (<code>[DD/MM/AAAA HH:MM:SS]</code>). O parser em <code>Comms_RxCallback()</code> reconhece comandos simples (<code>TEMP</code>, <code>VENDAS</code>, <code>AJUDA</code>, <code>STOCK:STATUS</code>) e comandos parametrizados por posição de produto (<code>STOCK:L<em>x</em>C<em>x</em></code>, com extensões <code>:QTY:n</code> para alterar quantidade e <code>:VAL:DD/MM/AA</code> para alterar validade). O sistema envia automaticamente alertas de stock baixo/esgotado, validade a expirar/expirada, falha de dispensação e falhas do sensor DHT11 — sem que seja preciso pedir.</p>
+    <p>Os comandos e notificações seguem um formato de texto simples e são validados por um parser. O sistema envia automaticamente alertas de stock baixo/esgotado, validade a expirar/expirada, falha de dispensação e falhas do sensor DHT11.</p>
 
     <h3>Gestão de stock e cálculo de validade</h3>
-    <p>Uma tabela 4×4 guarda quantidade, preço e data de validade de cada posição. Como não há biblioteca de datas disponível, a comparação entre a data atual e a validade é feita convertendo ambas para uma contagem aproximada de dias desde o "ano 0" (<code>ano×365 + dias dos meses completos + dia</code> — uma simplificação que ignora anos bissextos, suficiente para comparações relativas de curto prazo). A diferença entre as duas contagens determina se um produto está dentro da validade, a expirar em breve (7 dias ou menos) ou já expirado.</p>
+    <p>Uma tabela 4×4 guarda quantidade, preço e data de validade de cada posição.</p>
   </div>
 </section>
 <section class="part">
