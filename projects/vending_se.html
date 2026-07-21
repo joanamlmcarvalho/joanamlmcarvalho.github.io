@@ -43,7 +43,7 @@
 <section class="part">
   <div class="wrap">
     <h2>Descrição</h2>
-    <p>Uma máquina de venda automática controlada por um microcontrolador STM32. O trabalho não passou pela construção física da máquina, sendo o seu foco na lógica de controlo e na simulação do funcionamento real: seleção de produto, pagamento por moedas, dispensação, gestão de stock, refrigeração, iluminação e monitorização remota.</p>
+    <p>Uma máquina de venda automática controlada por um <strong>microcontrolador STM32 (linguagem C)</strong>. O trabalho não passou pela construção física da máquina, sendo o seu foco na lógica de controlo e na simulação do funcionamento real: seleção de produto, pagamento por moedas, dispensação, gestão de stock, refrigeração, iluminação e monitorização remota.</p>
 
     <h2>Funcionamento e arquitetura do sistema</h2>
     <p>O sistema está organizado à volta de uma unidade de controlo central que comunica com sete subsistemas: iluminação, refrigeração, pagamento, seleção, dispensação, stock e comunicação.</p>
@@ -125,9 +125,9 @@
     </table>
     
     <h3>Identificação de moedas - introdução de medidas física</h3>
-    <p>É enviada uma linha de texto, via UART, com três medições (peso diâmetro espessura). Estas são comparadas com uma tabela de 6 moedas (5cent a 2€) e apenas aceites se: <code>valor = referência ±tolerância de 0,10 (gramas ou mm)</code>.</p>
+    <p>É enviada uma linha de texto, via <strong>UART</strong>, com três medições (peso diâmetro espessura). Estas são comparadas com uma tabela de 6 moedas (5cent a 2€) e apenas aceites se: <code>valor = referência ±tolerância de 0,10 (gramas ou mm)</code>.</p>
 
-    <h3>Controlo da refrigeração com histerese - leitura periódica do DHT11</h3>
+    <h3>Controlo da refrigeração com <strong>histerese</strong> - leitura periódica do DHT11</h3>
     <table>
       <tr><th>Limiar</th><th>Valor</th><th>Ação</th></tr>
       <tr><td>Liga a refrigeração</td><td>&gt; 7,0 °C</td><td>referência (5°C) + histerese (2°C)</td></tr>
@@ -144,10 +144,10 @@
     <p>Se a espiral completar o ciclo sem o produto cair, o sistema tenta uma segunda rotação antes de assinalar erro.</p>
     
     <h3>Leitura de botões</h3>
-    <p>Tanto o teclado de seleção (4×3) como o sensor de posição (4×4) partilham o mesmo driver genérico, com uso de uma técnica de debounce para a leitura de botões de pressão.</p>
+    <p>Tanto o teclado de seleção (4×3) como o sensor de posição (4×4) partilham o mesmo driver genérico, com uso de uma técnica de <strong>debounce</strong> para a leitura de botões de pressão.</p>
 
     <h3>Protocolo de comunicação Bluetooth</h3>
-    <p>Os comandos e notificações seguem um formato de texto simples e são validados por um parser. O sistema envia automaticamente alertas de stock baixo/esgotado, validade a expirar/expirada, falha de dispensação e falhas do sensor DHT11.</p>
+    <p>Os comandos e notificações seguem um formato de texto simples e são validados por um <strong>parser</strong>. O sistema envia automaticamente, via Bluetooth, alertas de stock baixo/esgotado, validade a expirar/expirada, falha de dispensação e falhas do sensor DHT11.</p>
 
     <h3>Gestão de stock e cálculo de validade</h3>
     <p>Uma tabela guarda quantidade, preço e data de validade de cada posição.</p>
