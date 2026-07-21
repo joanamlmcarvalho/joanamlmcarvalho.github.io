@@ -108,6 +108,24 @@
     <h2>Arquitetura técnica</h2>
     <p>O sistema está organizado em módulos independentes coordenados por uma máquina de estados central.</p>
 
+    <h3>Componentes</h3>
+    <section class="part">
+        <div class="wrap">
+        <div class="media"><img src="../assets/3_2__SE/img2_vending_se.png" alt="Componentes"></div>
+        <p class="caption">Componentes do sistema</p>
+        </div>
+    </section>
+    
+    <table>
+      <tr><th>Componentes Real</th><th>Componentes Simulação</th><th>Função</th></tr>
+      <tr><td>USART1</td><td>9600 baudrate</td><td>Comunicação Bluetooth (HC-05), por interrupção</td></tr>
+      <tr><td>USART3</td><td>115200 baudrate</td><td>Receção das medições do sensor de moedas</td></tr>
+      <tr><td>TIM6</td><td>Interrupção periódica</td><td>Sinaliza ao ciclo principal quando fazer uma nova leitura do DHT11</td></tr>
+      <tr><td>TIM3</td><td>Base de tempo</td><td>Medir a duração dos pulsos do protocolo, pelo driver do DHT11</td></tr>
+      <tr><td>RTC</td><td>Relógio de tempo real, com 2 alarmes</td><td>Hora/data do sistema; liga e desliga as luzes</td></tr>
+      <tr><td>GPIO</td><td>—</td><td>Matrizes de botões, LCD, sensor IR, motor de refrigeração, motores da espiral</td></tr>
+    </table>
+    
     <h3>Periféricos do STM32H755ZI-Q</h3>
     <table>
       <tr><th>Periférico</th><th>Configuração</th><th>Função no projeto</th></tr>
@@ -118,7 +136,7 @@
       <tr><td>RTC</td><td>Relógio de tempo real, com 2 alarmes</td><td>Hora/data do sistema; liga e desliga as luzes</td></tr>
       <tr><td>GPIO</td><td>—</td><td>Matrizes de botões, LCD, sensor IR, motor de refrigeração, motores da espiral</td></tr>
     </table>
-
+    
     <h3>Identificação de moedas por medição física</h3>
     <p>O sensor de moedas envia uma linha de texto com três medições — <code>"peso diâmetro espessura"</code> — que é comparada contra uma tabela de 6 moedas (5c a 2€), cada uma com o seu peso, diâmetro e espessura de referência. Uma moeda é identificada quando as três medições estão dentro de uma tolerância de ±0,10 (gramas/mm) dos valores tabelados; se nenhuma combinação bater certo, a leitura é rejeitada e reportada como não reconhecida, sem alterar o saldo.</p>
 
