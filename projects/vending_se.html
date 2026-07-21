@@ -118,14 +118,15 @@
     
     <table>
       <tr><th>Componentes Real</th><th>Componentes Simulação</th><th>Função</th></tr>
-      <tr><td>Teclado</td><td>9600 baudrate</td><td>Comunicação Bluetooth (HC-05), por interrupção</td></tr>
-      <tr><td>Sensor de posição</td><td>115200 baudrate</td><td>Receção das medições do sensor de moedas</td></tr>
-      <tr><td>Sensor ótico</td><td>Interrupção periódica</td><td>Sinaliza ao ciclo principal quando fazer uma nova leitura do DHT11</td></tr>
-      <tr><td>Sensor Temperatura</td><td>Base de tempo</td><td>Medir a duração dos pulsos do protocolo, pelo driver do DHT11</td></tr>
-      <tr><td>Display</td><td>Relógio de tempo real, com 2 alarmes</td><td>Hora/data do sistema; liga e desliga as luzes</td></tr>
-      <tr><td>Motor da espiral</td><td>—</td><td>Matrizes de botões, LCD, sensor IR, motor de refrigeração, motores da espiral</td></tr>
-      <tr><td>Motor da refrigeração</td><td>—</td><td>Matrizes de botões, LCD, sensor IR, motor de refrigeração, motores da espiral</td></tr>
-      <tr><td>Luzes</td><td>—</td><td>Matrizes de botões, LCD, sensor IR, motor de refrigeração, motores da espiral</td></tr>
+      <tr><td>Teclado</td><td>Teclado (matiz de botões numerados)</td><td>Teclado de seleção de produtos.</td></tr>
+      <tr><td>Sensor de posição</td><td>Matriz de botões</td><td>Cada botão simula o sensor de posição de cada motor da espiral.</td></tr>
+      <tr><td>Sensor ótico</td><td>Sensor Infravermelho</td><td>Sinaliza quando o produto interrompe o feixe de luz.</td></tr>
+      <tr><td>Sensor Temperatura</td><td>Sensor DHT11</td><td>Sensor externo capaz de medir a temperatura e a humidade.</td></tr>
+      <tr><td>Motor da espiral</td><td>Matriz de LEDs</td><td>Cada LED simula cada motor da espiral (on/off).</td></tr>
+      <tr><td>Motor da refrigeração</td><td>LED azul</td><td>Simula o motor de refrigeração (on/off).</td></tr>
+      <tr><td>Luzes</td><td>LED amarelo</td><td>Simula as luzes da máquina (on/off).</td></tr>
+      <tr><td>Display</td><td>LCD1602</td><td>Interface de comunicação máquina-consumidor.</td></tr>
+      <tr><td>Bluetooth</td><td>HC-05</td><td>Interface de comunicação máquina-fornecedor.</td></tr>
     </table>
     
     <h3>Periféricos do STM32H755ZI-Q</h3>
