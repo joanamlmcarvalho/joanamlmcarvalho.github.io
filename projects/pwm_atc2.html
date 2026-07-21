@@ -1,8 +1,3 @@
-<!--
-  GUIA RÁPIDO
-  - Onde vês "adicionar imagem", troca pelo <img src="../assets/2_2__ATC2/....jpg">.
-  - O relatório em PDF vai em: assets/2_2__ATC2/relatorio.pdf
--->
 <!doctype html>
 <html lang="pt">
 <head>
@@ -24,48 +19,32 @@
   </div>
 </header>
 
+
 <div class="head">
   <div class="wrap">
-    <p class="kicker">sistemas embebidos &amp; microcontroladores</p>
-    <h1>PWM remoto por UART — EFM8BB3</h1>
-    <p class="sub">LED e motor controlados à distância, byte a byte, com verificação de checksum.</p>
-
-    <div class="meta">
-      <span class="tag">EFM8BB3</span>
-      <span class="tag">UART</span>
-      <span class="tag">PCA0 / PWM</span>
-      <span class="tag">máquina de estados</span>
-      <span class="tag">FIFO</span>
-    </div>
+    <p class="kicker">Arquiteturae Tecnologiade Computadores II</p>
+    <h1>Controlo de PWM</h1>
+    <p class="sub">LED e motor controlados à distância.</p>
 
     <div class="facts">
-      <div class="fact"><p class="k">Unidade curricular</p><p class="v">Arquitetura de Computadores II</p></div>
-      <div class="fact"><p class="k">Ano</p><p class="v">2025/2026 · 2.º semestre</p></div>
-      <div class="fact"><p class="k">Turma</p><p class="v">PL8</p></div>
-      <div class="fact"><p class="k">Equipa</p><p class="v">Em par com Isabel Gomes</p></div>
+      <div class="fact"><p class="k">Unidade curricular</p><p class="v">Arquiteturae Tecnologiade Computadores II</p></div>
+      <div class="fact"><p class="k">Ano</p><p class="v">2.º ano, 2.º semestre · 2025/26</p></div>
+      <div class="fact"><p class="k">Equipa</p><p class="v">2 elementos</p></div>
     </div>
   </div>
 </div>
 
-<!-- ============ IMAGEM PRINCIPAL ============ -->
 <section class="part">
   <div class="wrap">
-    <div class="thumb-main">adicionar imagem principal — montagem com LED/motor no EFM8BB3</div>
-  </div>
-</section>
+    <h2>Descrição</h2>
+    <p>Um controlador de PWM (Pulse Width Modulation) num microcontrolador EFM8BB3, comandado remotamente por um protocolo próprio sobre UART.</p>
+    <p>O objetivo seria para regular à distância o brilho de um LED ou a velocidade de um motor, e também para reproduzir automaticamente uma sequência de valores, por exemplo: criar uma sinusoide.</p>
 
-<!-- ============ TEXTO ============ -->
-<section class="part">
-  <div class="wrap">
-    <h2>O que é</h2>
-    <p>Um controlador de PWM (Pulse Width Modulation) num microcontrolador EFM8BB3, comandado remotamente por um protocolo próprio sobre UART. Serve para regular à distância o brilho de um LED ou a velocidade de um motor, e também para reproduzir automaticamente uma sequência de valores — por exemplo, uma rampa de luminosidade.</p>
-
-    <h2>Como funciona</h2>
-    <p>Ao ligar, o sistema corre a 49 MHz (oscilador interno HFOSC1), desativa o Watchdog Timer e configura o <em>crossbar</em> — o mecanismo do EFM8 que decide a que pino físico cada periférico interno é ligado: UART0 vai para P0.4/P0.5, e a saída PWM (CEX0 do PCA0) para P2.0.</p>
+    <h2>Funcionamento</h2>
     <p>O sinal PWM é gerado pelo <strong>PCA0</strong> (Programmable Counter Array), usado em dois módulos ao mesmo tempo: o Módulo 0 gera a onda PWM em si (8 bits de resolução, duty-cycle 0–100%); o Módulo 1 funciona como temporizador de software, usado só para cadenciar a reprodução automática de sequências.</p>
     <p>Toda a comunicação série corre por <strong>interrupção</strong>, com dois buffers circulares (FIFO) de 32 bytes — um de receção, outro de transmissão — para que o programa principal nunca fique bloqueado à espera de um byte.</p>
 
-    <h2>O protocolo de comunicação</h2>
+    <h2>Protocolo de comunicação</h2>
     <p>Os comandos chegam por UART a 115200 bps num formato próprio, pensado para detetar erros de transmissão:</p>
     <table>
       <tr><th>Campo</th><th>Exemplo</th><th>Significado</th></tr>
@@ -75,7 +54,8 @@
       <tr><td><code>*hh</code></td><td><code>*B0</code></td><td>checksum em hexadecimal</td></tr>
       <tr><td><code>\n</code></td><td><code>\n</code></td><td>fim de trama</td></tr>
     </table>
-    <p>Exemplo completo: <code>T03D75*B0\n</code> — define o duty-cycle a 75%. O checksum é a soma dos valores ASCII de cada byte dos dados (<code>'D'+'7'+'5' = 0xB0</code>); se não bater certo com o que vem na trama, o comando é rejeitado e o sistema responde <code>ERR</code>.</p>
+    <p>Exemplo completo: <code>T03D75*B0\n</code> — define o duty-cycle a 75%. O checksum é a soma dos valores ASCII de cada byte dos dados (<code>'D'+'7'+'5' = 0xB0</code>).</p>
+    <p>Se o comando for inválido, é rejeitado e o sistema responde <code>ERR</code>.</p>
 
     <table>
       <tr><th>Comando</th><th>Ação</th></tr>
@@ -88,49 +68,33 @@
       <tr><td><code>SON</code> / <code>SOFF</code></td><td>liga/desliga a reprodução da sequência</td></tr>
     </table>
 
-    <h2>As máquinas de estado</h2>
-    <p>O sistema tem duas máquinas de estado distintas, que trabalham em conjunto:</p>
-    <h3>Parser de tramas (commands.c)</h3>
-    <p>Processa cada byte recebido, um a um, através de 10 estados (<code>S_WAIT_T</code> → <code>S_READ_LEN1/2</code> → <code>S_READ_DATA</code> → <code>S_WAIT_SEPARATOR</code> → <code>S_READ_CHECKSUM1/2</code> → <code>S_WAIT_TERMINATOR</code>), com um estado alternativo (<code>S_READ_NUM</code>) para quando se está a carregar pontos de uma sequência, e um estado de erro (<code>S_DISCARD</code>) que descarta a trama e avisa <code>ERR</code> uma única vez.</p>
-    <h3>Estado global do sistema (system_state.c)</h3>
-    <p>Guarda em que "modo" o sistema está — <code>IDLE</code>, <code>PWM_MANUAL</code>, <code>SEQ_LOADING</code> ou <code>SEQ_PLAYING</code> — e decide que comandos fazem sentido em cada um. Por exemplo, não é possível pedir <code>SON</code> (reproduzir sequência) sem que uma sequência esteja completamente carregada, nem enviar pontos de sequência fora do modo de carregamento.</p>
+    <h2>Máquinas de estado</h2>
+    <p>O sistema tem duas máquinas de estado distintas, que trabalham em conjunto: o parser de tramas e o controlo global do sistema, de modo a garantir que só se executam comandos válidos no momento certo.</p>
+    
+    <section class="part">
+      <div class="wrap">
+        <h2>Imagens</h2>
+        <div class="gallery">
+          <div class="thumb">adicionar imagem — máquina de estados do parser</div>
+          <div class="thumb">adicionar imagem — máquina de estados do sistema</div>
+          <div class="thumb">adicionar imagem — montagem/hardware</div>
+        </div>
+      </div>
+    </section>
 
     <h2>Sequências automáticas</h2>
-    <p>Além do controlo manual, é possível carregar até 30 pontos de duty-cycle (com <code>S:xx</code>, seguido dos valores um a um) e depois reproduzi-los automaticamente com <code>SON</code> — a interrupção do PCA0 (Módulo 1) vai aplicando cada ponto sozinha, em ciclo, até se mandar parar com <code>SOFF</code>.</p>
-
-    <h2>O que fizemos</h2>
-    <ul>
-      <li>Configuração de baixo nível do EFM8BB3: relógio do sistema, crossbar e pinos de I/O.</li>
-      <li>Driver de UART0 orientado a interrupção, com FIFOs circulares próprias para TX e RX.</li>
-      <li>Geração de PWM com o PCA0, incluindo duty-cycle e frequência variáveis.</li>
-      <li>Desenho e implementação do protocolo de comunicação, incluindo a extensão com checksum (Fase 2) para deteção de erros de transmissão.</li>
-      <li>Duas máquinas de estado completas — o parser de tramas e o controlo global do sistema — para garantir que só se executam comandos válidos no momento certo.</li>
-      <li>Módulo de sequências automáticas, com reprodução cadenciada por temporizador de software.</li>
-    </ul>
+    <p>Além do controlo manual, é possível carregar até 30 pontos de duty-cycle e depois reproduzi-los automaticamente.</p>
   </div>
 </section>
 
-<!-- ============ GALERIA  (apaga se não tiveres imagens) ============ -->
-<section class="part">
-  <div class="wrap">
-    <h2>Imagens</h2>
-    <div class="gallery">
-      <div class="thumb">adicionar imagem — máquina de estados do parser</div>
-      <div class="thumb">adicionar imagem — máquina de estados do sistema</div>
-      <div class="thumb">adicionar imagem — montagem/hardware</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FICHEIROS + PDF ============ -->
 <section class="part">
   <div class="wrap">
     <h2>Documentação</h2>
     <div class="files">
-      <a href="../assets/2_2__ATC2/relatorio.pdf">relatório completo (PDF) <span class="arrow">↗</span></a>
+      <a href="../assets/2_2__ATC2/relatorio_pwm_atc2.pdf">relatório (PDF) <span class="arrow">↗</span></a>
       <a class="muted" href="#">código privado</a>
     </div>
-    <iframe class="pdf-embed" src="../assets/2_2__ATC2/relatorio.pdf" title="Relatório em PDF"></iframe>
+    <iframe class="pdf-embed" src="../assets/2_2__ATC2/relatorio_pwm_atc2.pdf" title="Relatório em PDF"></iframe>
   </div>
 </section>
 
@@ -140,6 +104,7 @@
     <p class="colophon">Joana Carvalho · 2026</p>
   </div>
 </footer>
-
+  
+<script src="../gallery.js" defer></script>
 </body>
 </html>
