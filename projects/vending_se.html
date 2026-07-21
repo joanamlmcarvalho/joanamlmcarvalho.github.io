@@ -150,15 +150,13 @@
     </table>
 
     <h3>Dispensação com deteção de falhas em duplo sensor</h3>
-    <p>Cada motor de espiral é ativado através de uma matriz de LEDs 4×4 (linha a HIGH, coluna a LOW liga o motor correspondente). A confirmação de que o produto foi mesmo entregue combina dois sensores:</p>
+    <p>Cada motor de espiral é ativado através de uma matriz de LEDs 4×4. A confirmação de que o produto foi mesmo entregue combina dois sensores:</p>
     <ul>
       <li><strong>Sensor ótico (IR)</strong> — deteta o produto a cair no tabuleiro de recolha</li>
       <li><strong>Sensor de posição</strong> — deteta uma rotação completa da espiral (matriz de botões 4×4, lida de forma semelhante ao teclado de seleção)</li>
     </ul>
-    <p>Se o tabuleiro já estiver ocupado no início (sensor IR bloqueado), o sistema assume que só falta confirmar a rotação da espiral. Caso contrário, corre até dois ciclos completos do motor (com um <em>timeout</em> de 10 segundos cada, e uma pausa de 1 segundo entre eles): se o produto cair ou a espiral completar uma rotação em qualquer dos dois ciclos, a operação é um sucesso; se ambos os ciclos esgotarem sem confirmação, é reportada falha de dispensação, tanto no LCD como por Bluetooth.</p>
-
-    <h3>Leitura de matrizes de botões com debounce</h3>
-    <p>Tanto o teclado de seleção (4×3) como o sensor de posição (4×4) partilham o mesmo driver genérico: cada linha é colocada a LOW sequencialmente (as restantes ficam a HIGH), e as colunas são lidas em busca de um pino a LOW, o que indica uma tecla premida. Uma vez detetada, aguarda 20&nbsp;ms e volta a confirmar a leitura antes de aceitar a tecla como válida (para filtrar ruído no contacto), e só devolve o caráter depois de confirmar que a tecla foi largada.</p>
+    <h3>Leitura de botões</h3>
+    <p>Tanto o teclado de seleção (4×3) como o sensor de posição (4×4) partilham o mesmo driver genérico, com uso de uma técnica de debounce para a leitura de botões de pressão.</p>
 
     <h3>Protocolo de comunicação Bluetooth</h3>
     <p>Os comandos e notificações seguem um formato de texto simples, todos precedidos por um <em>timestamp</em> do RTC (<code>[DD/MM/AAAA HH:MM:SS]</code>). O parser em <code>Comms_RxCallback()</code> reconhece comandos simples (<code>TEMP</code>, <code>VENDAS</code>, <code>AJUDA</code>, <code>STOCK:STATUS</code>) e comandos parametrizados por posição de produto (<code>STOCK:L<em>x</em>C<em>x</em></code>, com extensões <code>:QTY:n</code> para alterar quantidade e <code>:VAL:DD/MM/AA</code> para alterar validade). O sistema envia automaticamente alertas de stock baixo/esgotado, validade a expirar/expirada, falha de dispensação e falhas do sensor DHT11 — sem que seja preciso pedir.</p>
