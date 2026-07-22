@@ -59,18 +59,12 @@
     <p>O condensador atenua a saída do conversor, fornecendo uma tensão contínua mais estável.</p>
     <p>A relação entre a tensão de entrada, a de saída e o duty-cycle do sinal de comando é dada por:</p>
     <div class="formula">D = 1 − (V<sub>in</sub> / V<sub>out</sub>)</div>
-    <p>O circuito de comando, montado com um transístor e duas resistências, converte o sinal de controlo do gerador de sinais numa onda adequada para acionar a gate do MOSFET.</p>
+    <p>O circuito de comando, montado com um transístor e duas resistências, converte o sinal de controlo numa onda adequada para acionar a gate do MOSFET.</p>
   </section>
 
   <section class="block">
     <h2>Simulação em PSIM</h2>
     <p>Antes da montagem física, o circuito foi simulado em PSIM para observar tensões e correntes de entrada e saída, e antecipar o comportamento esperado em diferentes condições de frequência e duty-cycle.</p>
-    <table>
-      <tr><th></th><th>f=20kHz, D=50%</th><th>f=10kHz, D=50%</th><th>f=20kHz, D=30%</th></tr>
-      <tr><td>V<sub>in</sub></td><td class="n">100V</td><td class="n">100V</td><td class="n">100V</td></tr>
-      <tr><td>V<sub>out</sub></td><td class="n">200V</td><td class="n">200V</td><td class="n">≈142V</td></tr>
-      <tr><td>P<sub>out</sub></td><td class="n">400W</td><td class="n">400W</td><td class="n">≈200W</td></tr>
-    </table>
   </section>
 
   <section class="block">
@@ -94,7 +88,8 @@
 
   <section class="block">
     <h2>Resultados</h2>
-    <p>Na montagem final em PCB, com tensão de entrada de 15V e duty-cycle de 50%, obteve-se uma tensão de saída de aproximadamente 27V — próxima do valor teórico de 30V, com a diferença atribuída a perdas de energia nos componentes reais e a alguma tolerância no dimensionamento das resistências. Confirmou-se ainda que, ao diminuir o duty-cycle de entrada, o duty-cycle efetivo aplicado ao MOSFET aumenta, elevando a tensão de saída — e que frequências mais altas resultam num menor ripple (ondulação) na tensão de saída.</p>
+    <p>Na montagem final em PCB, com tensão de entrada de 15V e duty-cycle de 50%, obteve-se uma tensão de saída de aproximadamente 27V — próxima do valor teórico de 30V, com a diferença atribuída a perdas de energia nos componentes reais e a alguma tolerância no dimensionamento das resistências.</p>p>
+    <p>Confirmou-se ainda que, ao aumentar a tensão de entrada, a corrente da entrada diminui, e como se trata de um circuito step-up, a tensão de saída vai aumentar e a corrente diminuir. Este comportamento deve-se ao facto, de que a potência mantêm-se tanto na entrada como na saída.</p>
   </section>
 </div>
 
