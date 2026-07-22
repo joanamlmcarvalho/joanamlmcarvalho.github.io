@@ -69,16 +69,7 @@
 
   <section class="block">
     <h2>Implementação prática</h2>
-    <div class="grid2">
-      <ul>
-        <li><b>Circuito de comando</b> — transístor a operar em corte/saturação, dimensionado para gerar a onda de controlo do MOSFET.</li>
-        <li><b>Circuito de potência</b> — MOSFET, resistência de carga e resistência de gate, testados com diferentes duty-cycles (20% a 75%) e frequências (5kHz a 50kHz).</li>
-      </ul>
-      <ul>
-        <li><b>Conversor completo</b> — acrescida a bobina, o díodo e o condensador, com um díodo de zener e resistência de proteção no comando.</li>
-        <li><b>Instrumentação</b> — osciloscópio, gerador de sinais e fonte de alimentação usados para validar cada etapa.</li>
-      </ul>
-    </div>
+    <p>Durante a montagem física, o circuito foi testado em breadboard, por partes, de modo a validar a montagem e retirar valores e conclusões sobre o seu funcionamento em diferentes condições de frequência e duty-cycle.</p>
   </section>
 
   <section class="block">
@@ -88,11 +79,51 @@
 
   <section class="block">
     <h2>Resultados</h2>
-    <p>Na montagem final em PCB, com tensão de entrada de 15V e duty-cycle de 50%, obteve-se uma tensão de saída de aproximadamente 27V — próxima do valor teórico de 30V, com a diferença atribuída a perdas de energia nos componentes reais e a alguma tolerância no dimensionamento das resistências.</p>p>
+    <p>Na montagem final em PCB, com tensão de entrada de 15V e duty-cycle de 50%, obteve-se uma tensão de saída de aproximadamente 27V — próxima do valor teórico de 30V, com a diferença atribuída a perdas de energia nos componentes reais e a alguma tolerância no dimensionamento das resistências.</p>
     <p>Confirmou-se ainda que, ao aumentar a tensão de entrada, a corrente da entrada diminui, e como se trata de um circuito step-up, a tensão de saída vai aumentar e a corrente diminuir. Este comportamento deve-se ao facto, de que a potência mantêm-se tanto na entrada como na saída.</p>
   </section>
 </div>
 
+<section class="part">
+  <div class="wrap">
+    <h2>Imagens</h2>
+    <div class="gallery">
+      <figure>
+        <img src="../assets/2_2__PL3/img1_boost_pl3.png" alt="Esquema do circuito de comando">
+        <figcaption>Esquema do circuito de comando.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/2_2__PL3/img2_boost_pl3.png" alt="Montagem em breadboard do circuito de comando">
+        <figcaption>Montagem em breadboard do circuito de comando.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/2_2__PL3/img3_boost_pl3.png" alt="Esquema do circuito de comando + MOSFET">
+        <figcaption>Esquema do circuito de comando + MOSFET</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/2_2__PL3/img4_boost_pl3.png" alt="Montagem em breadboard do circuito de comando + MOSFET">
+        <figcaption>Montagem em breadboard do circuito de comando + MOSFET.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/2_2__PL3/img5_boost_pl3.png" alt="Esquema do cconversor CC-CC">
+        <figcaption>Esquema do cconversor CC-CC</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/2_2__PL3/img6_boost_pl3.png" alt="Montagem em breadboard do conversor CC-CC">
+        <figcaption>Montagem em breadboarddo do cconversor CC-CC</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/2_2__PL3/img7_boost_pl3.png" alt="Esquema do circuito no KiCad">
+        <figcaption>Esquema do circuito no KiCad.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/2_2__PL3/img8_boost_pl3.png" alt="Esquema da PCB no KiCad">
+        <figcaption>Esquema da PCB no KiCad.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+  
 <section class="part">
   <div class="wrap">
     <h2>Documentação</h2>
