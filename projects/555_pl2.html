@@ -35,30 +35,28 @@
 
 <section class="part">
   <div class="wrap">
-    <div class="media"><img src="../assets/1_2__PL2/img2_555_pl2.png" alt="Funcionamento do detetor de escuridão"></div>
-    <p class="caption">Funcionamento do detetor de escuridão.</p>
+    <h2>Imagens</h2>
+    <div class="gallery">
+      <figure>
+        <img src="../assets/1_2__PL2/img2_555_pl2.png" alt="Funcionamento do detetor de escuridão">
+        <figcaption>Esquema do circuito.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/1_2__PL2/img3_555_pl2.png" alt="Funções de cada componente">
+        <figcaption>Funções de cada componente.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
-
+  
 <section class="part">
   <div class="wrap">
     <h2>Descrição</h2>
-    <p>Um circuito que reconhece a ausência de luz: quando a luz incide no LDR, o LED apaga; na escuridão, o LED acende. A aplicação natural é acender luzes automaticamente ao anoitecer, ou em caso de emergência.</p>
+    <p>Um circuito que reconhece a ausência de luz: quando a luz incide no LDR, o LED apaga e na escuridão, o LED acende. A aplicação natural é acender luzes automaticamente ao anoitecer, ou em caso de emergência.</p>
 
-    <h2>Como funciona</h2>
+    <h2>Funcionamento</h2>
     <p>O LDR (fotorresistência) funciona por fotocondutividade — quando a luz lhe incide, a resistência diminui. Essa variação altera a divisão de tensão entre o LDR e a resistência R3, o que faz baixar o potencial no pino <em>trigger</em> do 555 e subir no <em>reset</em>. Ao sair do modo de reinicialização e com o trigger em baixo, o flip-flop interno comuta e a saída do temporizador gera a onda que acende o LED.</p>
     <p>Em resumo: o LDR deteta escuridão → a sua resistência aumenta → a tensão no trigger diminui e no reset aumenta → o temporizador gera a onda quadrada → o LED acende.</p>
-
-    <h2>O que fiz</h2>
-    <ul>
-      <li>Estudo do funcionamento interno do 555 (divisor de tensão, comparadores e flip-flop) e dos seus modos monoestável e astável.</li>
-      <li>Dimensionamento e montagem do circuito em breadboard.</li>
-      <li>Ensaio e verificação do comportamento com e sem luz.</li>
-      <li>Proposta de melhoria: substituir uma resistência por um potenciómetro, para ajustar a sensibilidade à luz.</li>
-    </ul>
-
-    <h2>Contexto</h2>
-    <p>Primeiro projeto de eletrónica analógica do curso. Trabalho realizado em par.</p>
   </div>
 </section>
 
@@ -67,11 +65,11 @@
     <h2>Imagens</h2>
     <div class="gallery">
       <figure>
-        <img src="../assets/1_2__PL2/esquema.png" alt="Esquema elétrico do circuito">
-        <figcaption>Esquema do circuito</figcaption>
+        <img src="../assets/1_2__PL2/img1_555_pl2.png" alt="Esquema do circuito">
+        <figcaption>Esquema do circuito.</figcaption>
       </figure>
       <figure>
-        <img src="../assets/1_2__PL2/diagrama-555.png" alt="Diagrama de blocos interno do 555">
+        <img src="../assets/1_2__PL2/img_555_pl2.png" alt="Montagem em breadboard">
         <figcaption>Diagrama de blocos do 555</figcaption>
       </figure>
     </div>
