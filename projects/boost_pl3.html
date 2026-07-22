@@ -45,17 +45,21 @@
     <h2>Descrição</h2>
     <p>O trabalho consistiu em estudar e implementar um conversor CC-CC Step-Up (Boost), que eleva uma tensão contínua de entrada para uma tensão de saída superior, através da comutação de um MOSFET. O projeto avançou em três fases:</p>
     <div class="stagelist">
-      <span>1. circuito de comando</span>
-      <span>2. circuito de potência</span>
-      <span>3. conversor completo + PCB</span>
+      <span>1. circuito de comando: driver</span>
+      <span>2. driver + MOSFET</span>
+      <span>3. circuito de potência + PCB</span>
     </div>
   </section>
 
   <section class="block">
-    <h2>Princípio de funcionamento</h2>
-    <p>O circuito de potência é composto por uma bobina, um MOSFET, um díodo e um condensador. A bobina armazena energia enquanto o MOSFET conduz e liberta-a para a carga quando este corta; o díodo impede o retorno de corrente e o condensador estabiliza a tensão de saída. A relação entre a tensão de entrada, a de saída e o duty-cycle do sinal de comando é dada por:</p>
+    <h2>Funcionamento</h2>
+    <p>O circuito de potência é composto por uma bobina, um MOSFET, um díodo e um condensador.</p>
+    <p>A bobina armazena energia quando o MOSFET está ligado, e liberta-a quando o MOSFET está desligado. </p>
+    <p>O díodo permite que a corrente circule para a carga quando o MOSFET está desligado, mas impede o seu retorno. </p>
+    <p>O condensador atenua a saída do conversor, fornecendo uma tensão contínua mais estável.</p>
+    <p>A relação entre a tensão de entrada, a de saída e o duty-cycle do sinal de comando é dada por:</p>
     <div class="formula">D = 1 − (V<sub>in</sub> / V<sub>out</sub>)</div>
-    <p>O circuito de comando, montado com um transístor BC547/BC546, converte o sinal de controlo do gerador de sinais numa onda adequada para acionar a gate do MOSFET.</p>
+    <p>O circuito de comando, montado com um transístor e duas resistências, converte o sinal de controlo do gerador de sinais numa onda adequada para acionar a gate do MOSFET.</p>
   </section>
 
   <section class="block">
