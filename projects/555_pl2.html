@@ -55,8 +55,10 @@
     <p>Um circuito que reconhece a ausência de luz: quando a luz incide no LDR, o LED apaga e na escuridão, o LED acende. A aplicação natural é acender luzes automaticamente ao anoitecer, ou em caso de emergência.</p>
 
     <h2>Funcionamento</h2>
-    <p>O LDR (fotorresistência) funciona por fotocondutividade — quando a luz lhe incide, a resistência diminui. Essa variação altera a divisão de tensão entre o LDR e a resistência R3, o que faz baixar o potencial no pino <em>trigger</em> do 555 e subir no <em>reset</em>. Ao sair do modo de reinicialização e com o trigger em baixo, o flip-flop interno comuta e a saída do temporizador gera a onda que acende o LED.</p>
-    <p>Em resumo: o LDR deteta escuridão → a sua resistência aumenta → a tensão no trigger diminui e no reset aumenta → o temporizador gera a onda quadrada → o LED acende.</p>
+    <p>O funcionamento do circuito baseia-se na variação da resistência do LDR (Light Dependent Resistor) em função da luminosidade. Quando existe muita luz, a resistência do LDR é baixa. À medida que a iluminação diminui, a sua resistência aumenta.</p>
+    <p>Esta alteração modifica a divisão de tensão entre o LDR e a resistência R3, provocando uma diminuição da tensão aplicada ao pino Trigger do temporizador 555 e um aumento da tensão no pino Reset.</p>
+    <p>Quando a tensão no pino Trigger desce abaixo de um terço da tensão de alimentação (1/3 VCC) e o pino Reset deixa de manter o circuito reinicializado, o temporizador 555 ativa a sua saída. Como resultado, o LED é ligado, indicando que o ambiente está escuro.</p>
+    <p>Assim, o circuito funciona automaticamente: durante o dia, o LED permanece apagado; quando anoitece ou a intensidade luminosa diminui, o LDR deteta essa alteração e o temporizador 555 liga o LED.</p>
   </div>
 </section>
 
