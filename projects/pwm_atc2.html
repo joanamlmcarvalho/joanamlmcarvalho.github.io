@@ -44,12 +44,12 @@
 <section class="part">
   <div class="wrap">
     <h2>Descrição</h2>
-    <p>Um controlador de PWM (Pulse Width Modulation) num microcontrolador EFM8BB3 (Keil uVision), em linguagem C, comandado remotamente por um protocolo próprio sobre UART.</p>
+    <p>Um controlador de <strong>PWM</strong> (Pulse Width Modulation) num <strong>microcontrolador EFM8BB3 (Keil uVision), em linguagem C</strong>, comandado remotamente por um protocolo próprio sobre <strong>UART</strong>.</p>
     <p>O objetivo seria para regular à distância o brilho de um LED ou a velocidade de um motor, e também para reproduzir automaticamente uma sequência de valores, por exemplo: criar uma sinusoide.</p>
 
     <h2>Funcionamento</h2>
-    <p>O sinal PWM é gerado pelo <strong>PCA0</strong> (Programmable Counter Array), usado em dois módulos ao mesmo tempo: o Módulo 0 gera a onda PWM em si (8 bits de resolução, duty-cycle 0–100%); o Módulo 1 funciona como temporizador de software, usado só para cadenciar a reprodução automática de sequências.</p>
-    <p>Toda a comunicação série corre por <strong>interrupção</strong>, com dois buffers circulares (FIFO) de 32 bytes — um de receção, outro de transmissão — para que o programa principal nunca fique bloqueado à espera de um byte.</p>
+    <p>O sinal PWM é gerado pelo <strong>PCA0</strong> (Programmable Counter Array), usado em dois módulos ao mesmo tempo: o Módulo 0 gera a onda PWM em si (8 bits de resolução, duty-cycle 0–100%); o Módulo 1 funciona como temporizador de software, usado apenas para a reprodução periódica e automática de sequências.</p>
+    <p>A comunicação série ocorre por <strong>interrupção</strong>, com dois <strong>buffers circulares (FIFO)</strong> de 32 bytes (um de receção - RX, e um de transmissão - TX), de modo a não bloquear o programa principal.</p>
 
     <h2>Protocolo de comunicação</h2>
     <p>Os comandos chegam por UART a 115200 bps num formato próprio, pensado para detetar erros de transmissão:</p>
