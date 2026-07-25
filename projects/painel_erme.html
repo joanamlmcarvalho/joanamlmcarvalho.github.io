@@ -43,7 +43,7 @@
 <section class="part">
   <div class="wrap">
     <h2>Descrição</h2>
-    <p>O objetivo deste projeto foi desenvolver um conversor CC-CC do tipo <em>Boost</em> capaz de atuar como MPPT (<em>Maximum Power Point Tracking</em>) de um painel fotovoltaico — ou seja, um circuito que ajusta continuamente o ponto de funcionamento do painel para extrair dele a máxima potência disponível a cada instante.</p>
+    <p>Um conversor CC-CC do tipo <stong>Boost</strong> capaz de atuar como <strong>MPPT</strong> (Maximum Power Point Tracking) de um painel fotovoltaico, explica-se como um circuito que ajusta continuamente o ponto de funcionamento do painel para extrair a máxima potência disponível a cada instante.</p>
     <p>A eficiência de conversão de um painel solar é diretamente afetada por variáveis ambientais como a irradiância e a temperatura, o que torna necessário este tipo de estratégia para maximizar o aproveitamento de energia.</p>
   </div>
 </section>
@@ -51,32 +51,26 @@
 <section class="part">
   <div class="wrap">
     <h2>Funcionamento</h2>
-    <h3>O algoritmo — Perturbação e Observação (P&amp;O)</h3>
+    <h3>Algoritmo: Perturbação e Observação (P&amp;O)</h3>
     <p>A cada ciclo, mede-se a tensão e a corrente do painel e calcula-se a potência <span class="mono">p[k] = i[k]·v[k]</span>. Compara-se essa potência com a do ciclo anterior: se a variação de potência e a variação de tensão tiverem o mesmo sinal, o <em>duty-cycle</em> aumenta; caso contrário, diminui. É esta "perturbação" repetida que faz o sistema convergir para o ponto de potência máxima.</p>
 
-    <h3>O circuito de controlo</h3>
-    <p>Um microcontrolador EFM8BB3 gera o sinal PWM que controla um transístor bipolar (BC546), que por sua vez comanda a tensão de gate de um MOSFET (BUK453) — com um díodo Zener de 16V e uma resistência de <em>pull-down</em> a proteger a gate. O transístor funciona como interruptor: quando conduz, bloqueia o MOSFET; quando corta, liga-o.</p>
+    <h3>Circuito de controlo</h3>
+    <p>Um microcontrolador gera o sinal PWM que controla um transístor, que por sua vez comanda a tensão de gate de um MOSFET. O transístor funciona como um interruptor: quando conduz, bloqueia o MOSFET; quando corta, liga-o.</p>
 
-    <h3>O estágio de potência</h3>
-    <p>O MOSFET comuta a corrente que passa por uma bobina de 588 µH; um díodo (1N5822) e um condensador de saída (10 µF) filtram e entregam a tensão à carga. A relação entre a tensão de entrada, a de saída e o <em>duty-cycle</em> D é a de um conversor Boost clássico:</p>
-    <div class="formula">Vout = Vin / (1 − D)</div>
-    <p>Ou seja: aumentar o duty-cycle aumenta a tensão de saída, mas reduz a corrente disponível — e vice-versa, mantendo a potência.</p>  </div>
+    <h3>Circuito de potência</h3>
+    <p>Como explicado no projeto anterior, o circuito de potência é composto por um MOSFET, uma bobina, um díodo e um condensador.</p>
+    <p>A relação entre a tensão de entrada, a de saída e o <em>duty-cycle</em> D é: <span class="mono">Vout = Vin / (1 − D)</span>.</p>
+    <p>Ou seja: como a potência mantem-se, ao aumentar o duty-cycle aumenta a tensão de saída, mas reduz a corrente disponível, e vice-versa.</p>
+  </div>
 </section>
 
-  <section class="block">
+<section class="part">
+  <div class="wrap">
     <h2>Testes e resultados</h2>
-    <p>O sistema foi validado em três fases: primeiro em <em>breadboard</em>, depois já soldado na PCB, e por fim com o painel solar exposto à luz real.</p>
+    <p>O sistema foi validado em três fases: primeiro em <em>breadboard</em>, depois soldado na PCB, e por fim com o painel solar exposto à luz solar.</p>
     <div class="callout">Com o painel totalmente exposto ao sol: tensão de entrada de 19,92V e tensão de saída de 54,48V. Com o painel parcialmente exposto: 7,82V à entrada e 14,02V à saída — confirmando que o conversor eleva a tensão de forma proporcional às condições de irradiância.</div>
-    <p>As medições no osciloscópio confirmaram o comportamento esperado do sinal de controlo, do MOSFET e da tensão de carga, com um <em>duty-cycle</em> próximo dos 50% e frequência de comutação na ordem dos 16-20 kHz.</p>
-
-    <div class="gallery">
-      <div class="thumb">adicionar imagem — testes em breadboard</div>
-      <div class="thumb">adicionar imagem — PCB montada</div>
-      <div class="thumb">adicionar imagem — teste com painel ao ar livre</div>
-      <div class="thumb">adicionar imagem — osciloscópio</div>
-    </div>
-  </section>
-
+  </div>
+</section>
   
 <section class="part">
   <div class="wrap">
