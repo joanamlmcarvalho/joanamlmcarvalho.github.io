@@ -1,15 +1,9 @@
-<!--
-  GUIA RÁPIDO
-  - Onde vês "adicionar imagem", troca pelo <img src="../assets/3_2__ERME/....jpg">.
-  - O PDF do relatório e da apresentação vão em: assets/3_2__ERME/
-  - Troca os nomes dos ficheiros nos links "relatório.pdf" e "apresentacao.pdf" se lhes deres outro nome.
--->
 <!doctype html>
 <html lang="pt">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Painel Solar com Boost — MPPT · Joana Carvalho</title>
+<title>MPPT — Joana Carvalho</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,34 +19,38 @@
   </div>
 </header>
 
-<div class="hero">
+<div class="head">
   <div class="wrap">
-    <p class="kicker">eletrónica de potência &amp; energia · energias renováveis e mobilidade elétrica</p>
-    <h1>Painel Solar com Boost — MPPT</h1>
-    <p class="tagline">Um conversor Boost que persegue, em tempo real, o ponto de potência máxima de um painel solar.</p>
+    <p class="kicker">Energias Renováveis e Mobilidade Elétrica</p>
+    <h1>MPPT</h1>
+    <p class="sub">Conversor Boost que persegue o ponto de potência máxima de um painel solar.</p>
 
     <div class="facts">
-      <div class="fact"><p class="k">Cadeira</p><p class="v">Energias Renováveis e Mobilidade Elétrica</p></div>
-      <div class="fact"><p class="k">Ano</p><p class="v">2024/2025 · 3º ano · 2º semestre</p></div>
-      <div class="fact"><p class="k">Docentes</p><p class="v">João Afonso &amp; Vítor Monteiro</p></div>
-      <div class="fact"><p class="k">Equipa</p><p class="v">António Carvalho, Catarina Sousa, Francisca Domingues, Isabel Gomes, Joana Carvalho</p></div>
+      <div class="fact"><p class="k">Unidade curricular</p><p class="v">Energias Renováveis e Mobilidade Elétrica</p></div>
+      <div class="fact"><p class="k">Ano</p><p class="v">3.º ano, 2.º semestre · 2024/25</p></div>
+      <div class="fact"><p class="k">Equipa</p><p class="v">5 elementos</p></div>
     </div>
-
-    <div class="thumb-main">adicionar imagem principal (ex.: PCB montada com o painel solar)</div>
   </div>
 </div>
 
-<div class="wrap">
+<section class="part">
+  <div class="wrap">
+    <div class="media"><img src="../assets/3_2__ERME/img_painel_erme.png" alt="MPPT e painel solar utilizados"></div>
+    <p class="caption">MPPT e painel solar utilizados.</p>
+  </div>
+</section>
 
-  <section class="block">
-    <h2>O que é</h2>
+<section class="part">
+  <div class="wrap">
+    <h2>Descrição</h2>
     <p>O objetivo deste projeto foi desenvolver um conversor CC-CC do tipo <em>Boost</em> capaz de atuar como MPPT (<em>Maximum Power Point Tracking</em>) de um painel fotovoltaico — ou seja, um circuito que ajusta continuamente o ponto de funcionamento do painel para extrair dele a máxima potência disponível a cada instante.</p>
     <p>A eficiência de conversão de um painel solar é diretamente afetada por variáveis ambientais como a irradiância e a temperatura, o que torna necessário este tipo de estratégia para maximizar o aproveitamento de energia.</p>
-  </section>
-
-  <section class="block">
-    <h2>Como funciona</h2>
-
+  </div>
+</section>
+  
+<section class="part">
+  <div class="wrap">
+    <h2>Funcionamento</h2>
     <h3>O algoritmo — Perturbação e Observação (P&amp;O)</h3>
     <p>A cada ciclo, mede-se a tensão e a corrente do painel e calcula-se a potência <span class="mono">p[k] = i[k]·v[k]</span>. Compara-se essa potência com a do ciclo anterior: se a variação de potência e a variação de tensão tiverem o mesmo sinal, o <em>duty-cycle</em> aumenta; caso contrário, diminui. É esta "perturbação" repetida que faz o sistema convergir para o ponto de potência máxima.</p>
 
@@ -62,13 +60,8 @@
     <h3>O estágio de potência</h3>
     <p>O MOSFET comuta a corrente que passa por uma bobina de 588 µH; um díodo (1N5822) e um condensador de saída (10 µF) filtram e entregam a tensão à carga. A relação entre a tensão de entrada, a de saída e o <em>duty-cycle</em> D é a de um conversor Boost clássico:</p>
     <div class="formula">Vout = Vin / (1 − D)</div>
-    <p>Ou seja: aumentar o duty-cycle aumenta a tensão de saída, mas reduz a corrente disponível — e vice-versa, mantendo a potência.</p>
-  </section>
-
-  <section class="block">
-    <h2>O que fiz</h2>
-    <p>EDITA: descreve aqui a tua parte específica do projeto — por exemplo, se trabalhaste mais no código do microcontrolador, no desenho do circuito em KiCad, na soldadura da PCB, ou nos testes com o osciloscópio e o painel solar.</p>
-  </section>
+    <p>Ou seja: aumentar o duty-cycle aumenta a tensão de saída, mas reduz a corrente disponível — e vice-versa, mantendo a potência.</p>  </div>
+</section>
 
   <section class="block">
     <h2>Testes e resultados</h2>
@@ -84,27 +77,33 @@
     </div>
   </section>
 
-  <section class="block">
-    <h2>Material utilizado</h2>
-    <table class="mat">
-      <tr><th>Circuito de controlo</th><th>Circuito de potência</th></tr>
-      <tr><td>Transístor BC546</td><td>Bobina de 588 µH</td></tr>
-      <tr><td>Díodo de Zener 16V</td><td>MOSFET BUK453</td></tr>
-      <tr><td>Resistências R1–R4</td><td>Díodo 1N5822</td></tr>
-      <tr><td>Microcontrolador EFM8BB3</td><td>Condensador 10 µF</td></tr>
-      <tr><td>Fonte de tensão contínua</td><td>Painel solar (20W, CL-SM20P)</td></tr>
-    </table>
-  </section>
+  
+<section class="part">
+  <div class="wrap">
+    <h2>Demonstração</h2>
+    <div class="media"><video controls muted playsinline src="../'assets/3_2__ERME/video_painel_erme.mp4"></video></div>
+    <p class="caption">Demonstração do funcionamento.</p>
+  </div>
+</section>
 
-  <section class="block">
+
+<section class="part">
+  <div class="wrap">
     <h2>Documentação</h2>
     <div class="files">
-      <a href="../assets/3_2__ERME/relatorio.pdf">relatório completo (PDF) <span class="arrow">↗</span></a>
-      <a href="../assets/3_2__ERME/apresentacao.pdf">apresentação (PDF) <span class="arrow">↗</span></a>
+      <a href="../assets/3_2__ERME/relatorio_painel_erme.pdf"target="_blank" rel="noopener">relatório (pdf) <span class="arrow">↗</span></a>
+      <a href="../assets/3_2__ERME/ppt_painel_erme.pdf" target="_blank" rel="noopener">apresentação (pdf) <span class="arrow">↗</span></a>
+      <a class="muted" href="#">código privado</a>
     </div>
-  </section>
+    <iframe class="pdf-embed" src="../assets/3_2__ERME/relatorio_painel_erme.pdf" title="Relatório do ERME"></iframe>
+    <iframe class="pdf-embed" src="../assets/3_2__ERME/ppt_painel_erme.pdf" title="Apresentação do ERME"></iframe>
 
-</div>
+    <a class="next" href="agrobot_pi1.html">
+      <p class="k">Anterior: </p>
+      <p class="t">BOOST</p>
+    </a>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
@@ -112,6 +111,7 @@
     <p class="colophon">Joana Carvalho · 2026</p>
   </div>
 </footer>
-
+  
+<script src="../gallery.js" defer></script>
 </body>
 </html>
