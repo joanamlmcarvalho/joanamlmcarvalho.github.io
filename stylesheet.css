@@ -110,67 +110,6 @@ section.part .caption,section.block .caption{font-family:var(--mono);font-size:1
 .fact .k,.team dt{font-family:var(--mono);font-size:11px;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin:0 0 3px}
 .fact .v,.team dd{font-size:15px;margin:0;line-height:1.5}
 
-/* ===== ficha técnica do projeto ===== */
-
-.project-summary{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:16px;
-    margin:32px 0;
-}
-
-.summary-card{
-
-    background:#fff;
-
-    border:1px solid var(--line);
-
-    border-radius:8px;
-
-    padding:18px;
-
-    transition:.2s ease;
-
-}
-
-.summary-card:hover{
-
-    border-color:var(--accent);
-
-    transform:translateY(-2px);
-
-}
-
-.summary-title{
-
-    display:block;
-
-    font-family:var(--mono);
-
-    font-size:11px;
-
-    letter-spacing:.06em;
-
-    text-transform:uppercase;
-
-    color:var(--accent);
-
-    margin-bottom:8px;
-
-}
-
-.summary-value{
-
-    display:block;
-
-    color:var(--ink);
-
-    font-size:15px;
-
-    line-height:1.5;
-
-}
-
 /* ===== conteúdo das secções — páginas de projeto ===== */
 section.part,section.block{border-top:1px solid var(--line);padding:44px 0}
 section.part:first-of-type,section.block:first-of-type{border-top:0}
