@@ -110,6 +110,67 @@ section.part .caption,section.block .caption{font-family:var(--mono);font-size:1
 .fact .k,.team dt{font-family:var(--mono);font-size:11px;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin:0 0 3px}
 .fact .v,.team dd{font-size:15px;margin:0;line-height:1.5}
 
+/* ===== ficha técnica do projeto ===== */
+
+.project-summary{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;
+    margin:32px 0;
+}
+
+.summary-card{
+
+    background:#fff;
+
+    border:1px solid var(--line);
+
+    border-radius:8px;
+
+    padding:18px;
+
+    transition:.2s ease;
+
+}
+
+.summary-card:hover{
+
+    border-color:var(--accent);
+
+    transform:translateY(-2px);
+
+}
+
+.summary-title{
+
+    display:block;
+
+    font-family:var(--mono);
+
+    font-size:11px;
+
+    letter-spacing:.06em;
+
+    text-transform:uppercase;
+
+    color:var(--accent);
+
+    margin-bottom:8px;
+
+}
+
+.summary-value{
+
+    display:block;
+
+    color:var(--ink);
+
+    font-size:15px;
+
+    line-height:1.5;
+
+}
+
 /* ===== conteúdo das secções — páginas de projeto ===== */
 section.part,section.block{border-top:1px solid var(--line);padding:44px 0}
 section.part:first-of-type,section.block:first-of-type{border-top:0}
@@ -179,49 +240,6 @@ footer a:hover{color:var(--accent)}
 footer .bye{font-family:var(--serif);font-style:italic;font-size:24px;margin:0 0 18px}
 footer .contacts{display:flex;flex-wrap:wrap;gap:20px;font-family:var(--mono);font-size:13px;margin:0 0 26px}
 footer .contacts a{color:var(--ink);border-bottom:1px solid var(--line)}
-
-
-/* ==========================
-   Ficha técnica do projeto
-========================== */
-
-.project-summary{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:18px;
-    margin:35px 0;
-}
-
-.summary-card{
-    background:#EEF7FF;
-    border:2px solid #2D6CDF;
-    border-radius:16px;
-    padding:18px;
-    box-shadow:0 6px 18px rgba(45,108,223,.08);
-    transition:.25s ease;
-}
-
-.summary-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 22px rgba(45,108,223,.15);
-}
-
-.summary-title{
-    display:block;
-    margin-bottom:10px;
-    color:#2D6CDF;
-    font-size:.82rem;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-}
-
-.summary-value{
-    display:block;
-    color:#111;
-    font-size:1rem;
-    line-height:1.45;
-}
 
 /* rodapé da homepage: três blocos empilhados, encostados à esquerda */
 footer#contactos .wrap{flex-direction:column;align-items:flex-start;justify-content:flex-start}
