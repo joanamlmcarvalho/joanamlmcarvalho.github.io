@@ -24,22 +24,29 @@
     <p class="kicker">Práticas Laboratoriais 3</p>
     <h1>Conversor CC-CC (Boost)</h1>
     <p class="sub">Converter uma tensão contínua de entrada num valor de tensão contínua superior na saída.</p>
-    
+
     <div class="facts">
       <div class="fact"><p class="k">Unidade curricular</p><p class="v">Práticas Laboratoriais em EEIC 3</p></div>
-      <div class="fact"><p class="k">Ano</p><p class="v">2.º ano, 2.º semestre · 2023/24</p></div>
+      <div class="fact"><p class="k">Ano</p><p class="v">2023/2024</p></div>
       <div class="fact"><p class="k">Equipa</p><p class="v">3 elementos</p></div>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><p class="k">Plataforma</p><p class="v">PSIM · KiCad</p></div>
+      <div class="fact"><p class="k">Topologia</p><p class="v">Step-Up (Boost)</p></div>
+      <div class="fact"><p class="k">Potência</p><p class="v">Bobina · MOSFET · Díodo · Condensador</p></div>
+      <div class="fact"><p class="k">Controlo</p><p class="v">Transístor · Resistências</p></div>
     </div>
   </div>
 </div>
 
 <section class="part">
   <div class="wrap">
-    <div class="media"><img src="../assets/2_2__PL3/img_boost_pl3.png" alt="O BOOST na sua versão final"></div>
+    <div class="media"><img src="../assets/2_2__PL3/img_boost_pl3.png" alt="O BOOST na sua versão final" loading="lazy"></div>
     <p class="caption">A versão final do BOOST</p>
   </div>
 </section>
-  
+
 <div class="wrap">
   <section class="block">
     <h2>Descrição</h2>
@@ -81,7 +88,7 @@
     <h2>PCB em KiCad</h2>
     <p>O esquemático e o desenho da placa foram feitos em KiCad, incluindo o layout dos componentes de potência (bobina, MOSFET, condensador) e de comando (resistências, transístor, díodo de zener), terminando com a soldadura e montagem da PCB final.</p>
     <p>Na montagem final em PCB, com tensão de entrada de 15V e duty-cycle de 50%, obteve-se uma tensão de saída de aproximadamente 27V — próxima do valor teórico de 30V, com a diferença atribuída a perdas de energia nos componentes reais e a alguma tolerância no dimensionamento das resistências.</p>
-    <p>Confirmou-se ainda que, ao aumentar a tensão de entrada, a corrente da entrada diminui, e como se trata de um circuito step-up, a tensão de saída vai aumentar e a corrente diminuir. Este comportamento deve-se ao facto, de que a potência mantêm-se tanto na entrada como na saída.</p>
+    <p>Confirmou-se ainda que, ao aumentar a tensão de entrada, a corrente da entrada diminui, e como se trata de um circuito step-up, a tensão de saída vai aumentar e a corrente diminuir. Este comportamento deve-se ao facto de que a potência se mantém tanto na entrada como na saída.</p>
   </section>
 </div>
 
@@ -90,59 +97,59 @@
     <h2>Imagens - circuito de comando</h2>
     <div class="gallery">
       <figure>
-        <img src="../assets/2_2__PL3/img1_boost_pl3.png" alt="Esquema do circuito de comando">
+        <img src="../assets/2_2__PL3/img1_boost_pl3.png" alt="Esquema do circuito de comando" loading="lazy">
         <figcaption>Esquema do circuito de comando.</figcaption>
       </figure>
       <figure>
-        <img src="../assets/2_2__PL3/img2_boost_pl3.png" alt="Montagem em breadboard do circuito de comando">
+        <img src="../assets/2_2__PL3/img2_boost_pl3.png" alt="Montagem em breadboard do circuito de comando" loading="lazy">
         <figcaption>Montagem em breadboard do circuito de comando.</figcaption>
       </figure>
     </div>
     <h2>Imagens - circuito de comando + MOSFET</h2>
     <div class="gallery">
       <figure>
-        <img src="../assets/2_2__PL3/img3_boost_pl3.png" alt="Esquema do circuito de comando + MOSFET">
+        <img src="../assets/2_2__PL3/img3_boost_pl3.png" alt="Esquema do circuito de comando + MOSFET" loading="lazy">
         <figcaption>Esquema do circuito de comando + MOSFET</figcaption>
       </figure>
       <figure>
-        <img src="../assets/2_2__PL3/img4_boost_pl3.png" alt="Montagem em breadboard do circuito de comando + MOSFET">
+        <img src="../assets/2_2__PL3/img4_boost_pl3.png" alt="Montagem em breadboard do circuito de comando + MOSFET" loading="lazy">
         <figcaption>Montagem em breadboard do circuito de comando + MOSFET.</figcaption>
       </figure>
     </div>
     <h2>Imagens - circuito de potência</h2>
     <div class="gallery">
       <figure>
-        <img src="../assets/2_2__PL3/img5_boost_pl3.png" alt="Esquema do cconversor CC-CC">
+        <img src="../assets/2_2__PL3/img5_boost_pl3.png" alt="Esquema do conversor CC-CC" loading="lazy">
         <figcaption>Esquema do conversor CC-CC</figcaption>
       </figure>
       <figure>
-        <img src="../assets/2_2__PL3/img6_boost_pl3.png" alt="Montagem em breadboard do conversor CC-CC">
-        <figcaption>Montagem em breadboard do cconversor CC-CC</figcaption>
+        <img src="../assets/2_2__PL3/img6_boost_pl3.png" alt="Montagem em breadboard do conversor CC-CC" loading="lazy">
+        <figcaption>Montagem em breadboard do conversor CC-CC</figcaption>
       </figure>
     </div>
     <h2>Imagens - PCB em KiCad</h2>
     <div class="gallery">
       <figure>
-        <img src="../assets/2_2__PL3/img7_boost_pl3.png" alt="Esquema do circuito no KiCad">
+        <img src="../assets/2_2__PL3/img7_boost_pl3.png" alt="Esquema do circuito no KiCad" loading="lazy">
         <figcaption>Esquema do circuito no KiCad.</figcaption>
       </figure>
       <figure>
-        <img src="../assets/2_2__PL3/img8_boost_pl3.png" alt="Esquema da PCB no KiCad">
+        <img src="../assets/2_2__PL3/img8_boost_pl3.png" alt="Esquema da PCB no KiCad" loading="lazy">
         <figcaption>Esquema da PCB no KiCad.</figcaption>
       </figure>
     </div>
   </div>
 </section>
-  
+
 <section class="part">
   <div class="wrap">
     <h2>Documentação</h2>
     <div class="files">
-      <a href="../assets/2_2__PL3/relatorio_boost_pl3.pdf"target="_blank" rel="noopener">relatório (pdf) <span class="arrow">↗</span></a>
+      <a href="../assets/2_2__PL3/relatorio_boost_pl3.pdf" target="_blank" rel="noopener">relatório (pdf) <span class="arrow">↗</span></a>
       <a href="../assets/2_2__PL3/ppt_boost_pl3.pdf" target="_blank" rel="noopener">apresentação (pdf) <span class="arrow">↗</span></a>
     </div>
-    <iframe class="pdf-embed" src="../assets/2_2__PL3/relatorio_boost_pl3.pdf" title="Relatório do PI2"></iframe>
-    <iframe class="pdf-embed" src="../assets/2_2__PL3/ppt_boost_pl3.pdf" title="Apresentação do PI2"></iframe>
+    <iframe class="pdf-embed" src="../assets/2_2__PL3/relatorio_boost_pl3.pdf" title="Relatório do PL3"></iframe>
+    <iframe class="pdf-embed" src="../assets/2_2__PL3/ppt_boost_pl3.pdf" title="Apresentação do PL3"></iframe>
 
     <a class="next" href="painel_erme.html">
       <p class="k">Seguinte</p>
@@ -157,7 +164,7 @@
     <p class="colophon">Joana Carvalho · 2026</p>
   </div>
 </footer>
-  
+
 <script src="../gallery.js" defer></script>
 </body>
 </html>
