@@ -23,19 +23,28 @@
   <div class="wrap">
     <p class="kicker">Sistemas Embebidos</p>
     <h1>Vending Machine</h1>
-    <p class="sub">Simulacão de uma máquina de venda automática.</p>
-    
+    <p class="sub">Simulação de uma máquina de venda automática.</p>
+
     <div class="facts">
       <div class="fact"><p class="k">Unidade curricular</p><p class="v">Sistemas Embebidos</p></div>
-      <div class="fact"><p class="k">Ano</p><p class="v">3.º ano, 2.º semestre · 2025/26</p></div>
+      <div class="fact"><p class="k">Ano</p><p class="v">2025/2026</p></div>
       <div class="fact"><p class="k">Equipa</p><p class="v">2 elementos</p></div>
+    </div>
+
+<div class="facts">
+      <div class="fact"><p class="k">Microcontrolador</p><p class="v">STM32H755ZI-Q</p></div>
+      <div class="fact"><p class="k">Comunicação</p><p class="v">UART: Bluetooth · sensor de moedas</p></div>
+      <div class="fact"><p class="k">Controlo ambiente</p><p class="v">Histerese (refrigeração) · RTC (iluminação)</p></div>
+      <div class="fact"><p class="k">Deteção</p><p class="v">Duplo sensor: ótico + posição</p></div>
+      <div class="fact"><p class="k">Interface</p><p class="v">Display · Bluetooth</p></div>
+      <div class="fact"><p class="k">Componentes</p><p class="v">LEDs · botões · DHT11 · HC-05 · LCD1602</p></div>
     </div>
   </div>
 </div>
 
 <section class="part">
   <div class="wrap">
-    <div class="media"><img src="../assets/3_2__SE/img_vending_se.png" alt="Protótipo do sistema montado"></div>
+    <div class="media"><img src="../assets/3_2__SE/img_vending_se.png" alt="Protótipo do sistema montado" loading="lazy"></div>
     <p class="caption">O protótipo montado: STM32 e restantes componentes.</p>
   </div>
 </section>
@@ -52,67 +61,63 @@
 
     <div class="gallery">
       <figure>
-        <img src="../assets/3_2__SE/blocos_vending_se.png" alt="Diagrama de blocos">
+        <img src="../assets/3_2__SE/blocos_vending_se.png" alt="Diagrama de blocos" loading="lazy">
         <figcaption>Diagrama de blocos do sistema</figcaption>
       </figure>
       <figure>
-        <img src="../assets/3_2__SE/stock_vending_se.png" alt="Sistema de Stock">
+        <img src="../assets/3_2__SE/stock_vending_se.png" alt="Sistema de Stock" loading="lazy">
         <figcaption>Sistema de Stock</figcaption>
       </figure>
       <figure>
-        <img src="../assets/3_2__SE/coms_vending_se.png" alt="Sistema de Comunicação">
+        <img src="../assets/3_2__SE/coms_vending_se.png" alt="Sistema de Comunicação" loading="lazy">
         <figcaption>Sistema de Comunicação</figcaption>
       </figure>
       <figure>
-        <img src="../assets/3_2__SE/luz_vending_se.png" alt="Sistema de Iluminação">
+        <img src="../assets/3_2__SE/luz_vending_se.png" alt="Sistema de Iluminação" loading="lazy">
         <figcaption>Sistema de Iluminação</figcaption>
       </figure>
       <figure>
-        <img src="../assets/3_2__SE/refri_vending_se.png" alt="Sistema de Refrigeração">
+        <img src="../assets/3_2__SE/refri_vending_se.png" alt="Sistema de Refrigeração" loading="lazy">
         <figcaption>Sistema de Refrigeração</figcaption>
       </figure>
       <figure>
-        <img src="../assets/3_2__SE/pag_vending_se.png" alt="Sistema de Pagamento">
+        <img src="../assets/3_2__SE/pag_vending_se.png" alt="Sistema de Pagamento" loading="lazy">
         <figcaption>Sistema de Pagamento</figcaption>
       </figure>
       <figure>
-        <img src="../assets/3_2__SE/selec_vending_se.png" alt="Sistema de Seleção">
+        <img src="../assets/3_2__SE/selec_vending_se.png" alt="Sistema de Seleção" loading="lazy">
         <figcaption>Sistema de Seleção</figcaption>
       </figure>
       <figure>
-        <img src="../assets/3_2__SE/disp_vending_se.png" alt="Sistema de Dispensação">
+        <img src="../assets/3_2__SE/disp_vending_se.png" alt="Sistema de Dispensação" loading="lazy">
         <figcaption>Sistema de Dispensação</figcaption>
       </figure>
     </div>
   </div>
 </section>
-  
+
 <section class="part">
   <div class="wrap">
     <h2>Desenvolvimento Técnico</h2>
     <p>O sistema está organizado em módulos independentes coordenados por uma máquina de estados central.</p>
 
     <h3>Componentes</h3>
-    <section class="part">
-        <div class="wrap">
-        <div class="media"><img src="../assets/3_2__SE/img2_vending_se.png" alt="Componentes"></div>
-        <p class="caption">Componentes do sistema</p>
-        </div>
-    </section>
-    
+    <div class="media"><img src="../assets/3_2__SE/img2_vending_se.png" alt="Componentes" loading="lazy"></div>
+    <p class="caption">Componentes do sistema</p>
+
     <table>
       <tr><th>Componentes Real</th><th>Componentes Simulação</th><th>Função</th></tr>
-      <tr><td>Teclado</td><td>Teclado (matiz de botões numerados)</td><td>Teclado de seleção de produtos.</td></tr>
+      <tr><td>Teclado</td><td>Teclado (matriz de botões numerados)</td><td>Teclado de seleção de produtos.</td></tr>
       <tr><td>Sensor de posição</td><td>Matriz de botões</td><td>Cada botão simula o sensor de posição de cada motor da espiral.</td></tr>
       <tr><td>Sensor ótico</td><td>Sensor Infravermelho</td><td>Sinaliza quando o produto interrompe o feixe de luz.</td></tr>
-      <tr><td>Sensor Temperatura</td><td>Sensor DHT11</td><td>Sensor externo capaz de medir a temperatura e a humidade.</td></tr>
+      <tr><td>Sensor de Temperatura</td><td>Sensor DHT11</td><td>Sensor externo capaz de medir a temperatura e a humidade.</td></tr>
       <tr><td>Motor da espiral</td><td>Matriz de LEDs</td><td>Cada LED simula cada motor da espiral (on/off).</td></tr>
       <tr><td>Motor da refrigeração</td><td>LED azul</td><td>Simula o motor de refrigeração (on/off).</td></tr>
       <tr><td>Luzes</td><td>LED amarelo</td><td>Simula as luzes da máquina (on/off).</td></tr>
       <tr><td>Display</td><td>LCD1602</td><td>Interface de comunicação máquina-consumidor.</td></tr>
       <tr><td>Bluetooth</td><td>HC-05</td><td>Interface de comunicação máquina-fornecedor.</td></tr>
     </table>
-    
+
     <h3>Periféricos do STM32H755ZI-Q</h3>
     <table>
       <tr><th>Periférico</th><th>Configuração</th><th>Função no projeto</th></tr>
@@ -123,9 +128,9 @@
       <tr><td>RTC</td><td>Relógio de tempo real, com 2 alarmes</td><td>Hora/data do sistema; liga e desliga as luzes</td></tr>
       <tr><td>GPIO</td><td>—</td><td>Matrizes de botões, LCD, sensor IR, motor de refrigeração, motores da espiral</td></tr>
     </table>
-    
+
     <h3>Identificação de moedas - introdução de medidas física</h3>
-    <p>É enviada uma linha de texto, via <strong>UART</strong>, com três medições (peso diâmetro espessura). Estas são comparadas com uma tabela de 6 moedas (5cent a 2€) e apenas aceites se: <code>valor = referência ±tolerância de 0,10 (gramas ou mm)</code>.</p>
+    <p>É enviada uma linha de texto, via <strong>UART</strong>, com três medições (peso, diâmetro, espessura). Estas são comparadas com uma tabela de 6 moedas (5cent a 2€) e apenas aceites se: <code>valor = referência ±tolerância de 0,10 (gramas ou mm)</code>.</p>
 
     <h3>Controlo da refrigeração com <strong>histerese</strong> - leitura periódica do DHT11</h3>
     <table>
@@ -139,10 +144,10 @@
     <p>Cada motor de espiral é ativado através de uma matriz de LEDs 4×4. A confirmação de que o produto foi mesmo entregue combina dois sensores:</p>
     <ul>
       <li><strong>Sensor ótico (IR)</strong> — deteta o produto a cair no tabuleiro de recolha</li>
-      <li><strong>Sensor de posição</strong> — deteta uma rotação completa da espiral </li>
+      <li><strong>Sensor de posição</strong> — deteta uma rotação completa da espiral</li>
     </ul>
     <p>Se a espiral completar o ciclo sem o produto cair, o sistema tenta uma segunda rotação antes de assinalar erro.</p>
-    
+
     <h3>Leitura de botões</h3>
     <p>Tanto o teclado de seleção (4×3) como o sensor de posição (4×4) partilham o mesmo driver genérico, com uso de uma técnica de <strong>debounce</strong> para a leitura de botões de pressão.</p>
 
@@ -158,7 +163,7 @@
     <h2>Documentação</h2>
 
     <div class="files">
-      <a href="../assets/3_2__SE/ppt_vending_se.pdf">apresentação (pdf) <span class="arrow">↗</span></a>
+      <a href="../assets/3_2__SE/ppt_vending_se.pdf" target="_blank" rel="noopener">apresentação (pdf) <span class="arrow">↗</span></a>
       <a class="muted" href="#">código privado</a>
     </div>
 
