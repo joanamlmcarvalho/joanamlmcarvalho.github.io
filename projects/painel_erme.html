@@ -27,15 +27,22 @@
 
     <div class="facts">
       <div class="fact"><p class="k">Unidade curricular</p><p class="v">Energias Renováveis e Mobilidade Elétrica</p></div>
-      <div class="fact"><p class="k">Ano</p><p class="v">3.º ano, 2.º semestre · 2024/25</p></div>
+      <div class="fact"><p class="k">Ano</p><p class="v">2024/2025</p></div>
       <div class="fact"><p class="k">Equipa</p><p class="v">5 elementos</p></div>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><p class="k">Algoritmo</p><p class="v">Perturbação e Observação (P&amp;O)</p></div>
+      <div class="fact"><p class="k">Topologia</p><p class="v">Step-Up (Boost)</p></div>
+      <div class="fact"><p class="k">Potência</p><p class="v">Bobina · MOSFET · Díodo · Condensador</p></div>
+      <div class="fact"><p class="k">Controlo</p><p class="v">Transístor · Resistências · Microcontrolador</p></div>
     </div>
   </div>
 </div>
 
 <section class="part">
   <div class="wrap">
-    <div class="media"><img src="../assets/3_2__ERME/img_painel_erme.png" alt="MPPT e painel solar utilizados"></div>
+    <div class="media"><img src="../assets/3_2__ERME/img_painel_erme.png" alt="MPPT e painel solar utilizados" loading="lazy"></div>
     <p class="caption">MPPT e painel solar utilizados.</p>
   </div>
 </section>
@@ -43,11 +50,11 @@
 <section class="part">
   <div class="wrap">
     <h2>Descrição</h2>
-    <p>Um conversor CC-CC do tipo <stong>Boost</strong> capaz de atuar como <strong>MPPT</strong> (Maximum Power Point Tracking) de um painel fotovoltaico, explica-se como um circuito que ajusta continuamente o ponto de funcionamento do painel para extrair a máxima potência disponível a cada instante.</p>
+    <p>Um conversor CC-CC do tipo <strong>Boost</strong> capaz de atuar como <strong>MPPT</strong> (Maximum Power Point Tracking) de um painel fotovoltaico, explica-se como um circuito que ajusta continuamente o ponto de funcionamento do painel para extrair a máxima potência disponível a cada instante.</p>
     <p>A eficiência de conversão de um painel solar é diretamente afetada por variáveis ambientais como a irradiância e a temperatura, o que torna necessário este tipo de estratégia para maximizar o aproveitamento de energia.</p>
   </div>
 </section>
-  
+
 <section class="part">
   <div class="wrap">
     <h2>Funcionamento</h2>
@@ -60,7 +67,7 @@
     <h3>Circuito de potência</h3>
     <p>Como explicado no projeto anterior, o circuito de potência é composto por um MOSFET, uma bobina, um díodo e um condensador.</p>
     <p>A relação entre a tensão de entrada, a de saída e o <em>duty-cycle</em> D é: <span class="mono">Vout=Vin/(1−D)</span>.</p>
-    <p>Ou seja: como a potência mantem-se, ao aumentar o duty-cycle aumenta a tensão de saída, mas reduz a corrente disponível, e vice-versa.</p>
+    <p>Ou seja: como a potência mantém-se, ao aumentar o duty-cycle aumenta a tensão de saída, mas reduz a corrente disponível, e vice-versa.</p>
   </div>
 </section>
 
@@ -71,7 +78,7 @@
     <div class="callout">Com o painel totalmente exposto ao sol: tensão de entrada de 19,92V e tensão de saída de 54,48V. Com o painel parcialmente exposto: 7,82V à entrada e 14,02V à saída — confirmando que o conversor eleva a tensão de forma proporcional às condições de irradiância.</div>
   </div>
 </section>
-  
+
 <section class="part">
   <div class="wrap">
     <h2>Demonstração</h2>
@@ -85,7 +92,7 @@
   <div class="wrap">
     <h2>Documentação</h2>
     <div class="files">
-      <a href="../assets/3_2__ERME/relatorio_painel_erme.pdf"target="_blank" rel="noopener">relatório (pdf) <span class="arrow">↗</span></a>
+      <a href="../assets/3_2__ERME/relatorio_painel_erme.pdf" target="_blank" rel="noopener">relatório (pdf) <span class="arrow">↗</span></a>
       <a href="../assets/3_2__ERME/ppt_painel_erme.pdf" target="_blank" rel="noopener">apresentação (pdf) <span class="arrow">↗</span></a>
       <a class="muted" href="#">código privado</a>
     </div>
@@ -105,7 +112,7 @@
     <p class="colophon">Joana Carvalho · 2026</p>
   </div>
 </footer>
-  
+
 <script src="../gallery.js" defer></script>
 </body>
 </html>
