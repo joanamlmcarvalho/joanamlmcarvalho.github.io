@@ -22,30 +22,38 @@
 
 <div class="head">
   <div class="wrap">
-    <p class="kicker">Arquiteturae Tecnologiade Computadores II</p>
+    <p class="kicker">Arquitetura e Tecnologia de Computadores II</p>
     <h1>Controlo de PWM</h1>
     <p class="sub">LED e motor controlados à distância.</p>
 
     <div class="facts">
-      <div class="fact"><p class="k">Unidade curricular</p><p class="v">Arquiteturae Tecnologiade Computadores II</p></div>
-      <div class="fact"><p class="k">Ano</p><p class="v">2.º ano, 2.º semestre · 2025/26</p></div>
+      <div class="fact"><p class="k">Unidade curricular</p><p class="v">Arquitetura e Tecnologia de Computadores II</p></div>
+      <div class="fact"><p class="k">Ano</p><p class="v">2025/2026</p></div>
       <div class="fact"><p class="k">Equipa</p><p class="v">2 elementos</p></div>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><p class="k">Microcontrolador</p><p class="v">EFM8BB3</p></div>
+      <div class="fact"><p class="k">Plataforma</p><p class="v">Keil µVision</p></div>
+      <div class="fact"><p class="k">PWM</p><p class="v">PCA0</p></div>
+      <div class="fact"><p class="k">Comunicação</p><p class="v">UART 115200 bps · FIFO circular</p></div>
+      <div class="fact"><p class="k">Protocolo</p><p class="v">Trama com checksum — Tcc&lt;dados&gt;*hh\n</p></div>
     </div>
   </div>
 </div>
-  
+
 <section class="part">
   <div class="wrap">
-    <div class="media"><img src="../assets/2_2__ATC2/img_micro_atc2.png" alt="Controlo da carga por PWM"></div>
+    <div class="media"><img src="../assets/2_2__ATC2/img_micro_atc2.png" alt="Controlo da carga por PWM" loading="lazy"></div>
     <p class="caption">Controlo da carga por PWM.</p>
   </div>
 </section>
-  
+
 <section class="part">
   <div class="wrap">
     <h2>Descrição</h2>
     <p>Um controlador de <strong>PWM</strong> (Pulse Width Modulation) num <strong>microcontrolador EFM8BB3 (Keil uVision), em linguagem C</strong>, comandado remotamente por um protocolo próprio sobre <strong>UART</strong>.</p>
-    <p>O objetivo seria para regular à distância o brilho de um LED ou a velocidade de um motor, e também para reproduzir automaticamente uma sequência de valores, por exemplo: criar uma sinusoide.</p>
+    <p>O objetivo é regular à distância o brilho de um LED ou a velocidade de um motor, e também reproduzir automaticamente uma sequência de valores — por exemplo, para criar uma sinusoide.</p>
 
     <h2>Funcionamento</h2>
     <p>O sinal PWM é gerado pelo <strong>PCA0</strong> (Programmable Counter Array), usado em dois módulos ao mesmo tempo: o Módulo 0 gera a onda PWM em si (8 bits de resolução, duty-cycle 0–100%); o Módulo 1 funciona como temporizador de software, usado apenas para a reprodução periódica e automática de sequências.</p>
@@ -77,22 +85,19 @@
 
     <h2>Máquinas de estado</h2>
     <p>O sistema tem duas máquinas de estado distintas, que trabalham em conjunto: o parser de tramas e o controlo global do sistema, de modo a garantir que só se executam comandos válidos no momento certo.</p>
-    
-    <section class="part">
-      <div class="wrap">
-        <h2>Imagens</h2>
-        <div class="gallery">
-            <figure>
-                <img src="../assets/2_2__ATC2/img_maqE1_atc2.png" alt="Máquina de estados do parser">
-                <figcaption>Máquina de estados do parser</figcaption>
-            </figure>
-            <figure>
-                <img src="../assets/2_2__ATC2/img_maqE2_atc2.png" alt="Máquina de estados do sistema">
-                <figcaption>Máquina de estados do sistema</figcaption>
-            </figure>
-        </div>
-    </section>
-    
+
+    <h2>Imagens</h2>
+    <div class="gallery">
+        <figure>
+            <img src="../assets/2_2__ATC2/img_maqE1_atc2.png" alt="Máquina de estados do parser" loading="lazy">
+            <figcaption>Máquina de estados do parser</figcaption>
+        </figure>
+        <figure>
+            <img src="../assets/2_2__ATC2/img_maqE2_atc2.png" alt="Máquina de estados do sistema" loading="lazy">
+            <figcaption>Máquina de estados do sistema</figcaption>
+        </figure>
+    </div>
+
     <h2>Sequências automáticas</h2>
     <p>Além do controlo manual, é possível carregar até 30 pontos de duty-cycle e depois reproduzi-los automaticamente.</p>
   </div>
@@ -102,7 +107,7 @@
   <div class="wrap">
     <h2>Documentação</h2>
     <div class="files">
-      <a href="../assets/2_2__ATC2/relatorio_pwm_atc2.pdf">relatório (PDF) <span class="arrow">↗</span></a>
+      <a href="../assets/2_2__ATC2/relatorio_pwm_atc2.pdf" target="_blank" rel="noopener">relatório (pdf) <span class="arrow">↗</span></a>
       <a class="muted" href="#">código privado</a>
     </div>
     <iframe class="pdf-embed" src="../assets/2_2__ATC2/relatorio_pwm_atc2.pdf" title="Relatório em PDF"></iframe>
@@ -115,7 +120,7 @@
     <p class="colophon">Joana Carvalho · 2026</p>
   </div>
 </footer>
-  
+
 <script src="../gallery.js" defer></script>
 </body>
 </html>
