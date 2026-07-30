@@ -42,35 +42,89 @@
 
 <section class="part">
   <div class="wrap">
-    <div class="media"><img src="../assets/3_2__SE/img_vending_se.png" alt="Protótipo do sistema montado"></div>
-    <p class="caption">O protótipo montado: STM32 e restantes componentes.</p>
+    <div class="media"><img src="../assets/3_1__ME/img_lab_me.png" alt="Motor"></div>
+    <p class="caption">Motor presente no laboratório.</p>
+  </div>
+</section>
+
+<section class="part">
+  <div class="wrap">
+    <h2>Descrição</h2>
+    <p>O objetivo foi consolidar a matéria dada nas aulas teóricas através de ensaios reais em laboratório: transformadores, máquina de corrente contínua, motor síncrono trifásico e motor de indução, assim como o método de arranque estrela-triângulo.</p>
+
+<section class="part">
+  <div class="wrap">
+    <h2>Temas abordados</h2>
+    <section class="block">
+      <div class="grid2">
+        <div>
+          <h3>Alternador de automóvel</h3>
+          <p>Como introdução, usámos a bicicleta estática do laboratório — ligada a um alternador de automóvel — para perceber, na prática, a conversão de energia mecânica em elétrica: o rotor gira, cria um campo magnético variável, e esse campo induz tensão no estator, que depois é retificada para corrente contínua.</p>
+        </div>
+        <div>
+          <h3>Transformadores</h3>
+          <p>Fizemos o ensaio de indutâncias (com núcleo de ferro, núcleo parcial, núcleo de ar e associações em série), seguido dos ensaios clássicos de um transformador: em vazio, em curto-circuito e de polaridade. Cada ensaio isola um comportamento diferente — o de vazio mostra as perdas no núcleo, o de curto-circuito as perdas nos enrolamentos, e o de polaridade confirma o sentido dos enrolamentos primário e secundário.</p>
+        </div>
+        <div>
+          <h3>Máquina de corrente contínua</h3>
+          <p>Testámos a máquina CC a funcionar como gerador, com excitação independente: ao girar a manivela manualmente, gerámos tensão suficiente para acender um conjunto de lâmpadas, confirmando a relação entre velocidade de rotação e tensão induzida.</p>
+        </div>
+        <div>
+          <h3>Motor síncrono trifásico</h3>
+          <p>Como o motor síncrono não tem binário de arranque próprio, usámos um motor universal auxiliar para o levar até perto da velocidade síncrona antes de o ligar à rede trifásica — método clássico para sincronizar este tipo de máquina.</p>
+        </div>
+        <div>
+          <h3>Motor de indução — trifásico e monofásico</h3>
+          <p>No motor de indução trifásico, comparámos o comportamento em vazio e com carga, e vimos o efeito do condensador de arranque na versão monofásica (reduz a corrente de arranque e o binário de trepidação).</p>
+        </div>
+        <div>
+          <h3>Arranque estrela-triângulo</h3>
+          <p>Por fim, montámos o circuito clássico de arranque estrela-triângulo com contactores e temporizador — a solução mais comum para limitar o pico de corrente no arranque de motores trifásicos de maior potência.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+    
+    <div class="gallery">
+      <figure>
+        <img src="../assets/3_2__SE/blocos_vending_se.png" alt="Diagrama de blocos" loading="lazy">
+        <figcaption>Diagrama de blocos do sistema</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/stock_vending_se.png" alt="Sistema de Stock" loading="lazy">
+        <figcaption>Sistema de Stock</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/coms_vending_se.png" alt="Sistema de Comunicação" loading="lazy">
+        <figcaption>Sistema de Comunicação</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/luz_vending_se.png" alt="Sistema de Iluminação" loading="lazy">
+        <figcaption>Sistema de Iluminação</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/refri_vending_se.png" alt="Sistema de Refrigeração" loading="lazy">
+        <figcaption>Sistema de Refrigeração</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/pag_vending_se.png" alt="Sistema de Pagamento" loading="lazy">
+        <figcaption>Sistema de Pagamento</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/selec_vending_se.png" alt="Sistema de Seleção" loading="lazy">
+        <figcaption>Sistema de Seleção</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/3_2__SE/disp_vending_se.png" alt="Sistema de Dispensação" loading="lazy">
+        <figcaption>Sistema de Dispensação</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
   
-  <section class="part">
-    <h2>O que é</h2>
-    <p>Relatório de duas aulas práticas da cadeira de Máquinas Elétricas, feito em par. O objetivo foi consolidar a matéria dada nas aulas teóricas através de ensaios reais em laboratório: transformadores, máquina de corrente contínua, motor síncrono trifásico e motor de indução — terminando com o método de arranque estrela-triângulo, usado para controlar o pico de corrente de arranque de motores trifásicos.</p>
+---------------------------------
 
-    <h2>O que fizemos</h2>
-
-    <h3>Alternador de automóvel</h3>
-    <p>Como introdução, usámos a bicicleta estática do laboratório — ligada a um alternador de automóvel — para perceber, na prática, a conversão de energia mecânica em elétrica: o rotor gira, cria um campo magnético variável, e esse campo induz tensão no estator, que depois é retificada para corrente contínua.</p>
-
-    <h3>Transformadores</h3>
-    <p>Fizemos o ensaio de indutâncias (com núcleo de ferro, núcleo parcial, núcleo de ar e associações em série), seguido dos ensaios clássicos de um transformador: em vazio, em curto-circuito e de polaridade. Cada ensaio isola um comportamento diferente — o de vazio mostra as perdas no núcleo, o de curto-circuito as perdas nos enrolamentos, e o de polaridade confirma o sentido dos enrolamentos primário e secundário.</p>
-
-    <h3>Máquina de corrente contínua</h3>
-    <p>Testámos a máquina CC a funcionar como gerador, com excitação independente: ao girar a manivela manualmente, gerámos tensão suficiente para acender um conjunto de lâmpadas, confirmando a relação entre velocidade de rotação e tensão induzida.</p>
-
-    <h3>Motor síncrono trifásico</h3>
-    <p>Como o motor síncrono não tem binário de arranque próprio, usámos um motor universal auxiliar para o levar até perto da velocidade síncrona antes de o ligar à rede trifásica — método clássico para sincronizar este tipo de máquina.</p>
-
-    <h3>Motor de indução — trifásico e monofásico</h3>
-    <p>No motor de indução trifásico, comparámos o comportamento em vazio e com carga, e vimos o efeito do condensador de arranque na versão monofásica (reduz a corrente de arranque e o binário de trepidação).</p>
-
-    <h3>Arranque estrela-triângulo</h3>
-    <p>Por fim, montámos o circuito clássico de arranque estrela-triângulo com contactores e temporizador — a solução mais comum para limitar o pico de corrente no arranque de motores trifásicos de maior potência.</p>
-  </section>
 
   <!-- ============ GALERIA  (apaga se não tiveres imagens) ============ -->
   <section class="part">
